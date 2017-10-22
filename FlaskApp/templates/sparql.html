@@ -1,0 +1,13 @@
+{% for r in results %}
+    {% if page == 'class' %}
+    <p>class:{{r}}</p>
+   
+    
+    {% else %}
+
+    <p>s:{{r["s"]["value"]}}</p>
+     
+     
+        <p>----</p>
+    {% endif%}
+{% endfor %}

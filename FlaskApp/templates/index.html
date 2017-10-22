@@ -1,0 +1,17 @@
+
+<html>
+    <head>
+            <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+            <script src="static/js/bootstrap.js"></script> 
+    </head>
+    <body>
+        {{ variable }}
+
+        <form action="{{ url_for('handle_data') }}">
+                <input type="text" name="projectFilepath">
+                <input type="submit">
+            </form>
+
+        </body>
+
+</html>
