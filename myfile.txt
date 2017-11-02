@@ -1,0 +1,94 @@
+If your focused problem is "LOD sources are huge; some do not have schema available; users and developers do not understand what the data are about and cannot consume them properly", it can be seen as the problem of "Usability and Understandability of LODs". So from this problem what will be your proposed solution to tackle this efficiently and effectively.
+
+First, make sure that the problem is a real problem and still open for a better solution.
+--> As I used to ask, is it really the case that most LODs do not have schema? If so, you must discuss about it. As I pointed out, check some LOD sources (such as datahub.io) to confirm that there are a number of available LODs that are not equipped with schema. Any ideas about how big and complex those LODs are?
+
+#ref from multiple papers
+The ontology information are not always available.
+A single LOD dataset could be formed using multiple ontologies. Even when the ontology is provided, it is not clear which relevant parts of them is actually used in the dataset, what links are drawn between entities across various ontologies.
+
+Some examples of LOD data sources that do not provide the schema file. Only data dumps or/and SPARQL endpoints are available (some have VoID file). Some endpoints do not even offer query box for trying sample queries.
+
+https://old.datahub.io/dataset/the-ciard-ring
+http://data.archiveshub.ac.uk/ 
+https://old.datahub.io/dataset/lotico
+https://old.datahub.io/dataset/statistics-data-gov-uk
+https://old.datahub.io/dataset/b3kat
+https://old.datahub.io/dataset/twc-logd
+https://old.datahub.io/dataset/open-energy-info-wiki
+
+--> Without schema, is it really the case that we cannot consume and develop an app that consumes it? (Prof. Guha's question) Of course, this will be the case if the LODs are huge. So this is related with the previous issue.
+
+--> What's wrong with the current solutions? What are the limitations and how to improve? It would be best if we can be more specific on an area to improve.
+Having sample data along with the schema would be more helpful. So, based on the current user selection in the visualization, dynamically generated queries could be used to fetch sample instances from the dataset.
+
+Second, check that the proposed solution you'd like to develop will solve the problem and be better.
+
+--> Will additional ontology info be really helpful? Or should we improve the extraction to be more accurate or more readable/usable? Can we propose a different or combine with other technique to make it more accurate? 
+
+--> Should you provide other additional info to make the LOD source more usable and understandable? What are those info? Is it just some stat such as count of instances, properties, etc. Is there any other metadata that should be associated with the LOD to make it more understandable? How about extracting or generating VOID metadata or other kind of metadata?
+
+--> About visualization, what is the current problem? What other techniques can be used to solve the problem? Can it be solved with Faceted Navigation, Subgraph Simplification, or any other techniques? If the goal is to understand the data in the LOD, then what kind of visualization can improve understandability!
+
+The scalability is the main problem of the current visualizations. Interactive visualization that minimizes the cognitive load on the users to understand the dataset is the solution to such problem. 
+We will use the traditional node-link graph to represent the connections between class and properties but 
+For example in the node-link graph, a suitable interaction could be to highlight the selected class-property-class connection (while deeming out other nodes and edges) and provide additional details of the selection (including the sample data). Use of 
+Filters to show/hide selective information on the graph. For specific  
+
+Main mantra to be followed is “overview first, zoom and filter, then details on demand”
+
+Do the additional papers sent recently give you some extra ideas?
+
+
+When exploring LOD cloud, it is quite common to find datasets without a schema file. The flexibility offered by LOD to make use of multiple ontologies into a single dataset also adds to the complexity in understanding the structure of the dataset.
+For example, here are a few LOD sources that provides SPARQL endpoint and/or data dumps but without the schema information. Some endpoints do not even offer query box for trying sample queries to explore the dataset.
+
+https://old.datahub.io/dataset/the-ciard-ring
+https://old.datahub.io/dataset/lotico     too disconnected
+
+Good example for edge merging
+https://old.datahub.io/dataset/statistics-data-gov-uk     
+http://vocabulary.semantic-web.at/PoolParty/sparql/AustrianSkiTeam     
+http://commons.dbpedia.org/sparql (https://old.datahub.io/dataset/dbpedia-commons)
+http://dbkwik.webdatacommons.org/sparql // also, multiple vocab with same name (https://old.datahub.io/dataset/dbkwik )
+
+
+https://old.datahub.io/dataset/b3kat
+https://old.datahub.io/dataset/twc-logd //endpoint forbidden
+https://old.datahub.io/dataset/open-energy-info-wiki
+
+So, for a LOD user who is seeking for relevant dataset to work with, a tool to quickly get an high level view of the structure of the schema is needed.
+There have been few researches in this area and LD-VOWL is one of the inspiring efforts which is able to extract overview schema information from a LOD data source. However, that are some areas for improvement. The usability of this tool could be enhanced with a visual querying mechanism, whereby the user interaction on the node-link schema graph would lead to a dynamically generated SPARQL query that fetches the instances of current selection. This would mean that users who are not well versed in SPARQL query language could also independently explore and gain understanding of the LOD dataset.
+Additionally, as stated in the paper, another area for improvement is the visualization, which currently is not scalable.
+
+Graph simplification through edge merging
+Example contains (->) and containedBy (<-) can be represented by single <-> egde
+Gradual graph build.
+
+In our approach, since the user gets to choose the number of classes to be displayed. The clutter is due to the edges
+
+Extraction of smaller graphs within the graph
+See also
+Sameas
+
+
+Use of color size and position
+hairball
+Faceted navigation
+Stepwise exploratory approach-> class with max instance and its directly connected classes
+
+Node grouping (http://bl.ocks.org/GerHobbelt/3071239)
+-    Same name -> but diff vocab, eg. event in http://data.archiveshub.ac.uk/sparql, check semantic 
+-    similarity of its instances.. Then group if similar
+-    equivalent class
+
+Identify Transitive property -> fade one edge
+
+
+Interactive visualization that minimizes the cognitive load on the users to understand the dataset is the solution to such problem. For example, in the node-link graph, a suitable interaction could be to highlight the selected class-property-class connection (while toning down other nodes and edges) and provide additional details of the selection (including the sample data). Main point to be followed is “overview first, zoom and filter, then details on demand”.
+
+
+
+
+http://sigmajs.org/
+
