@@ -6,15 +6,24 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 from collections import defaultdict
 import rethinkdb as r
 
+from rdflib import ConjunctiveGraph, Namespace, Literal
+import rdflib
+from rdflib import plugin
 
 # properties = defaultdict(lambda : defaultdict(lambda : defaultdict(int)))
 global_equivalent_class = []
 global_proper_subset = []
 tableprefix = ""
 database_name = "linkedmdb"
-database_name = "archiveshub"
+
 database_name = "cultura"
 database_name = "linkedgeodata"
+database_name = "fuseki"
+database_name = "archiveshub"
+database_name = "kupkb"
+database_name = "aat"
+database_name = "myDB_dummy"
+database_name = "jamendo"
 # tableprefix = "bcn_"
 
 app = Flask(__name__)
@@ -35,10 +44,15 @@ def sparql_endpoint():
     url7 = "http://cultura.linkeddata.es/sparql"
     url8 = "http://linkedgeodata.org/sparql/"
     url9 = "http://canlink.library.ualberta.ca"
-    endpoint = SPARQLWrapper(url8) #this should be user's input
+    url = "http://localhost:3030/tdb1/"
+    url10 = "http://sparql.kupkb.org/sparql"
+    url11 = "http://localhost:5820/aat/query"
+    url11 = "http://localhost:5820/myDB/query" #archives hub
+    url12 = "http://localhost:5820/myDB/jamendo"
+    
+    endpoint = SPARQLWrapper(url11) #this should be user's input
 
 sparql_endpoint()
-
 
 def create_tables():
     r.connect( "localhost", 28015).repl()
@@ -59,6 +73,15 @@ def create_database():
 
 create_database()
 
+def get_graph():
+    path = '../data/triplestore_drugbank'
+    graph = ConjunctiveGraph('Sleepycat')
+    graph.open(path, create = False)
+    return graph
+
+def execute_query_graph(graph):
+    results = graph.query(query)
+    return results
 
 # create_tables()
 
@@ -82,7 +105,8 @@ def execute_query(query):
     return results["results"]["bindings"]
 
 #Fetch classes with max instances
-@app.route('/class')
+
+@app.route('/class')  
 def popular_class():
     count = 10
     query = """ 
@@ -93,6 +117,7 @@ def popular_class():
       GROUP BY ?class 
       ORDER BY DESC(?instance_count) 
       limit """ + str(count)
+    
     results = execute_query(query)
     i = 0
     classes = [] #[None] * count
@@ -131,8 +156,8 @@ def fetch_property():
 
 @app.route('/subclass')
 def fetch_sub_equivalent_class():
-    global_equivalent_class = []
-    global_proper_subset = []
+    # global_equivalent_class = []
+    # global_proper_subset = []
     classes = conn(tableprefix + "class").run()
     len = conn(tableprefix + "class").count().run()
     class_arr = return_array(classes,len)
@@ -160,35 +185,40 @@ def poperty_between_class(*args):
             } 
         GROUP BY ?prop 
         ORDER BY DESC(?count) limit """ + str(count)
-    # print query
+
+    print query
     results = execute_query(query)
     # i = len(properties)
     #conn()
     data = []
     for result in results:
+        
+        print result
+        print result["count"]["value"]
+        if(int(result["count"]["value"])>0):
         #properties[c1][c2][i]= result["prop"]["value"]
-        p = result["prop"]["value"]
-        # properties[i]= [c1, c2, p]
-        q = """
-            SELECT (count(*) as ?count)
-            WHERE {
-                ?s a <""" + c1 + """>.
-                ?o a <""" + c2 + """>.
-                ?s <""" + p + """> ?o
-            }
-            group by ?s
-            order by desc(?count)
-            limit 1
-        """
-        print q
-        q_result = execute_query(q)
-        max_cardinality = q_result[0]["count"]["value"] 
-        data.append( {
-                "c1" : c1,
-                "c2" : c2,
-                "p" : p,
-                "max_cardinality" :max_cardinality
-            })
+            p = result["prop"]["value"]
+            # properties[i]= [c1, c2, p]
+            q = """
+                SELECT (count(*) as ?count)
+                WHERE {
+                    ?s a <""" + c1 + """>.
+                    ?o a <""" + c2 + """>.
+                    ?s <""" + p + """> ?o
+                }
+                group by ?s
+                order by desc(?count)
+                limit 1
+            """
+            print q
+            q_result = execute_query(q)
+            max_cardinality = q_result[0]["count"]["value"] 
+            data.append( {
+                    "c1" : c1,
+                    "c2" : c2,
+                    "p" : p,
+                    "max_cardinality" :max_cardinality
+                })
       
         # i + 1   
     conn(tableprefix + "property").insert(data).run()
@@ -376,10 +406,13 @@ def inverse_property():
             """
             print q
             q_results = execute_query(q)
+            print(q_results)
             if(len(q_results)>0):
-                inverse = q_results[0]["p"]["value"]
-                checked_property.append(inverse)
-                inverse_property.append({"p1":p, "p2": inverse})
+                print q_results[0]["count"]["value"]
+                if(int(q_results[0]["count"]["value"])>0):
+                    inverse = q_results[0]["p"]["value"]
+                    checked_property.append(inverse)
+                    inverse_property.append({"p1":p, "p2": inverse})
             
        
     print "---"
