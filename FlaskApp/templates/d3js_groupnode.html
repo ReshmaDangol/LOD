@@ -3,8 +3,9 @@
 
 <head>
   <title>Clustered Network</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="http://d3js.org/d3.v2.js"></script>
-
+  <script src="../static/js/jsonQ.min.js"></script>
   <style type="text/css">
     svg {
       border: 1px solid #ccc;
@@ -17,7 +18,7 @@
     circle.node {
       fill: lightsteelblue;
       stroke: #555;
-     min-width: 30px;
+      min-width: 30px;
     }
 
     circle.leaf {
@@ -33,6 +34,13 @@
       stroke: #333;
       stroke-opacity: 0.5;
       pointer-events: none;
+    }
+
+    .node_label {
+      stroke: #333;
+      font: 12px sans-serif;
+      pointer-events: none;
+      stroke: none;
     }
   </style>
 </head>
@@ -99,7 +107,7 @@
       for (var k = 0; k < data.nodes.length; ++k) {
         var n = data.nodes[k],
           i = index(n),
-          l = gm[i] || (gm[i] = gn[i]) || (gm[i] = { group: i, size: 0, nodes: [],visible:false });
+          l = gm[i] || (gm[i] = gn[i]) || (gm[i] = { group: i, size: 0, nodes: [], visible: false,name:n.name });
 
         if (expand[i]) {
           // the node should be directly visible
@@ -192,7 +200,12 @@
       .attr("height", height);
 
     d3.json("miserables.json", function (json) {
+      // var jsonQ = jsonQ(json)
+      // var result = $.jsonq.nthElm(json, 'even');
+      // console.log(res)
       data = json;
+
+      //this draws the line
       for (var i = 0; i < data.links.length; ++i) {
         o = data.links[i];
         o.source = data.nodes[o.source];
@@ -211,9 +224,9 @@
         .attr("opacity", 1);
     });
 
-    function addnode()
-    {
-      force.nodes().push({"id": "test", "name":"test"});
+    function addnode() {
+      console.log("add node");
+      force.nodes().push({ "id": "test", "name": "test" });
       // force.links().push({"source": test, "target": findNode(target), "value": value})
     }
 
@@ -278,31 +291,36 @@
         .attr("y2", function (d) { return d.target.y; })
         .style("stroke-width", function (d) { return d.size || 1; });
 
-      node = nodeg.selectAll("circle.node").data(net.nodes, nodeid);
+      node = nodeg.selectAll("g").data(net.nodes, nodeid);
+      // node_label = nodeg.selectAll(".node_label").data(net.nodes, nodeid);
       node.exit().remove();
-      node.enter().append("circle")
+      var newnode = node.enter().append("g")
+
+      newnode.append("circle")
         // if (d.size) -- d.size > 0 when d is a group node.
-        .attr("class", function (d) { 
+        .attr("class", function (d) {
           console.log(d)
-          return "node" + (d.size ? "" : " leaf"); })
-        .attr("r", function (d) { 
-          return (d.size ? d.size + dr : dr + 1)*2; //size of circles
+          return "node" + (d.size ? "" : " leaf");
         })
-        .attr("cx", function (d) { return d.x; })
-        .attr("cy", function (d) { return d.y; })
+        .attr("r", function (d) {
+          return (d.size ? d.size + dr : dr + 1) * 2; //size of circles
+        })
         .style("fill", function (d) { return fill(d.group); })
         .on("click", function (d) {
-          if(typeof d.group == "undefined") return;
+          if (typeof d.group == "undefined") return;
           console.log("node click", d, arguments, this, expand[d.group]);
           console.log(expand[d.group]);
-          if(typeof  expand[d.group]== "undefined" || expand[d.group] == false) expand[d.group] = !expand[d.group]
+          if (typeof expand[d.group] == "undefined" || expand[d.group] == false) expand[d.group] = !expand[d.group]
           // expand[d.group] = !expand[d.group];
           console.log(expand[d.group]);
           init();
         })
-        .append("text").text(function(d){return "xxxxxx"});
+
+      newnode.append("text").attr("class", "node_label")
+        .text(function (d) {return d.name });
 
       node.call(force.drag);
+      // node_label.call(force.drag);
 
       force.on("tick", function () {
         if (!hull.empty()) {
@@ -315,8 +333,14 @@
           .attr("x2", function (d) { return d.target.x; })
           .attr("y2", function (d) { return d.target.y; });
 
-        node.attr("cx", function (d) { return d.x; })
-          .attr("cy", function (d) { return d.y; });
+        node.attr('transform', function nodeTransform(d) { return "translate(" + d.x + "," + d.y + ")"; })
+        // node.attr("cx", function (d) {
+        //   return d.x; 
+        // })
+        // .attr("cy", function (d) {         
+        //   return d.y;        
+        // });
+
       });
     }
   </script>
