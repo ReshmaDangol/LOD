@@ -47,7 +47,7 @@
       stroke: none;
     }
 
-    #node_list>div{
+    #node_list>div {
       padding: 5px;
       cursor: pointer;
     }
@@ -70,18 +70,28 @@
   </div>
 </body>
 <script type="text/javascript">
+  var userSelection = []
+  var url = "http://localhost:5000/";
   $(document).ready(function () {
-    url = "http://localhost:5000/";
+
     expand = expand || {};
     $.get(url + "classlist", function (data) {
       json = jQuery.parseJSON(JSON.stringify(data));
       $(data).each(function () {
-        $("#node_list").append("<div onclick='addNode(\""+this+"\")'>" + this.class + "</div>");
+        $("#node_list").append("<div onclick='addNode(\"" + this.class + "\")'>" + this.class + "</div>");
       });
     });
   });
 
-  function addNode(){}
+  function addNode(node) {
+
+    if ($.inArray(node, userSelection) == -1) {
+      userSelection.push(node);
+      loadGraph(userSelection);
+    }
+  }
+
+
   var width = $("#graphContainer").width(),     // svg width
     height = 600,     // svg height
     dr = 10,      // default point radius
@@ -139,7 +149,7 @@
     for (var k = 0; k < data.nodes.length; ++k) {
       var n = data.nodes[k],
         i = index(n),
-        l = gm[i] || (gm[i] = gn[i]) || (gm[i] = { group: i, size: 0, nodes: [], visible: false, name: n.name });
+        l = gm[i] || (gm[i] = gn[i]) || (gm[i] = { group: i, size: 0, nodes: [], visible: false, name: n.class });
 
       if (expand[i]) {
         // the node should be directly visible
@@ -167,6 +177,7 @@
       l.size += 1;
       n.group_data = l;
     }
+
 
     for (i in gm) { gm[i].link_count = 0; }
 
@@ -224,20 +235,56 @@
 
   var body = d3.select("#graphContainer");
 
-  var vis = body.append("svg")
-    .attr("width", width)
-    .attr("height", height).on("mousemove", mousemove)
+  var vis;
 
-  var cursor = vis.append("circle")
-    .attr("r", 30)
-    .attr("fill", "lightsteelblue")
-    .attr("transform", "translate(-100,-100)")
-    .attr("class", "cursor");
+  // var cursor = vis.append("circle")
+  //   .attr("r", 30)
+  //   .attr("fill", "lightsteelblue")
+  //   .attr("transform", "translate(-100,-100)")
+  //   .attr("class", "cursor");
 
   function mousemove() {
     // cursor.attr("transform", "translate(" + d3.mouse(this) + ")");
   }
-  var svg = d3.select("svg");
+  
+
+  function loadGraph(userSelection) {
+    $("svg").remove();
+    vis = body.append("svg")
+      .attr("width", width)
+      .attr("height", height).on("mousemove", mousemove);
+    
+
+    $.ajax({
+      type: "POST",
+      url: url + "class",
+      data: { 'class': JSON.stringify(userSelection) }
+    }).done(function (json) {
+      // d3.json("miserables.json", function (json) {
+      console.log(json)
+      data = json;
+    
+      //this draws the line
+      for (var i = 0; i < data.links.length; ++i) {
+        o = data.links[i];
+        o.source = data.nodes[o.source];
+        o.target = data.nodes[o.target];
+      }
+
+      hullg = vis.append("g");
+      linkg = vis.append("g");
+      nodeg = vis.append("g");
+
+      init();
+
+      vis.attr("opacity", 1e-6)
+        .transition()
+        .duration(1000)
+        .attr("opacity", 1);
+
+    });
+
+    var svg = d3.select("svg");
 
   svg.append('defs').append('marker')
     .attr({
@@ -272,32 +319,8 @@
     .attr('fill', '#000')
     .style('stroke', 'none');
 
-
-  d3.json("http://localhost:5000/class", function (json) {
-    // d3.json("miserables.json", function (json) {
-    console.log(json)
-    data = json;
-
-    //this draws the line
-    for (var i = 0; i < data.links.length; ++i) {
-      o = data.links[i];
-      o.source = data.nodes[o.source];
-      o.target = data.nodes[o.target];
-    }
-
-    hullg = vis.append("g");
-    linkg = vis.append("g");
-    nodeg = vis.append("g");
-
-    init();
-
-    vis.attr("opacity", 1e-6)
-      .transition()
-      .duration(1000)
-      .attr("opacity", 1);
-
-  });
-
+  }
+  // loadGraph()
 
   function init() {
     if (force) force.stop();
