@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
+<meta charset="UTF-8">
 
 <head>
   <title>Clustered Network</title>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="http://d3js.org/d3.v2.js"></script>
-  <script src="../static/js/jsonQ.min.js"></script>
+  <script src="../static/js/jquery-3.2.1.min.js"></script>
+  <script src="../static/js/d3.v2.js"></script>
+  <!-- <script src="../static/js/jsonQ.min.js"></script> -->
   <style type="text/css">
     svg {
       border: 1px solid #ccc;
@@ -16,13 +17,13 @@
     }
 
     circle.node {
-      fill: lightsteelblue;
+      fill: transparent;
       stroke: #555;
       min-width: 30px;
     }
 
     circle.leaf {
-      stroke: #fff;
+      /* stroke: #fff; */
     }
 
     path.hull {
@@ -31,15 +32,21 @@
     }
 
     line.link {
-      stroke: #333;
-      stroke-opacity: 0.5;
-      pointer-events: none;
+      stroke: #999;
+      stroke-width: 2;
+      cursor: pointer;
+      /* stroke-opacity: 0.5; */
+      /* pointer-events: none; */
+    }
+
+    line.link:hover {
+      stroke-width: 11;
     }
 
     .node_label {
       stroke: #333;
       font: 12px sans-serif;
-      pointer-events: none;
+      /* pointer-events: none; */
       stroke: none;
     }
   </style>
@@ -48,9 +55,9 @@
 <body>
   <div onclick="addnode()">Add node</div>
   <script type="text/javascript">
-    var width = 960,     // svg width
+    var width = $("body").width(),     // svg width
       height = 600,     // svg height
-      dr = 4,      // default point radius
+      dr = 10,      // default point radius
       off = 15,    // cluster hull offset
       expand = {}, // expanded clusters
       data, net, force, hullg, hull, linkg, link, nodeg, node;
@@ -61,7 +68,6 @@
 
     var fill = d3.scale.category20();
 
-    function noop() { return false; }
 
     function nodeid(n) {
       return n.size ? "_g_" + n.group : n.name;
@@ -105,10 +111,10 @@
 
       // determine nodes
       for (var k = 0; k < data.nodes.length; ++k) {
+
         var n = data.nodes[k],
           i = index(n),
-          l = gm[i] || (gm[i] = gn[i]) || (gm[i] = { group: i, size: 0, nodes: [], visible: false,name:n.name });
-
+          l = gm[i] || (gm[i] = gn[i]) || (gm[i] = { group: i, size: 0, nodes: [], name: n.name ,equivalent:n.equivalent});
         if (expand[i]) {
           // the node should be directly visible
           nm[n.name] = nodes.length;
@@ -135,8 +141,6 @@
         l.size += 1;
         n.group_data = l;
       }
-      console.log("nodes->")
-      console.log(nodes)
 
       for (i in gm) { gm[i].link_count = 0; }
 
@@ -152,12 +156,11 @@
         u = expand[u] ? nm[e.source.name] : nm[u];
         v = expand[v] ? nm[e.target.name] : nm[v];
         var i = (u < v ? u + "|" + v : v + "|" + u),
-          l = lm[i] || (lm[i] = { source: u, target: v, size: 0 });
+          l = lm[i] || (lm[i] = { source: u, target: v, size: 0, bidirection: e.bidirection });
         l.size += 1;
       }
 
       for (i in lm) { links.push(lm[i]); }
-
 
       return { nodes: nodes, links: links };
     }
@@ -197,12 +200,16 @@
 
     var vis = body.append("svg")
       .attr("width", width)
-      .attr("height", height);
+      .attr("height", height).on("mousemove", mousemove)
+
+
+
+    function mousemove() {
+      // cursor.attr("transform", "translate(" + d3.mouse(this) + ")");
+    }
+    var svg = d3.select("svg");
 
     d3.json("miserables.json", function (json) {
-      // var jsonQ = jsonQ(json)
-      // var result = $.jsonq.nthElm(json, 'even');
-      // console.log(res)
       data = json;
 
       //this draws the line
@@ -222,6 +229,7 @@
         .transition()
         .duration(1000)
         .attr("opacity", 1);
+
     });
 
     function addnode() {
@@ -234,7 +242,7 @@
       if (force) force.stop();
 
       net = network(data, net, getGroup, expand);
-      console.log(net.nodes)
+      // console.log(net.nodes)
 
       force = d3.layout.force()
         .nodes(net.nodes)
@@ -250,8 +258,8 @@
           // again both in expanded and grouped form, i.e. between individual nodes of a group and
           // nodes of another group or other group node or between two group nodes.
           //
-          // The latter was done to keep the single-link groups ('blue', rose, ...) close.
-          return 30 +
+          // The latter was done to keep the single-link groups ('blue', rose, ...) close.   
+          return 130 +
             Math.min(20 * Math.min((n1.size || (n1.group != n2.group ? n1.group_data.size : 0)),
               (n2.size || (n1.group != n2.group ? n2.group_data.size : 0))),
               -30 +
@@ -268,6 +276,57 @@
         .friction(0.5)   // friction adjusted to get dampened display: less bouncy bouncy ball [Swedish Chef, anyone?]
         .start();
 
+      $("defs").remove();
+      d3.select("svg").append("defs").selectAll(".marker")
+        .data(force.links())
+        .enter()
+        .append("marker")
+        .attr("class", "marker")
+        .attr({
+          'viewBox': '-0 -5 10 10',
+          'refY': 0,
+          'orient': 'auto',
+          'markerWidth': 13,
+          'markerHeight': 13,
+          'xoverflow': 'visible',
+          'markerUnits': 'userSpaceOnUse'
+        })
+        .attr("id", function (d) {
+          return "arrowhead" + d.source.name;
+        })
+        .attr("refX", function (d) {
+          return -(d.source.size ? d.source.size + dr : dr + 1) * 3 + 10;    // Add the marker's width               
+        })
+        .append('svg:path')
+        .attr('d', 'M0,0L10,-5L10,5Z')
+        .attr('fill', '#000')
+        .style('stroke', 'none');
+
+
+      d3.select("svg").append("defs").selectAll(".marker")
+        .data(force.links())
+        .enter().append('marker')
+        .attr("class", "marker")
+        .attr({
+          'viewBox': '-0 -5 10 10',
+          'refY': 0,
+          'orient': 'auto',
+          'markerWidth': 13,
+          'markerHeight': 13,
+          'xoverflow': 'visible',
+          'markerUnits': 'userSpaceOnUse'
+        })
+        .attr("id", function (d) {
+          return "endarrowhead" + d.target.name;
+        })
+        .attr("refX", function (d) {
+          return (d.target.size ? d.target.size + dr : dr + 1) * 3;    // Add the marker's width               
+        })
+        .append('svg:path')
+        .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
+        .attr('fill', '#999')
+        .style('stroke', 'none');
+
       hullg.selectAll("path.hull").remove();
       hull = hullg.selectAll("path.hull")
         .data(convexHulls(net.nodes, getGroup, off))
@@ -276,8 +335,8 @@
         .attr("d", drawCluster)
         .style("fill", function (d) { return fill(d.group); })
         .on("click", function (d) {
-          console.log("--")
-          console.log("hull click", d, arguments, this, expand[d.group]);
+          console.log("hull click")
+          // console.log("hull click", d, arguments, this, expand[d.group]);
           expand[d.group] = false; init();
         });
 
@@ -289,38 +348,76 @@
         .attr("y1", function (d) { return d.source.y; })
         .attr("x2", function (d) { return d.target.x; })
         .attr("y2", function (d) { return d.target.y; })
-        .style("stroke-width", function (d) { return d.size || 1; });
+        //.style("stroke-width", function (d) { return d.size || 1; })
+        .attr('marker-start', function (d) {
+          if (d.bidirection == 1)
+            return 'url(#arrowhead' + d.source.name + ')';
+          else return false;
+        })
+        .attr('marker-end', function (d) {
+          return 'url(#endarrowhead' + d.target.name + ')';
+        })
+
+      link.on("click", function (d) {
+        console.log(d)
+      });
 
       node = nodeg.selectAll("g").data(net.nodes, nodeid);
-      // node_label = nodeg.selectAll(".node_label").data(net.nodes, nodeid);
       node.exit().remove();
       var newnode = node.enter().append("g")
 
       newnode.append("circle")
         // if (d.size) -- d.size > 0 when d is a group node.
         .attr("class", function (d) {
-          console.log(d)
           return "node" + (d.size ? "" : " leaf");
         })
         .attr("r", function (d) {
-          return (d.size ? d.size + dr : dr + 1) * 2; //size of circles
+          return (d.size ? d.size + dr : dr + 1) * 3; //size of circles
         })
-        .style("fill", function (d) { return fill(d.group); })
+        // .style("fill", function (d) { return fill(d.group); })
         .on("click", function (d) {
           if (typeof d.group == "undefined") return;
-          console.log("node click", d, arguments, this, expand[d.group]);
-          console.log(expand[d.group]);
-          if (typeof expand[d.group] == "undefined" || expand[d.group] == false) expand[d.group] = !expand[d.group]
-          // expand[d.group] = !expand[d.group];
-          console.log(expand[d.group]);
+          if (typeof expand[d.group] == "undefined" || expand[d.group] == false) expand[d.group] = !expand[d.group];
+          init();
+        })
+        .attr("display", function (d) {
+          if (d.equivalent == 1 && !$(this).hasClass("leaf"))
+            return "block";
+          else
+            return "none";
+
+        })
+
+      newnode.append("circle")
+        // if (d.size) -- d.size > 0 when d is a group node.
+        .attr("class", function (d) {
+          return "node" + (d.size ? "" : " leaf");
+        })
+        .attr("r", function (d) {
+          return (d.size ? d.size + dr : dr + 1) * 3 + 4; //size of circles
+        })
+        // .style("fill", function (d) { return fill(d.group); })
+        .on("click", function (d) {
+          if (typeof d.group == "undefined") return;
+          if (typeof expand[d.group] == "undefined" || expand[d.group] == false) expand[d.group] = !expand[d.group];
           init();
         })
 
       newnode.append("text").attr("class", "node_label")
-        .text(function (d) {return d.name });
+        .text(function (d) { return d.name });
 
       node.call(force.drag);
-      // node_label.call(force.drag);
+      var edgepaths = nodeg.selectAll(".edgepath")
+        .data(net.links)
+        .enter()
+        .append('path')
+        .attr({
+          'class': 'edgepath',
+          'fill-opacity': 0,
+          'stroke-opacity': 0,
+          'id': function (d, i) { return 'edgepath' + i }
+        })
+        .style("pointer-events", "none");
 
       force.on("tick", function () {
         if (!hull.empty()) {
@@ -328,19 +425,28 @@
             .attr("d", drawCluster);
         }
 
+        edgepaths.attr('d', function (d) {
+          return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
+        });
+
         link.attr("x1", function (d) { return d.source.x; })
           .attr("y1", function (d) { return d.source.y; })
           .attr("x2", function (d) { return d.target.x; })
-          .attr("y2", function (d) { return d.target.y; });
+          .attr("y2", function (d) { return d.target.y; })
+          .attr('display', function (d) {
+            var x1 = $(this).attr("x1")
+            var x2 = $(this).attr("x2")
+            var y1 = $(this).attr("y1")
+            var y2 = $(this).attr("y2")
+            if (x1 == x2 && y1 == y2)
+              return 'none';
+            else
+              return 'block';
+
+          })
+
 
         node.attr('transform', function nodeTransform(d) { return "translate(" + d.x + "," + d.y + ")"; })
-        // node.attr("cx", function (d) {
-        //   return d.x; 
-        // })
-        // .attr("cy", function (d) {         
-        //   return d.y;        
-        // });
-
       });
     }
   </script>
