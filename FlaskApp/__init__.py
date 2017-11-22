@@ -9,25 +9,29 @@ import rethinkdb as r
 from rdflib import ConjunctiveGraph, Namespace, Literal
 import rdflib
 from rdflib import plugin
+import common_functions as cf
 
 # properties = defaultdict(lambda : defaultdict(lambda : defaultdict(int)))
 global_equivalent_class = []
 global_proper_subset = []
 tableprefix = ""
-database_name = "linkedmdb"
-
 database_name = "cultura"
-database_name = "linkedgeodata"
-database_name = "fuseki"
-database_name = "archiveshub"
 database_name = "kupkb"
-database_name = "aat"
-database_name = "myDB_dummy"
+
 database_name = "jamendo"
+
+
+database_name = "linkedmdb"
+database_name = "jamendo"
+database_name = "aat"
+database_name = "archiveshub"
 # tableprefix = "bcn_"
+
+#<http(|s):\/\/+[^<>]+>
 
 app = Flask(__name__)
 endpoint = ""
+
 
 def conn(table):
     r.connect( "localhost", 28015).repl()
@@ -35,27 +39,34 @@ def conn(table):
 
 def sparql_endpoint(): 
     global endpoint    
-    url1 = "http://vocabulary.semantic-web.at/PoolParty/sparql/AustrianSkiTeam"
-    url2 = "http://datos.bcn.cl/sparql" 
-    url3 = "http://services.data.gov.uk/statistics/sparql"
-    url4 = "http://ring.ciard.net/sparql1"
-    url5 = "http://www.linkedmdb.org/sparql"
-    url6 = "http://data.archiveshub.ac.uk/sparql"
-    url7 = "http://cultura.linkeddata.es/sparql"
-    url8 = "http://linkedgeodata.org/sparql/"
-    url9 = "http://canlink.library.ualberta.ca"
-    url = "http://localhost:3030/tdb1/"
-    url10 = "http://sparql.kupkb.org/sparql"
-    url11 = "http://localhost:5820/aat/query"
-    url11 = "http://localhost:5820/myDB/query" #archives hub
-    url12 = "http://localhost:5820/myDB/jamendo"
+    # url1 = "http://vocabulary.semantic-web.at/PoolParty/sparql/AustrianSkiTeam"
+    # url2 = "http://datos.bcn.cl/sparql" 
+    # url3 = "http://services.data.gov.uk/statistics/sparql"
+    # url4 = "http://ring.ciard.net/sparql1"
+    # url5 = "http://www.linkedmdb.org/sparql"
+    # url6 = "http://data.archiveshub.ac.uk/sparql"
+    # url7 = "http://cultura.linkeddata.es/sparql"
+    # url8 = "http://linkedgeodata.org/sparql/"
+    # url9 = "http://canlink.library.ualberta.ca"
+    # url = "http://localhost:3030/tdb1/"
+    # url10 = "http://sparql.kupkb.org/sparql"
+
+    #local Stardog triplestores
+    url11 = "http://localhost:5820/aat/query" #https://old.datahub.io/dataset/getty-aat
+    url12 = "http://localhost:5820/archiveshub/query" #archives hub
+    url13 = "http://localhost:5820/jamendo/query"
+    url14 = "http://localhost:5820/linkedmdb/query"
     
-    endpoint = SPARQLWrapper(url11) #this should be user's input
+    url = "http://localhost:5820/" + database_name + "/query"
+    url = "http://192.41.170.50:2850" + database_name + "/query"
+    
+    endpoint = SPARQLWrapper(url) #this should be user's input
 
 sparql_endpoint()
 
 def create_tables():
-    r.connect( "localhost", 28015).repl()
+    r.connect( "localhost", 28015).repl()    
+    r.db(database_name).table_create(tableprefix + "equivalentclass_group").run()
     r.db(database_name).table_create(tableprefix + "equivalentclass").run()
     r.db(database_name).table_create(tableprefix + "instance").run()
     r.db(database_name).table_create(tableprefix + "inverse_property").run()
@@ -100,15 +111,86 @@ def execute_query(query):
     endpoint.setQuery(query)
     endpoint.setReturnFormat(JSON)
     results = endpoint.query().convert()   
-    print results
+    # print results
     # print len(results["results"]["bindings"])
     return results["results"]["bindings"]
 
 #Fetch classes with max instances
 
+
+@app.route('/x')
+def inverse_functional_property():
+    rows = conn(tableprefix + "property")["p"].distinct().run()
+    for row in rows:
+        p = row
+       
+ 
+  
+
+          #SymmetricProperty
+        query = """
+            SELECT (COUNT(*) as ?instanceCount)
+            WHERE {              
+                ?s <"""+ p +"""> ?o.
+                ?o <"""+ p +"""> ?s.
+            }
+        """
+   
+   
+
+    #Transitive Property exists in aat daraset
+        query = """
+            SELECT (COUNT(*) as ?instanceCount)
+            WHERE {              
+                ?a <"""+ p +"""> ?b.
+                ?b <"""+ p +"""> ?c.
+                ?a <"""+ p +"""> ?c.
+            }
+        """
+     #SymmetricProperty
+        query = """
+            SELECT (COUNT(*) as ?instanceCount)
+            WHERE {              
+                ?s <"""+ p +"""> ?o.
+                ?o <"""+ p +"""> ?s.
+            }
+        """
+
+        #inverse functional
+        query = """
+            SELECT (COUNT(*) as ?instanceCount)
+            WHERE {              
+                ?s1 <"""+ p +"""> ?o.
+                ?s2 <"""+ p +"""> ?o.
+            }
+        """   
+
+        #functional property
+        # p = "http://purl.org/dc/terms/replaces"
+        query = """
+            SELECT *
+            WHERE {              
+                ?s <"""+ p +"""> ?o1.
+                ?s <"""+ p +"""> ?o2 
+            }
+        """   
+
+        # print query
+        rows = execute_query(query)
+        print len(rows) #
+
+
+        # if(int(rows[0]["instanceCount"]["value"]) > 0):           
+        #     # pass
+        #     print rows[0]["instanceCount"]["value"]
+        # else:
+        #     print p
+             
+    return render_template("sparql.html")
+
 @app.route('/class')  
 def popular_class():
-    count = 10
+    count = 20
     query = """ 
       SELECT DISTINCT ?class (count(?sub) AS ?instance_count)
       WHERE {
@@ -122,10 +204,14 @@ def popular_class():
     i = 0
     classes = [] #[None] * count
     #classDetail = [None] * count
-    # print results
+    print results
 
     for result in results:
-        classes.append({"class" : result["class"]["value"]})
+        classes.append({
+            "class" : result["class"]["value"],
+            "count" : int(result["instance_count"]["value"]),
+            "name" : cf.get_class_name(result["class"]["value"])
+            })
     print conn(tableprefix + "class").insert(classes).run()
     return render_template("sparql.html", results=classes, page="class")
 
@@ -135,14 +221,14 @@ def return_array(*args):
     class_arr = [None]*len
     index = 0
     for i,c in enumerate(classes):
-        class_arr[index] = c["class"]
+        class_arr[index] = c#["class"]
         index +=1
     return class_arr
     
 @app.route('/property')
 def fetch_property():
-    classes = conn(tableprefix + "class").run()
-    len = conn(tableprefix + "class").count().run()
+    classes = conn(tableprefix + "class")["class"].distinct().run()
+    len = conn(tableprefix + "class")["class"].distinct().count().run()
     class_arr = return_array(classes,len)
     
     for i in range(0, len-1):
@@ -158,8 +244,8 @@ def fetch_property():
 def fetch_sub_equivalent_class():
     # global_equivalent_class = []
     # global_proper_subset = []
-    classes = conn(tableprefix + "class").run()
-    len = conn(tableprefix + "class").count().run()
+    classes = conn(tableprefix + "class")["class"].distinct().run()
+    len = conn(tableprefix + "class")["class"].distinct().count().run()
     class_arr = return_array(classes,len)
     for i in range(0, len-1):
         for j in range(i+1, len):          
@@ -173,7 +259,7 @@ def fetch_sub_equivalent_class():
 
   
 def poperty_between_class(*args):
-    count = 10
+    count = 20
     c1 = args[0]
     c2 = args[1]
     query = """
@@ -191,8 +277,7 @@ def poperty_between_class(*args):
     # i = len(properties)
     #conn()
     data = []
-    for result in results:
-        
+    for result in results:        
         print result
         print result["count"]["value"]
         if(int(result["count"]["value"])>0):
@@ -210,18 +295,31 @@ def poperty_between_class(*args):
                 order by desc(?count)
                 limit 1
             """
+
+            # q = """
+            #     SELECT (count(*) as ?count)
+            #     WHERE {
+            #         ?s <""" + p + """> ?o
+            #         ?s <""" + p + """> ?o2
+            #     }
+            #     group by ?s
+            #     order by desc(?count)
+            #     limit 1
+            # """
+
             print q
             q_result = execute_query(q)
             max_cardinality = q_result[0]["count"]["value"] 
-            data.append( {
+            data.append({
                     "c1" : c1,
                     "c2" : c2,
                     "p" : p,
-                    "max_cardinality" :max_cardinality
+                    "max_cardinality" :int(max_cardinality),
+                    "count" : int(result["count"]["value"])
                 })
       
         # i + 1   
-    conn(tableprefix + "property").insert(data).run()
+    # conn(tableprefix + "property_").insert(data).run()
     pass
 
 def testquery():
