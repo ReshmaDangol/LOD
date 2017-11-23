@@ -28,7 +28,7 @@ Second, check that the proposed solution you'd like to develop will solve the pr
 
 --> Should you provide other additional info to make the LOD source more usable and understandable? What are those info? Is it just some stat such as count of instances, properties, etc. Is there any other metadata that should be associated with the LOD to make it more understandable? How about extracting or generating VOID metadata or other kind of metadata?
 
---> About visualization, what is the current problem? What other techniques can be used to solve the problem? Can it be solved with Faceted Navigation, Subgraph Simplification, or any other techniques? If the goal is to understand the data in the LOD, then what kind of visualization can improve understandability!
+--> About visualization, what is the current problem? What other techniques can be used to solve the problem? Can it be solved with Faceted Navigation, Subgraph Simplification, or any other techniques? If the goal is to understand the data in the LOD, then what kind of visualization can improve understandability! 
 
 The scalability is the main problem of the current visualizations. Interactive visualization that minimizes the cognitive load on the users to understand the dataset is the solution to such problem. 
 We will use the traditional node-link graph to represent the connections between class and properties but 
