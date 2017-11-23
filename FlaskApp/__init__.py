@@ -9,7 +9,7 @@ import rethinkdb as r
 from rdflib import ConjunctiveGraph, Namespace, Literal
 import rdflib
 from rdflib import plugin
-import common_functions as cf
+from . import common_functions as cf
 
 # properties = defaultdict(lambda : defaultdict(lambda : defaultdict(int)))
 global_equivalent_class = []
@@ -58,7 +58,7 @@ def sparql_endpoint():
     url14 = "http://localhost:5820/linkedmdb/query"
     
     url = "http://localhost:5820/" + database_name + "/query"
-    url = "http://192.41.170.50:5820" + database_name + "/query"
+    url = "http://192.41.170.50:2850" + database_name + "/query"
     
     endpoint = SPARQLWrapper(url) #this should be user's input
 
@@ -176,8 +176,8 @@ def inverse_functional_property():
         """   
 
         # print query
-        rows = execute_query(query)
-        print len(rows) #
+        rows_ = execute_query(query)
+        print(len(rows)) #
 
 
         # if(int(rows[0]["instanceCount"]["value"]) > 0):           
@@ -204,7 +204,7 @@ def popular_class():
     i = 0
     classes = [] #[None] * count
     #classDetail = [None] * count
-    print results
+    print(results)
 
     for result in results:
         classes.append({
@@ -212,7 +212,7 @@ def popular_class():
             "count" : int(result["instance_count"]["value"]),
             "name" : cf.get_class_name(result["class"]["value"])
             })
-    print conn(tableprefix + "class").insert(classes).run()
+    print(conn(tableprefix + "class").insert(classes).run())
     return render_template("sparql.html", results=classes, page="class")
 
 def return_array(*args):
@@ -233,8 +233,8 @@ def fetch_property():
     
     for i in range(0, len-1):
         for j in range(i+1, len):    
-            print class_arr[i]
-            print class_arr[j]
+            print(class_arr[i])
+            print(class_arr[j])
             poperty_between_class(class_arr[i], class_arr[j])
             poperty_between_class(class_arr[j], class_arr[i])
     return render_template("sparql.html")
@@ -252,7 +252,7 @@ def fetch_sub_equivalent_class():
             check_sub_equivalent_class(class_arr[i], class_arr[j])    
     
     # check_sub_equivalent_class("http://linkedgeodata.org/ontology/PowerTower", "http://linkedgeodata.org/ontology/PowerThing")    
-    print global_proper_subset
+    print(global_proper_subset)
     conn(tableprefix + "subclass").insert(global_proper_subset).run()
     conn(tableprefix + "equivalentclass").insert(global_equivalent_class).run()
     return render_template("sparql.html")
@@ -272,14 +272,14 @@ def poperty_between_class(*args):
         GROUP BY ?prop 
         ORDER BY DESC(?count) limit """ + str(count)
 
-    print query
+    print(query)
     results = execute_query(query)
     # i = len(properties)
     #conn()
     data = []
     for result in results:        
-        print result
-        print result["count"]["value"]
+        print(result)
+        print(result["count"]["value"])
         if(int(result["count"]["value"])>0):
         #properties[c1][c2][i]= result["prop"]["value"]
             p = result["prop"]["value"]
@@ -307,7 +307,7 @@ def poperty_between_class(*args):
             #     limit 1
             # """
 
-            print q
+            print(q)
             q_result = execute_query(q)
             max_cardinality = q_result[0]["count"]["value"] 
             data.append({
@@ -376,7 +376,7 @@ def get_instances():
                     <"""+s+"""> <"""+p+"""> ?o
                 }      
             """
-            print q
+            print(q)
             res = execute_query(q)
             count = res[0]["count"]["value"]          
             data.append({
@@ -430,10 +430,10 @@ def instance_count(c1):
             ?instance a <""" + c1 + """>
         }
     """
-    print query
+    print(query)
     results = execute_query(query)
-    print c1
-    print results[0]["instance_count"]["value"]
+    print(c1)
+    print(results[0]["instance_count"]["value"])
     return int(results[0]["instance_count"]["value"])
     
 def common_instance_count(*args):
@@ -447,13 +447,13 @@ def common_instance_count(*args):
       }
     """
 
-    print query
+    print(query)
     results = execute_query(query)
     try:
         count = int(results[0]["instance_count"]["value"])
     except:
         count = 0
-    print query
+    print(query)
     return count
   
 
@@ -477,7 +477,7 @@ def check_sub_equivalent_class(*args):
 def inverse_property():   
     
     properties = conn(tableprefix + "property")['p'].distinct().run()
-    print properties
+    print(properties)
     rows = conn(tableprefix + "property").run()
     checked_property = []
     inverse_property = []
@@ -487,7 +487,7 @@ def inverse_property():
         p = row["p"]      
         
         if p in checked_property:
-            print "found"         
+            print("found")         
         else:
             checked_property.append(p)
             q = """
@@ -502,18 +502,18 @@ def inverse_property():
             order by desc(?count)
             limit 1
             """
-            print q
+            print(q)
             q_results = execute_query(q)
             print(q_results)
             if(len(q_results)>0):
-                print q_results[0]["count"]["value"]
+                print(q_results[0]["count"]["value"])
                 if(int(q_results[0]["count"]["value"])>0):
                     inverse = q_results[0]["p"]["value"]
                     checked_property.append(inverse)
                     inverse_property.append({"p1":p, "p2": inverse})
             
        
-    print "---"
+    print("---")
     conn(tableprefix+ "inverse_property").insert(inverse_property).run()
     return render_template("sparql.html")
     
@@ -525,7 +525,7 @@ def sparqlTest():
     endpoint.setQuery(query)
     endpoint.setReturnFormat(JSON)
     results = endpoint.query().convert()   
-    print len(results)
+    print(len(results))
 
     #for result in results:
     #   print(result)#["x"]["value"])#+" -- "+result["o"]["value"])
