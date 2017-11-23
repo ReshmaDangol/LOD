@@ -58,7 +58,7 @@ def sparql_endpoint():
     url14 = "http://localhost:5820/linkedmdb/query"
     
     url = "http://localhost:5820/" + database_name + "/query"
-    url = "http://192.41.170.50:2850" + database_name + "/query"
+    url = "http://192.41.170.50:5820" + database_name + "/query"
     
     endpoint = SPARQLWrapper(url) #this should be user's input
 
