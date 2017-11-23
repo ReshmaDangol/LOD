@@ -315,7 +315,7 @@ def poperty_between_class(*args):
                 })
       
         # i + 1   
-    conn(tableprefix + "property_").insert(data).run()
+    conn(tableprefix + "property").insert(data).run()
     pass
 
 def testquery():
