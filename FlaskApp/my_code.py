@@ -122,7 +122,7 @@ def inverse_functional_property():
     rows = conn(tableprefix + "property")["p"].distinct().run()
     for row in rows:
         p = row
-          #SymmetricProperty
+        #SymmetricProperty
         query = """
             SELECT (COUNT(*) as ?instanceCount)
             WHERE {              
@@ -130,7 +130,7 @@ def inverse_functional_property():
                 ?o <"""+ p +"""> ?s.
             }
         """
-    #Transitive Property exists in aat daraset
+        #Transitive Property exists in aat daraset
         query = """
             SELECT (COUNT(*) as ?instanceCount)
             WHERE {              
@@ -139,7 +139,7 @@ def inverse_functional_property():
                 ?a <"""+ p +"""> ?c.
             }
         """
-     #SymmetricProperty
+        #SymmetricProperty
         query = """
             SELECT (COUNT(*) as ?instanceCount)
             WHERE {              
@@ -147,7 +147,6 @@ def inverse_functional_property():
                 ?o <"""+ p +"""> ?s.
             }
         """
-
         #inverse functional
         query = """
             SELECT (COUNT(*) as ?instanceCount)
@@ -156,7 +155,6 @@ def inverse_functional_property():
                 ?s2 <"""+ p +"""> ?o.
             }
         """   
-
         #functional property
         # p = "http://purl.org/dc/terms/replaces"
         query = """
@@ -166,10 +164,9 @@ def inverse_functional_property():
                 ?s <"""+ p +"""> ?o2 
             }
         """   
-
         # print query
         rows_ = execute_query(query)
-        print(len(rows)) #
+        print(len(rows_)) #
 
 
         # if(int(rows[0]["instanceCount"]["value"]) > 0):           

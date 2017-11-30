@@ -17,7 +17,7 @@ from rdflib import plugin
 #     'rdfextras.sparql.query', 'SPARQLQueryResult')
 
 
-path = '../data/triplestore_drugbank'
+path = '../data/triplestore_linkedmdb'
 graph = ConjunctiveGraph('Sleepycat')
 graph.open(path, create = False)
 
@@ -37,28 +37,63 @@ query = """SELECT distinct ?valType
        }
        Limit 10"""
 
-query1 = """SELECT (count(*) as ?count)
+query = """SELECT (count(*) as ?count)
        WHERE {
          ?s ?p ?o.       }limit 10
       """
 
-query1 = """SELECT DISTINCT ?class (count(?sub) AS ?instance_count)
+query= """SELECT DISTINCT ?class (count(?sub) AS ?instance_count)
       WHERE {
         ?sub a ?class. 
       } 
       GROUP BY ?class 
       ORDER BY DESC(?instance_count) Limit 10
       """
-query1= """
+queryq= """
       select * where {?s ?p ?o} limit 10
 """
 
+query = """
+        SELECT (count(?instanceOfClassA) as ?count) ?prop 
+            WHERE {
+                ?instanceOfClassA a <http://xmlns.com/foaf/0.1/Document> . 
+                ?instanceOfClassB a <http://www.w3.org/ns/dcat#Dataset> . 
+                ?instanceOfClassA ?prop ?instanceOfClassB .
+            } 
+        GROUP BY ?prop 
+        ORDER BY DESC(?count) limit 2
+"""
+
+query = """
+        SELECT (count(?instanceOfClassA) as ?count) ?prop 
+            WHERE {
+                ?instanceOfClassA a <http://data.linkedmdb.org/resource/movie/actor> . 
+                ?instanceOfClassB a <http://data.linkedmdb.org/resource/movie/writer> . 
+                ?instanceOfClassA ?prop ?instanceOfClassB .
+            } 
+        GROUP BY ?prop 
+        ORDER BY DESC(?count) limit 2
+"""
+
+SELECT (count(?instanceOfClassA) as ?count) ?prop 
+            WHERE {
+                ?instanceOfClassA a <http://purl.org/NET/c4dm/event.owl#Event> . 
+                ?instanceOfClassB a <http://purl.org/ontology/bibo/Document> . 
+                ?instanceOfClassA ?prop ?instanceOfClassB .
+            } 
+        GROUP BY ?prop 
+        ORDER BY DESC(?count) limit 2
+
+
+print query
 qres = graph.query(query)
 print "query executed"
 
 print qres
-for row in qres:
-    print "--"
-    print row
+print len(graph)
+# for count in graph.query(query):
+#     print "--"
+#     print count
 
 
+graph.close()
