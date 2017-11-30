@@ -4,3 +4,4 @@ rethinkdb_data
 data
 myfile.txt
 FlaskApp/app
+FlaskApp/app/*
