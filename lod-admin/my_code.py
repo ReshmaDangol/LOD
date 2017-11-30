@@ -202,7 +202,7 @@ def popular_class():
             "name" : get_class_name(result["class"]["value"])
             })
     print(conn(tableprefix + "class").insert(classes).run())
-    conn(tableprefix + "class").indexCreate('count').run()
+    conn(tableprefix + "class").index_create('count').run()
     return render_template("sparql.html", results=classes, page="class")
 
 def return_array(*args):
@@ -529,4 +529,4 @@ def sparqlTest():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(debug=True, host = '0.0.0.0', port=5001)
