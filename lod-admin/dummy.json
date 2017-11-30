@@ -1,0 +1,4052 @@
+[
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Birth", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 2101, 
+        "id": "1f942bd1-53be-4f9e-8628-8fed1be72e78", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 1010, 
+        "id": "4ab33789-d6b4-4458-bb28-7955dad2e8d2", 
+        "max_cardinality": 7, 
+        "name": "Document", 
+        "p": "http://xmlns.com/foaf/0.1/topic"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 1913, 
+        "id": "2e9c293e-feb5-4c1e-b068-ad364bc87bb1", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "0f6abb54-3e86-468d-9594-5da393d0a954", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 759, 
+        "id": "9a79a6d3-9899-4d5c-b093-16a6115aea79", 
+        "max_cardinality": 3, 
+        "name": "Agent", 
+        "p": "http://www.w3.org/2002/07/owl#sameAs"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "04102950-b48d-427f-9ea0-5b8d395f8f9a", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://www.w3.org/2006/time#Interval", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://www.w3.org/2006/time#Interval", 
+        "count": 5139, 
+        "id": "931b0ca0-ef64-47c5-89e4-8c81a0728c61", 
+        "max_cardinality": 1, 
+        "name": "Interval", 
+        "p": "http://www.w3.org/2006/time#intervalDuring"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 1913, 
+        "id": "9931efcd-ee1f-4ba1-b7d1-dbffed370614", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 1252, 
+        "id": "256ce891-ee10-45f1-8975-57d9a8412e3d", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://data.archiveshub.ac.uk/def/encodedAs"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 27059, 
+        "id": "2417dbb0-595b-4980-8ce8-322b3675fe6a", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "24f00dd5-377e-4137-8352-2aa2e2df5459", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 377, 
+        "id": "64ec6e35-4e60-45cf-866e-bfb9152d4200", 
+        "max_cardinality": 3, 
+        "name": "Agent", 
+        "p": "http://www.w3.org/2002/07/owl#sameAs"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 1913, 
+        "id": "64ff2349-5624-44f0-a345-668249098d22", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://www.w3.org/2006/time#Interval", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://www.w3.org/2006/time#Interval", 
+        "count": 5139, 
+        "id": "129da422-9f78-46e6-97e9-49a8b6ae3cd2", 
+        "max_cardinality": 1, 
+        "name": "Interval", 
+        "p": "http://erlangen-crm.org/current/P86_falls_within"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://erlangen-crm.org/current/E67_Birth", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 2101, 
+        "id": "8407abc8-3481-4e38-a479-77397d6d5dac", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 1818, 
+        "id": "86fe97b9-1814-4909-afdb-910b4919ce69", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://purl.org/dc/terms/isPartOf"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "c500dbca-aec9-4be6-9c7b-22c5ad3926a0", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "738b5a3c-39d9-4a75-afa8-2557cb09dbff", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 1252, 
+        "id": "1980ab40-8971-4e07-9916-6ac1c1d1f4d5", 
+        "max_cardinality": 174, 
+        "name": "Agent", 
+        "p": "http://data.archiveshub.ac.uk/def/isMaintenanceAgencyOf"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "21e4cc58-5f11-457e-b200-0b68629ccd38", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://www.w3.org/2006/time#Interval", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://www.w3.org/2006/time#Interval", 
+        "count": 34891, 
+        "id": "7daa57e2-9b3b-4ec8-bf84-2dea089ef42e", 
+        "max_cardinality": 8, 
+        "name": "Interval", 
+        "p": "http://erlangen-crm.org/current/P86i_contains"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 2101, 
+        "id": "0f31b64d-c7ff-448b-a942-a2fa76c61b20", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 1010, 
+        "id": "4d84c449-40b8-4f7d-a01f-f5d021532f07", 
+        "max_cardinality": 7, 
+        "name": "Document", 
+        "p": "http://purl.org/dc/terms/subject"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "0f91d5fd-66a4-4c70-94da-1889c8815b9f", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "2dca43fa-5c3f-4809-9571-bcb3cdcd6e2d", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 1913, 
+        "id": "0e723428-baba-4df1-922c-005e520a9366", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4014, 
+        "id": "30523754-c363-4aab-9636-29be81e8f4e4", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://www.w3.org/2006/time#Interval", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://www.w3.org/2006/time#Interval", 
+        "count": 289, 
+        "id": "d1ef65be-fea6-422a-a823-76e215447525", 
+        "max_cardinality": 1, 
+        "name": "Interval", 
+        "p": "http://www.w3.org/2006/time#intervalContains"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 4492, 
+        "id": "523cfb62-4bde-4815-8b73-023363eba374", 
+        "max_cardinality": 2, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 1252, 
+        "id": "13e6a72a-993e-425a-afd5-f02fb94555ae", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://data.archiveshub.ac.uk/def/maintenanceAgency"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4014, 
+        "id": "02a8cbd2-be0a-421e-8b62-1057a609fe8f", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "559841da-82f6-469b-bdfd-613b6601f00a", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://erlangen-crm.org/current/E67_Birth", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 2101, 
+        "id": "54440216-5e7e-47d4-85f4-c9434d4a310e", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 1913, 
+        "id": "334fb414-50cf-4fae-ad05-5aa1676a8c2c", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://www.w3.org/2006/time#Interval", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://www.w3.org/2006/time#Interval", 
+        "count": 21635, 
+        "id": "29bf8d10-c7ba-4093-986f-e9a69d8bcbc3", 
+        "max_cardinality": 4, 
+        "name": "Interval", 
+        "p": "http://www.w3.org/2006/time#intervalEnds"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 4492, 
+        "id": "22ff6692-efd8-4afb-8738-f44af1d97c26", 
+        "max_cardinality": 2, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 1818, 
+        "id": "55220d62-64e7-4bd1-bf80-2de73380b464", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://data.archiveshub.ac.uk/def/isBiographicalHistoryFor"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "0249b8a2-c4cc-429f-b383-f06e4a70778b", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "74447ec8-1c54-4378-8613-d9977fb4cbaf", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 1913, 
+        "id": "4276b4ae-58f9-4b67-9e5c-3981c894d791", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 1913, 
+        "id": "02aea764-359d-4eb4-972f-9430508a0e57", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://www.w3.org/2006/time#Interval", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://www.w3.org/2006/time#Interval", 
+        "count": 21639, 
+        "id": "f62110a0-0102-42a1-a161-73c17735c3d6", 
+        "max_cardinality": 4, 
+        "name": "Interval", 
+        "p": "http://www.w3.org/2006/time#intervalStarts"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://erlangen-crm.org/current/E67_Birth", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 2101, 
+        "id": "35374630-cd37-41f6-98b9-6aea018086be", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 22910, 
+        "id": "bad4cb27-dc7e-40e4-895d-0598153a88f0", 
+        "max_cardinality": 8567, 
+        "name": "Document", 
+        "p": "http://purl.org/dc/terms/subject"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "8025adfa-4ec9-4bcd-8ad3-57166b7b4d28", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "078dfaaf-55ba-4903-a252-ba402ba39a49", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 1010, 
+        "id": "30e548b0-58e7-4472-ac3b-9aeeed9ce3fc", 
+        "max_cardinality": 17, 
+        "name": "Agent", 
+        "p": "http://xmlns.com/foaf/0.1/page"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4303, 
+        "id": "1302be85-3436-4f7f-babc-d567739f6d45", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/Creation", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://data.archiveshub.ac.uk/def/Creation", 
+        "count": 1125, 
+        "id": "fdf6ef45-8e15-4e2c-8159-57d6232b7bc8", 
+        "max_cardinality": 1, 
+        "name": "Creation", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 4492, 
+        "id": "9cee722f-9c6b-4433-b904-02b64facd32b", 
+        "max_cardinality": 2, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 1010, 
+        "id": "7553e978-1ad9-4beb-a6b6-d4a4adcd4e85", 
+        "max_cardinality": 7, 
+        "name": "Document", 
+        "p": "http://purl.org/dc/terms/subject"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4014, 
+        "id": "f1970337-ac40-47fe-8c5b-83d212daaaa1", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "db2d0d45-8cd8-4487-9def-a9b2cc30ebcb", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 4492, 
+        "id": "5df5fa1c-912b-44ed-beba-f460eb89fb58", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "017dc5b6-e82d-4d8b-b7a7-8d5195084a8b", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/Creation", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://data.archiveshub.ac.uk/def/Creation", 
+        "count": 22566, 
+        "id": "318a73d3-5e90-4133-86f9-2c5939859b9e", 
+        "max_cardinality": 1, 
+        "name": "Creation", 
+        "p": "http://purl.org/NET/c4dm/event.owl#product"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 1913, 
+        "id": "8bc18822-7db4-4b31-9405-1a53bd75bf42", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 3, 
+        "id": "8fce21a5-b2a9-47fe-8478-47ef56a6ab3a", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://data.archiveshub.ac.uk/def/represents"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "4ab593cc-0c09-4aa8-8608-6eb19523ec03", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "17c7e6bc-3019-47ff-8551-df184ccf71f7", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 1010, 
+        "id": "dbac3d1e-2975-4f1c-9dc0-54bf70a94b69", 
+        "max_cardinality": 17, 
+        "name": "Agent", 
+        "p": "http://xmlns.com/foaf/0.1/page"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "1505b991-7d48-4910-9d2c-b0f134b3d256", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/Creation", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://data.archiveshub.ac.uk/def/Creation", 
+        "count": 22566, 
+        "id": "4bf7b2d6-ee21-4362-ab30-f62e8b06f28a", 
+        "max_cardinality": 1, 
+        "name": "Creation", 
+        "p": "http://linkedevents.org/ontology/involved"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 2101, 
+        "id": "743d8b47-f6ac-4efb-96a0-c3e33b55026a", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 1818, 
+        "id": "b205ff97-bca5-4c70-9f1a-e5b135092a68", 
+        "max_cardinality": 158, 
+        "name": "Document", 
+        "p": "http://purl.org/dc/terms/hasPart"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 2101, 
+        "id": "681150be-0b4f-4ba5-8b16-552986f83746", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "582f22fd-3b86-4162-9452-9f94f5fe3211", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://erlangen-crm.org/current/E67_Birth", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 2101, 
+        "id": "24fe8986-a09a-4fee-8bf9-6f56251c9137", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 2101, 
+        "id": "a284b56e-555a-497b-bea7-e56dd8e97a6f", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/Creation", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://data.archiveshub.ac.uk/def/Creation", 
+        "count": 22566, 
+        "id": "7ca525b0-ec7e-469f-bef1-469bbb965c34", 
+        "max_cardinality": 1, 
+        "name": "Creation", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 382, 
+        "id": "6a368502-4df0-4a89-9e48-c64f8e202f59", 
+        "max_cardinality": 2, 
+        "name": "E21_Person", 
+        "p": "http://www.w3.org/2002/07/owl#sameAs"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 22910, 
+        "id": "d78f1e77-946e-476f-9818-1ae42d1631da", 
+        "max_cardinality": 8567, 
+        "name": "Document", 
+        "p": "http://xmlns.com/foaf/0.1/topic"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 2101, 
+        "id": "ab4f6675-5a1e-4244-bd99-83d5dba0ce4b", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "9fec368f-6ec8-4398-a7a3-45a735817d41", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 377, 
+        "id": "1a493624-dc19-45fc-b033-32d290f81546", 
+        "max_cardinality": 3, 
+        "name": "Agent", 
+        "p": "http://www.w3.org/2002/07/owl#sameAs"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "8b4d5a9c-1c00-4964-98b3-c454f4d6a5b8", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/Creation", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://data.archiveshub.ac.uk/def/Creation", 
+        "count": 1125, 
+        "id": "5fda8431-f497-4e4e-82f3-74aa809571b3", 
+        "max_cardinality": 1, 
+        "name": "Creation", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 4492, 
+        "id": "30a9e82d-684b-4838-8665-479e5d1229da", 
+        "max_cardinality": 2, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 1010, 
+        "id": "7affdf38-7882-439a-9ca6-873107b6e1c9", 
+        "max_cardinality": 7, 
+        "name": "Document", 
+        "p": "http://xmlns.com/foaf/0.1/topic"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "34aa18ec-57e5-4bc0-a350-420f23f24a90", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "895db0d4-f486-4592-98a6-adb0f7e537f1", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 4492, 
+        "id": "ab1dcb49-8e62-4086-9948-cec10d8c3337", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 2101, 
+        "id": "588d4335-65af-4065-9f14-080e6c085c9d", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/Creation", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://data.archiveshub.ac.uk/def/Creation", 
+        "count": 22566, 
+        "id": "dc427a58-fe7b-4c5b-a4c4-204a302b79a5", 
+        "max_cardinality": 1, 
+        "name": "Creation", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 382, 
+        "id": "385f0a29-155e-4bf1-80a8-434b0c9c95a9", 
+        "max_cardinality": 2, 
+        "name": "E21_Person", 
+        "p": "http://www.w3.org/2002/07/owl#sameAs"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 1252, 
+        "id": "6eaab769-f20e-45df-b8a5-3bc1841f529b", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://data.archiveshub.ac.uk/def/maintenanceAgency"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 5428, 
+        "id": "39e3a8e3-9893-431e-a7f3-e951ded9d62d", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "bb44c6ba-f362-4562-8266-16f93d908909", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 4492, 
+        "id": "437dede0-9575-4714-864f-5ffdd942685a", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "921cca7a-03f9-4873-9e13-20c6eddc52f6", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 4492, 
+        "id": "b2dd92f0-c709-4ed2-82fc-29d8d675fdf0", 
+        "max_cardinality": 2, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Document", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://xmlns.com/foaf/0.1/Document", 
+        "count": 1252, 
+        "id": "d029cc7b-8700-4cf8-8f49-a8030791b987", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://data.archiveshub.ac.uk/def/encodingOf"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "e5a42d29-1715-4d1e-b01d-504a231957cc", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "b81d4d83-fd6a-4221-a11b-34d5334acebc", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 2101, 
+        "id": "3dd64548-9f12-4b5e-9217-3c85547da662", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "d0274567-036f-4c1b-9838-047219c7c495", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 2101, 
+        "id": "ba202a8b-57cf-4409-9966-83e1ed9a930e", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 2101, 
+        "id": "4fd74316-1a93-4c28-bc1a-a5a8df0291c4", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "66d41d4f-e687-4f3a-a48c-81d5392632b4", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "1c023e12-a9ea-4d61-8793-4b9ec4dd762c", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 2101, 
+        "id": "7621f63d-5ed0-4034-8806-4b6ee746cef7", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "7afd59dd-c799-4084-a701-92c55fd235cd", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 4492, 
+        "id": "d16688c5-b63d-46b3-ad07-f3b4135c4d39", 
+        "max_cardinality": 2, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 22566, 
+        "id": "096516f5-34c3-4a10-958f-7784d18888ce", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involved"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 5428, 
+        "id": "72f9b8b7-ef54-4ebe-a2f8-b5febc57dab4", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "ed34b667-b27e-43c0-b517-f1fd40dcfcae", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 1913, 
+        "id": "edad038e-c997-4414-a59b-07a1bc287a79", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "3ef58ffa-0358-43df-9722-1c76f4e236be", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 2101, 
+        "id": "a4fa271e-fb21-4877-84ed-9bd763588f46", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4014, 
+        "id": "068bd988-72bd-4515-83b6-52e3495c3df2", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "f226a84e-e49a-4f42-8ecc-951bd6ea1b3e", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "97e97c57-b1dc-45a3-a58f-80267d6acc22", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://erlangen-crm.org/current/E69_Death", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 1913, 
+        "id": "6678b87a-3ca5-4e36-b993-33413d7e7826", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "db78ab9b-5b3f-44c6-a870-f4716c169ec2", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Birth", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 2101, 
+        "id": "6c2a0fa6-7db9-4df0-821e-a81d76463cf9", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 5428, 
+        "id": "046b990b-0b47-4710-9c22-fb12b415e2c2", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "a94b4a47-5d67-4c0a-a664-500671dd1660", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "80b6dcc6-f9e6-4c91-8082-bba37992b709", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 4492, 
+        "id": "24dbcd85-3ce1-4116-8c45-1309cd181551", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "c67202e0-c295-44ca-881c-623e57f4f93c", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://erlangen-crm.org/current/E69_Death", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 1913, 
+        "id": "5097db58-0d21-4776-ba6b-f8299e95c4cd", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "2fb6b61d-cef7-4d96-9026-e836978fac98", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 22566, 
+        "id": "47f9cbad-2a21-46a3-8e01-78b5a61ed398", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#product"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "be5b7763-403e-45bd-a9dc-36e9b7f8278c", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 70, 
+        "id": "be747f92-991b-411c-b0b0-d77576c75b91", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://data.archiveshub.ac.uk/def/administers"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "6c7add8b-c96a-4195-8f0d-6e02afbe040d", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 4492, 
+        "id": "d05bd680-0cb3-4e6a-b0b6-ca7755ea5975", 
+        "max_cardinality": 2, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "21060057-70d0-41e5-b7cf-9da9a72d752b", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "c0b4753e-da40-4e0c-a31c-f5fc9a3db2e0", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "f49d3f57-d786-4118-b150-5387549e9252", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 4492, 
+        "id": "56d322c3-9315-4520-b6f3-9ffdb4451495", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 1913, 
+        "id": "c0673d01-8243-4856-bb8b-feb875b454e3", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 1913, 
+        "id": "eb6aa117-0c6b-46a3-ba58-2c84ec0d4d8b", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 2101, 
+        "id": "2b96a78e-6ad8-419f-a362-f57ac3d51da2", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 1913, 
+        "id": "99a9251b-33a5-4c1d-b978-77396649037a", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "997af445-c12a-44bd-b085-fd91adbfbde4", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 70, 
+        "id": "58f7124e-4ea8-4acb-8cd3-23de4126d9fa", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "cf41bc5f-b411-4cba-8789-7e86e37c35fb", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Birth", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 2101, 
+        "id": "d2dfc782-ce44-482e-b329-bde1b22f928f", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "15f827fd-74c0-4359-8b3c-d9d8ebb50e72", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "f835863c-304f-4eb1-92f2-e53ddf533074", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "fe3664d0-b13a-4172-9795-c4711b8ba0e2", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://erlangen-crm.org/current/E69_Death", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 1913, 
+        "id": "f006fb0f-569b-423e-bfa7-9c71f6b89920", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "60b7dc81-5940-4191-9565-a340247bace1", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 1913, 
+        "id": "cef1fee0-2f05-4241-b2ae-439fe5a2aaa5", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 2101, 
+        "id": "71c1afef-7837-40de-b27d-1fb35c567a48", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 1913, 
+        "id": "b87e3f98-bea8-45f7-88b6-4d85b9548a21", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "f8f0ceae-74ba-496b-afac-72c80883e6f6", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 1252, 
+        "id": "fb728e36-0bae-4ce6-b574-e940509e691a", 
+        "max_cardinality": 174, 
+        "name": "Agent", 
+        "p": "http://data.archiveshub.ac.uk/def/isMaintenanceAgencyOf"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "97d1a1f6-9ecb-42f6-bce4-2a58a7c07c11", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://erlangen-crm.org/current/E69_Death", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 1913, 
+        "id": "5c823b57-6c41-4f26-800b-6f4779e88a19", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 1913, 
+        "id": "3a4b3280-a205-4dc9-9fd1-93f043ccaebf", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 22566, 
+        "id": "c4c05d8a-648f-4f90-ae80-2c2f851151c1", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involved"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "8d902a0a-ce97-47e5-8779-a5df036eeed8", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 1913, 
+        "id": "741d098c-73de-4808-a134-2a381d2ea0fa", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "c8d3641d-a217-47c1-91b9-bf28e39283ad", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://erlangen-crm.org/current/E69_Death", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 1913, 
+        "id": "fccec46e-7e51-4d58-bd07-ac81be9fa168", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "1d055f6c-ba5f-4e98-ad4c-95fa5a7f69f9", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "b95eea9a-4512-49dd-850f-36e2d855d484", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "b04b9961-5e02-4e0d-9e97-9d15f4609563", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 1173, 
+        "id": "8f40da21-7f69-4a01-beb2-95f735c57e65", 
+        "max_cardinality": 57, 
+        "name": "Agent", 
+        "p": "http://data.archiveshub.ac.uk/def/isOriginationOf"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4303, 
+        "id": "cca7fe1c-8ec9-4b70-994f-adf5275e54d6", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://erlangen-crm.org/current/E67_Birth", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 2101, 
+        "id": "8ec6827e-2659-4c4c-997b-5c6d37ff208a", 
+        "max_cardinality": 1, 
+        "name": "E21_Person", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "3a7129a3-9663-4e73-8ef8-3de861674b55", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 2101, 
+        "id": "58af8396-eb07-4063-ba4f-9f52436cb3fe", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E69_Death", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://erlangen-crm.org/current/E69_Death", 
+        "count": 1913, 
+        "id": "b8062212-7906-413c-8398-c992674d928f", 
+        "max_cardinality": 1, 
+        "name": "E69_Death", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 4492, 
+        "id": "c54c9f10-e833-42ed-85a7-08f491f7fdeb", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "a4d9c0c9-7269-400b-b4c0-8eb1ac49b216", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E21_Person", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://erlangen-crm.org/current/E21_Person", 
+        "count": 4492, 
+        "id": "f242ed97-6d79-4ae6-bbf5-47407794bc4a", 
+        "max_cardinality": 2, 
+        "name": "E21_Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "378e23ed-8b55-4d0c-8808-5ef7292f7950", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "cf88a8ba-18c9-4492-ba5b-997c3c7fc7f8", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "675f2049-50d3-41c8-bbf4-4da4714a863c", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 70, 
+        "id": "64ae6871-ed7e-4e9d-b43b-8360903ddd88", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4014, 
+        "id": "c9af0cfb-c0a5-45a1-80b2-45957318fefd", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 1913, 
+        "id": "5f8aec53-7c83-45fa-a89d-711db0f17c3e", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 27058, 
+        "id": "c39a5bb9-b337-4f8b-bd08-1fa4aaf52d38", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "18da92a5-0361-48ce-90b0-961958066a02", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Birth", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 2101, 
+        "id": "b9d481a3-6274-4cef-aaea-f76b3d3f09e0", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 4492, 
+        "id": "ddd652a2-3d98-43c0-a5ed-38931c296a21", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "aaee3b9d-03e3-4590-99ee-6c3a95824b76", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "dd42c3e4-65ab-4e36-9466-1ba9ae505642", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "b63f42ab-6c7b-4109-aba5-7c9810d751d5", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 2101, 
+        "id": "8e6c2fb9-ae58-491a-ac43-985e5bf86034", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 2101, 
+        "id": "e034465f-9a29-4a63-9bf8-58ad539572b3", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "48316e2e-eb04-4e3f-9dd5-0a838952925a", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 2101, 
+        "id": "ff2dac42-f76f-4085-adc6-4146a88a8713", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "0b4f24d8-c612-4085-890c-3f5bac5d4812", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 22907, 
+        "id": "f53660fb-e4b9-43c3-ae3e-1a9b8e27f335", 
+        "max_cardinality": 8567, 
+        "name": "Agent", 
+        "p": "http://data.archiveshub.ac.uk/def/providesAccessTo"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Event", 
+        "count": 2101, 
+        "id": "effef690-70de-4242-be9c-2ed2803a6ee8", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 1913, 
+        "id": "72a9d9ba-0286-4be7-8111-96d84c6990b8", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 1913, 
+        "id": "e01b8b70-ffb7-4eb4-9d79-bc48b41151ef", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "4b895426-6341-4cbb-b3f9-677b99440987", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://erlangen-crm.org/current/E67_Birth", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 2101, 
+        "id": "d6d57267-e7dd-4631-90ec-4ee15401973d", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "1fad1a91-78a8-40f2-80ae-71810d5fff5f", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "a8a99c9f-bb17-4f6c-8226-fd789d0fe72a", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://linkedevents.org/ontology/Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://linkedevents.org/ontology/Event", 
+        "count": 4492, 
+        "id": "fbaa18f6-b097-40e8-afdb-502161fe3118", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "250b6d35-220a-44a1-8592-467209f00834", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 4492, 
+        "id": "a26a7ef6-5cbb-4175-a0b6-689b29109fec", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "0d64a680-b821-4048-ada4-75f965e50218", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 1913, 
+        "id": "6d6f3372-34de-4df3-8d9f-a395ed787235", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 1252, 
+        "id": "15c47bf8-798d-44a2-89fd-6ade25131fee", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://data.archiveshub.ac.uk/def/encodingOf"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "5a54887a-3465-4be5-898d-e267a36413a2", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://erlangen-crm.org/current/E69_Death", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 1913, 
+        "id": "b776551c-1646-48f1-a404-6f303fc6c3b2", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "5e7c5df4-1af0-4b63-b0ef-38e02a1a07da", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "46877405-3aa1-4119-bf5f-427b698bb783", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 1010, 
+        "id": "afb8c1c6-a7e8-4856-8f06-6222f1c9f835", 
+        "max_cardinality": 7, 
+        "name": "Document", 
+        "p": "http://purl.org/dc/terms/subject"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "577b8dee-15f8-49c7-a443-156fce37d089", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Birth", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 2101, 
+        "id": "fff54d17-07e6-4f7b-82d9-a8ca909f5134", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "2639aaa5-152f-487a-809c-c74a93cc6195", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 22566, 
+        "id": "5779425f-70f8-4318-b5a1-f312e0d786a4", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#product"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 22910, 
+        "id": "8049cfe9-6d1a-4c8a-8874-83ec267d7711", 
+        "max_cardinality": 8567, 
+        "name": "Document", 
+        "p": "http://xmlns.com/foaf/0.1/topic"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "d3ebeb2f-67ec-40dd-83cc-7f9d73b13ee4", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 2101, 
+        "id": "b73bd766-5f30-49e4-a74a-40d6fcba0fb6", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "15d73536-b7c7-46b2-bd55-00ae3d804896", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "d504e164-6892-449f-8eaf-691e55dd0cd7", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 1252, 
+        "id": "3c32839f-6c7d-43ce-9040-c87a89160451", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://data.archiveshub.ac.uk/def/encodedAs"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "10f6d401-09e5-4a2d-8105-554e2ef7e938", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 4492, 
+        "id": "c9235bb4-3e82-4567-b7e9-b3876ef75922", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "768f92ce-cc46-4542-b7ec-5a624e3939ba", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4014, 
+        "id": "c2493636-a3ad-40bd-936b-8a23598a8446", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 1010, 
+        "id": "50a4ff4e-2d36-400a-a247-d819ca0df139", 
+        "max_cardinality": 7, 
+        "name": "Document", 
+        "p": "http://purl.org/dc/terms/subject"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "f026be72-039e-49b0-b627-e6ce65d13609", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://purl.org/dc/terms/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Birth", 
+        "class": "http://purl.org/dc/terms/Agent", 
+        "count": 2101, 
+        "id": "c97f75cd-8854-4f53-8a6b-6b391da9e40d", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "0ea19a48-9be3-48a6-a25c-06689ad98c8c", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "e65a6f33-55d5-4149-a918-e509085fc393", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 1818, 
+        "id": "2a03e422-0f53-470e-93e2-da1f3b77c591", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://purl.org/dc/terms/isPartOf"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "2eb3e193-6eeb-4d1a-a781-4f01686c246c", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://www.w3.org/2004/02/skos/core#Concept", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://www.w3.org/2004/02/skos/core#Concept", 
+        "count": 3254, 
+        "id": "f2d00dde-4aec-4741-84d9-b734d41edca4", 
+        "max_cardinality": 1, 
+        "name": "Concept", 
+        "p": "http://xmlns.com/foaf/0.1/focus"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "a57343ac-92fc-43f8-a90d-99020b341a66", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "7982bfc7-c2ac-4578-921a-25534653b63c", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 3, 
+        "id": "6324016e-02a1-4a0a-ba50-1de758605a8b", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://data.archiveshub.ac.uk/def/represents"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "9fc15d5b-2a2c-4843-85ef-fa79feb45459", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://www.w3.org/2004/02/skos/core#Concept", 
+        "c2": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing", 
+        "class": "http://www.w3.org/2004/02/skos/core#Concept", 
+        "count": 1375, 
+        "id": "ba576ddb-a235-458d-b980-95af83517402", 
+        "max_cardinality": 1, 
+        "name": "Concept", 
+        "p": "http://xmlns.com/foaf/0.1/focus"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "1f7b10e4-bfcd-4412-8677-5e1d092e0c94", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "bf3d7370-8c8c-4249-b43e-3499ef7a16e0", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 1252, 
+        "id": "e3393909-9e88-4e87-acdf-2af0d7875d4f", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://data.archiveshub.ac.uk/def/maintenanceAgency"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "a3e165e8-7c7d-4e8b-9468-ebf503bce827", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://www.w3.org/2004/02/skos/core#Concept", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://www.w3.org/2004/02/skos/core#Concept", 
+        "count": 3254, 
+        "id": "685147b7-b593-4a39-b0af-0ce9dcd1014a", 
+        "max_cardinality": 1, 
+        "name": "Concept", 
+        "p": "http://xmlns.com/foaf/0.1/focus"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "b946a5c1-2d55-43ee-9f97-eda8636e5a2b", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 27059, 
+        "id": "e1c9c815-d1a4-4ddd-9a50-f84f3b5a725d", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 22910, 
+        "id": "e4bf3f54-2a7f-4944-a575-dfcda3311e3d", 
+        "max_cardinality": 8567, 
+        "name": "Document", 
+        "p": "http://purl.org/dc/terms/subject"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "29eb30d0-3b17-4310-956d-0d4e9bc3b600", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://www.w3.org/2004/02/skos/core#Concept", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://www.w3.org/2004/02/skos/core#Concept", 
+        "count": 5032, 
+        "id": "33b0c2d0-56e3-4cd6-8475-9ec8b51434c5", 
+        "max_cardinality": 1, 
+        "name": "Concept", 
+        "p": "http://xmlns.com/foaf/0.1/focus"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "984b8797-9c3c-46a3-963a-b83231496f65", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "ffaf9a41-db7b-41e0-8f9d-b22d8e49a070", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 1010, 
+        "id": "c8851f57-af4b-4d5b-abc6-19cf218d12ae", 
+        "max_cardinality": 7, 
+        "name": "Document", 
+        "p": "http://xmlns.com/foaf/0.1/topic"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "9063fc9a-bbf4-487b-8e55-37380d058ac6", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://www.w3.org/2004/02/skos/core#Concept", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://www.w3.org/2004/02/skos/core#Concept", 
+        "count": 5032, 
+        "id": "bdc007c8-3f02-4231-b799-b03a6a6040a2", 
+        "max_cardinality": 1, 
+        "name": "Concept", 
+        "p": "http://xmlns.com/foaf/0.1/focus"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "7fdb213a-4c41-4164-a66e-e12274df50c5", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 5428, 
+        "id": "e821f0a1-f60d-4610-a041-362465970e84", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 1010, 
+        "id": "6e95a171-d58b-47b4-9ac4-acbd19dc5c87", 
+        "max_cardinality": 7, 
+        "name": "Document", 
+        "p": "http://xmlns.com/foaf/0.1/topic"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "accdc090-aab9-49ed-93d9-82f349dcbb81", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://www.w3.org/2004/02/skos/core#Concept", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 22889, 
+        "id": "45dfd268-13bd-4619-95be-ada25b31f6da", 
+        "max_cardinality": 1, 
+        "name": "ArchivalResource", 
+        "p": "http://data.archiveshub.ac.uk/def/level"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "9f827c42-432d-48b3-ac80-b6ca27753b42", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 4492, 
+        "id": "ee252363-efb6-4d07-9a57-bf211f15c4ef", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 1818, 
+        "id": "ee6c352e-4912-41e8-895d-123deaebdada", 
+        "max_cardinality": 158, 
+        "name": "Document", 
+        "p": "http://purl.org/dc/terms/hasPart"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "92266847-9763-4b76-af2b-3dc2a0f7650e", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 22907, 
+        "id": "de6d060a-774f-4424-bdf1-eb5b8cad9c62", 
+        "max_cardinality": 1, 
+        "name": "ArchivalResource", 
+        "p": "http://data.archiveshub.ac.uk/def/accessProvidedBy"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "2ca95977-48dd-40b6-86a0-603d0b1ac6ae", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 2101, 
+        "id": "e35450ef-6167-4ca4-840a-261c8bbb1cc2", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 1252, 
+        "id": "a2e1e436-3ce3-4acb-a07c-3422659bb240", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://data.archiveshub.ac.uk/def/maintenanceAgency"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "bd1188aa-c9dc-47a1-b901-1a5cad58576e", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://www.w3.org/2004/02/skos/core#Concept", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 21501, 
+        "id": "633fc43e-977b-41af-8435-9b9b41c7ae0e", 
+        "max_cardinality": 98, 
+        "name": "ArchivalResource", 
+        "p": "http://data.archiveshub.ac.uk/def/associatedWith"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "b9c96e89-0c34-408c-9444-1a7e508bbab6", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "count": 27058, 
+        "id": "ff8c69e6-16f2-414e-8e8b-398d1311dd77", 
+        "max_cardinality": 1, 
+        "name": "Event", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://purl.org/ontology/bibo/Document", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://purl.org/ontology/bibo/Document", 
+        "count": 1818, 
+        "id": "d5ee4ba5-5f3b-4e8a-9c51-c7c0a25634c5", 
+        "max_cardinality": 1, 
+        "name": "Document", 
+        "p": "http://data.archiveshub.ac.uk/def/isBiographicalHistoryFor"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "6eead2ec-f876-441e-90cc-e1106e4a9347", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 1431, 
+        "id": "0fe3d95e-50ec-4c26-8ade-793e9dbe20ac", 
+        "max_cardinality": 4, 
+        "name": "ArchivalResource", 
+        "p": "http://data.archiveshub.ac.uk/def/associatedWith"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "682eb8d0-8538-4650-92ee-b4084b548367", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 1913, 
+        "id": "158024a0-e41e-4378-ad90-47aeff9378b1", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 1913, 
+        "id": "0d3d5d68-ca04-4f2d-b702-0937fda3957e", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "b524424a-d739-4f60-ad6d-53b85ea45713", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 1431, 
+        "id": "2ac438ce-cd00-4b2c-bd6e-3b1218f44a90", 
+        "max_cardinality": 4, 
+        "name": "ArchivalResource", 
+        "p": "http://data.archiveshub.ac.uk/def/associatedWith"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "ba6d47e0-b792-4bb7-aba6-2e6e2190fb27", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "36ea03b7-ffda-4080-9bfd-bf6ae3301c2a", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 4492, 
+        "id": "558d258c-4bf9-4689-9a46-5732ad7e51da", 
+        "max_cardinality": 2, 
+        "name": "Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "cbd3c305-f824-4b95-a9d7-4cfde1fb74fd", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 1818, 
+        "id": "49ff9da1-d1f7-4dea-b204-b21b94ee1ea8", 
+        "max_cardinality": 1, 
+        "name": "ArchivalResource", 
+        "p": "http://data.archiveshub.ac.uk/def/hasBiographicalHistory"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "f2d7c920-45d6-4bee-9432-93c166c37c6c", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "031eee82-e6bf-4cf9-849a-8db1709a2df2", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 4492, 
+        "id": "53bf8400-0421-409a-a60f-91e0132feb3e", 
+        "max_cardinality": 2, 
+        "name": "Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "ba9cddb2-97d2-4d35-af62-5d1beb50dd01", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 22910, 
+        "id": "c4ab647f-0788-4e57-97f1-58263240ea8d", 
+        "max_cardinality": 1, 
+        "name": "ArchivalResource", 
+        "p": "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "79eb4cc3-570e-46a5-b40f-0bf782ef9a44", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "1bde0336-73e1-4b19-9b79-cda16b109284", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 4492, 
+        "id": "4fc75d7c-10bf-4699-ad56-5b1490217135", 
+        "max_cardinality": 2, 
+        "name": "Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "bd02f35c-7466-46ab-b971-c03c92d37bb7", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://data.archiveshub.ac.uk/def/Extent", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 21506, 
+        "id": "2fab24bd-afb3-40f4-a23a-836e0db09f12", 
+        "max_cardinality": 3, 
+        "name": "ArchivalResource", 
+        "p": "http://purl.org/dc/terms/extent"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "3cdeda60-9267-4742-ae0a-1f67a431d2af", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "cdd00d11-2850-4751-b913-77946b05462e", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Birth", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 2101, 
+        "id": "19959ad5-0373-47a4-82ac-320999455ccd", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "dc57ec2a-34a6-40d3-930f-2c883384617c", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 3, 
+        "id": "972ae2e3-b290-4e4b-ac5d-16f74fb90b92", 
+        "max_cardinality": 2, 
+        "name": "ArchivalResource", 
+        "p": "http://data.archiveshub.ac.uk/def/isRepresentedBy"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "adb2725f-ed7b-4f24-8ae1-199b86817a16", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4303, 
+        "id": "30f451d9-7ef1-4e85-91ea-52ce096cd31e", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 4492, 
+        "id": "14238a04-a63f-4b82-8b9f-a4a625756482", 
+        "max_cardinality": 2, 
+        "name": "Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/Birth", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/Birth", 
+        "count": 2101, 
+        "id": "defc757f-1ffe-42f3-bfe0-0717904b1539", 
+        "max_cardinality": 1, 
+        "name": "Birth", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 1173, 
+        "id": "c6d7ffd0-3046-4833-88ef-b05bc576cb26", 
+        "max_cardinality": 7, 
+        "name": "ArchivalResource", 
+        "p": "http://data.archiveshub.ac.uk/def/origination"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "7771ba5a-2263-4b1c-bb79-33487459a7d6", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 1913, 
+        "id": "412777e3-7ecc-433f-b3ff-a62197130503", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://erlangen-crm.org/current/E69_Death", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 1913, 
+        "id": "29a08551-027d-4950-a906-189bd6fe8a05", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "d74448d1-a31b-4969-a463-31e2aa3e202d", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "3ac7724b-0b7a-44ed-8e26-bad4ffe51860", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 2101, 
+        "id": "222d4d10-8db5-491e-9418-59f84f8e1ed3", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 22910, 
+        "id": "4ebd7fa2-3339-4d3a-bd19-1eba102e3db4", 
+        "max_cardinality": 1, 
+        "name": "ArchivalResource", 
+        "p": "http://xmlns.com/foaf/0.1/page"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "c757d4ea-ac90-4d86-b39d-f21c66b4366c", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "24d7d386-ab81-4476-994d-c386389464ea", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 4492, 
+        "id": "47cf7810-8b5b-47b2-9517-9c7c156ce126", 
+        "max_cardinality": 2, 
+        "name": "Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 22566, 
+        "id": "8be58b45-ef24-4b0f-9d93-73ed6d109d66", 
+        "max_cardinality": 1, 
+        "name": "ArchivalResource", 
+        "p": "http://purl.org/NET/c4dm/event.owl#produced_in"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "baf2f02b-a4b8-4e7d-8522-a588fa4d4dbc", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "5c9f2c88-d308-4ced-a72d-205e45cbe830", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/vocab/bio/0.1/principal"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 4492, 
+        "id": "93bde571-984d-4977-91a2-81c5539da6f4", 
+        "max_cardinality": 2, 
+        "name": "Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://data.archiveshub.ac.uk/def/Creation", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 22566, 
+        "id": "b693b90e-beab-4a7f-82b9-89e9fe3f1094", 
+        "max_cardinality": 1, 
+        "name": "ArchivalResource", 
+        "p": "http://purl.org/NET/c4dm/event.owl#produced_in"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E67_Birth", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://erlangen-crm.org/current/E67_Birth", 
+        "count": 2101, 
+        "id": "f5315657-0729-4f00-8a6e-b85557b487d1", 
+        "max_cardinality": 1, 
+        "name": "E67_Birth", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 2101, 
+        "id": "42aac2a7-2c01-4973-9ca3-bc6c68aba0b0", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://erlangen-crm.org/current/E67_Birth", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 2101, 
+        "id": "8e12fc11-7896-4ae0-8064-110e8d21a234", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 22910, 
+        "id": "ecdd862a-d0f3-4edd-9b5b-40c3b0ba08b7", 
+        "max_cardinality": 1, 
+        "name": "ArchivalResource", 
+        "p": "http://xmlns.com/foaf/0.1/page"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "6c58c938-d652-427c-b64e-aa241045f3e5", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://linkedevents.org/ontology/atTime"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://erlangen-crm.org/current/E67_Birth", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 2101, 
+        "id": "ebd39b01-3e3c-4cc7-9e61-ffbddc94c7b8", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 1173, 
+        "id": "a6bf5546-20f6-43ec-8d80-4faffcc26188", 
+        "max_cardinality": 7, 
+        "name": "ArchivalResource", 
+        "p": "http://data.archiveshub.ac.uk/def/origination"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "f06bb9be-b68e-4ca7-9791-220f50ecdf1d", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://erlangen-crm.org/current/E69_Death", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 1913, 
+        "id": "494064e1-f9e3-46d5-a7af-791b2f04f50f", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 22566, 
+        "id": "ce4b7bc9-302d-4238-a8c4-b9c04e20398d", 
+        "max_cardinality": 1, 
+        "name": "ArchivalResource", 
+        "p": "http://purl.org/NET/c4dm/event.owl#produced_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "33b637e6-37a9-47ac-bfa2-df2e46271dfb", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 1913, 
+        "id": "1db2477d-4fa2-41a0-a4c7-c61f45988fbd", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 22907, 
+        "id": "84c4646d-9470-424d-a737-2afd372cbf3a", 
+        "max_cardinality": 1, 
+        "name": "ArchivalResource", 
+        "p": "http://data.archiveshub.ac.uk/def/accessProvidedBy"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 1913, 
+        "id": "67521751-b25b-40ef-ab25-9d342681e277", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 2101, 
+        "id": "d0c00a68-db95-4df4-a3a6-bdbb44d78922", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 1818, 
+        "id": "cd9a7114-d3b2-4597-96ae-21c809e2efdd", 
+        "max_cardinality": 1, 
+        "name": "ArchivalResource", 
+        "p": "http://data.archiveshub.ac.uk/def/hasBiographicalHistory"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "6c26cf84-fe17-4321-929e-c0228d28c575", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Birth", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 2101, 
+        "id": "3109ed74-e4a9-4a56-9b38-ffef8cde064f", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 22910, 
+        "id": "e6386839-332c-4ff0-a5e8-a755e454b729", 
+        "max_cardinality": 1, 
+        "name": "ArchivalResource", 
+        "p": "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "593ba127-a41f-4bfa-b867-fe00f445418e", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/vocab/bio/0.1/agent"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 2101, 
+        "id": "5b154ce5-45c4-4e23-b780-2f4c35e3b99e", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "count": 3, 
+        "id": "eab7028a-5714-42d2-87dd-8c2eb23dd8cd", 
+        "max_cardinality": 2, 
+        "name": "ArchivalResource", 
+        "p": "http://data.archiveshub.ac.uk/def/isRepresentedBy"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 2101, 
+        "id": "679759af-df28-460b-b478-6869d79ddb8a", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://erlangen-crm.org/current/E67_Birth", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 2101, 
+        "id": "a4ec82aa-0cab-4c27-a468-5ab75c460986", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "6a10ccef-1a62-4101-8432-44d61124198f", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 1913, 
+        "id": "fe44a16c-23c2-4d4b-8392-f97c7bd68e90", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 2101, 
+        "id": "95924717-1521-4d33-9da0-479fca15dcfd", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 382, 
+        "id": "653d74ce-8c3e-4b0d-9799-83d9231c234e", 
+        "max_cardinality": 2, 
+        "name": "Person", 
+        "p": "http://www.w3.org/2002/07/owl#sameAs"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "856dcab9-b684-41c3-a662-de00303ea30d", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 4492, 
+        "id": "9f58d6ba-5776-4a8c-bb1e-8fa5a1da5257", 
+        "max_cardinality": 2, 
+        "name": "Person", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 2101, 
+        "id": "70d7291d-c308-49f4-ad95-6ab48ab934fc", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://erlangen-crm.org/current/P98_brought_into_life"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 2101, 
+        "id": "d5e0a9cd-bc6a-45d0-8439-56588eed7051", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4014, 
+        "id": "731a0b0c-7f62-4748-80e1-6f5b59fec06c", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/Birth", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 2101, 
+        "id": "fcc7366c-ebfc-4128-beaa-70f3f47120a8", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "6ac8a9dd-7f5b-494b-8644-6f6462db82de", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 4492, 
+        "id": "ffe36a00-7d91-41fc-aa9d-dc22b85e6f01", 
+        "max_cardinality": 2, 
+        "name": "Person", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "7b7c8db7-5ae0-4677-8085-ed677d7987d9", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 382, 
+        "id": "9e3883c1-b85e-4adb-b520-19f6516d17b0", 
+        "max_cardinality": 2, 
+        "name": "Person", 
+        "p": "http://www.w3.org/2002/07/owl#sameAs"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4014, 
+        "id": "ab035d42-35d0-4ee5-8440-e6be1f407c35", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://erlangen-crm.org/current/P4_has_time-span"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://erlangen-crm.org/current/E69_Death", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 1913, 
+        "id": "fc117248-94a4-484c-9b53-080ed43fbcd2", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "eeac581f-4df2-434f-94c8-1dea17594539", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Person", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Person", 
+        "count": 1913, 
+        "id": "ceaf3d3b-e00b-462f-a8bb-768f34b71cc7", 
+        "max_cardinality": 1, 
+        "name": "Person", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 1913, 
+        "id": "bec1d2c5-6ff2-4e1f-b3fc-ffc0ad010380", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://erlangen-crm.org/current/P100_was_death_of"
+    }, 
+    {
+        "c1": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing", 
+        "count": 70, 
+        "id": "5ed02aa9-eb46-4182-849d-1376d5196232", 
+        "max_cardinality": 1, 
+        "name": "SpatialThing", 
+        "p": "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4492, 
+        "id": "f8509b63-2a06-4587-8bc4-1f3e1905a849", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://linkedevents.org/ontology/involvedAgent"
+    }, 
+    {
+        "c1": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing", 
+        "count": 70, 
+        "id": "08d974cb-e31b-4eca-8150-752cf06b3943", 
+        "max_cardinality": 1, 
+        "name": "SpatialThing", 
+        "p": "http://data.archiveshub.ac.uk/def/isAdministeredBy"
+    }, 
+    {
+        "c1": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "c2": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "class": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "count": 4303, 
+        "id": "eed32d97-debf-44b2-bc31-20f6f3ef7901", 
+        "max_cardinality": 1, 
+        "name": "IndividualEvent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#time"
+    }, 
+    {
+        "c1": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing", 
+        "c2": "http://xmlns.com/foaf/0.1/Agent", 
+        "class": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing", 
+        "count": 70, 
+        "id": "2c57b006-c974-473d-8ee8-e405c1c59164", 
+        "max_cardinality": 1, 
+        "name": "SpatialThing", 
+        "p": "http://data.archiveshub.ac.uk/def/isAdministeredBy"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "count": 1, 
+        "id": "06e59fb6-abbf-4179-bec0-defbcdd27d41", 
+        "max_cardinality": 1, 
+        "name": "E52_Time-Span", 
+        "p": "http://www.w3.org/2006/time#intervalEnds"
+    }, 
+    {
+        "c1": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing", 
+        "count": 70, 
+        "id": "f45f31c8-aeb7-4bec-964d-b72cc23737bb", 
+        "max_cardinality": 1, 
+        "name": "SpatialThing", 
+        "p": "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "count": 1, 
+        "id": "6e0abee3-c113-43fc-9a46-6e67aa58baf1", 
+        "max_cardinality": 1, 
+        "name": "E52_Time-Span", 
+        "p": "http://www.w3.org/2006/time#intervalStarts"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "count": 291, 
+        "id": "56b9cc23-2090-400b-b55a-eba1e4b7c1dd", 
+        "max_cardinality": 2, 
+        "name": "E52_Time-Span", 
+        "p": "http://erlangen-crm.org/current/P86i_contains"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "count": 5139, 
+        "id": "426bbf02-4332-4ea9-88fb-e0fd0c9c8c8d", 
+        "max_cardinality": 1, 
+        "name": "E52_Time-Span", 
+        "p": "http://www.w3.org/2006/time#intervalDuring"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "count": 289, 
+        "id": "c075f12b-f6b8-46ae-bd86-10774e7c973f", 
+        "max_cardinality": 1, 
+        "name": "E52_Time-Span", 
+        "p": "http://www.w3.org/2006/time#intervalContains"
+    }, 
+    {
+        "c1": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "c2": "http://www.w3.org/2006/time#Interval", 
+        "class": "http://erlangen-crm.org/current/E52_Time-Span", 
+        "count": 5139, 
+        "id": "fdfcc0b1-3500-4977-99d7-591977aa4a25", 
+        "max_cardinality": 1, 
+        "name": "E52_Time-Span", 
+        "p": "http://erlangen-crm.org/current/P86_falls_within"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 22907, 
+        "id": "72d23842-0ce4-44b0-8c7e-a0b10ad3e5e9", 
+        "max_cardinality": 8567, 
+        "name": "Agent", 
+        "p": "http://data.archiveshub.ac.uk/def/providesAccessTo"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://xmlns.com/foaf/0.1/Person", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 377, 
+        "id": "811b7321-a09e-4166-83a7-f91682415ba4", 
+        "max_cardinality": 3, 
+        "name": "Agent", 
+        "p": "http://www.w3.org/2002/07/owl#sameAs"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 1010, 
+        "id": "244a5f7c-a925-4938-adcc-0f79ebd8f5fb", 
+        "max_cardinality": 17, 
+        "name": "Agent", 
+        "p": "http://xmlns.com/foaf/0.1/page"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://data.archiveshub.ac.uk/def/ArchivalResource", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 1173, 
+        "id": "1f6eb285-f451-4da3-8440-2cd559f91808", 
+        "max_cardinality": 57, 
+        "name": "Agent", 
+        "p": "http://data.archiveshub.ac.uk/def/isOriginationOf"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://erlangen-crm.org/current/E21_Person", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 377, 
+        "id": "5a0d5c6c-fd20-4234-81d1-7a0a35f4385c", 
+        "max_cardinality": 3, 
+        "name": "Agent", 
+        "p": "http://www.w3.org/2002/07/owl#sameAs"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 1913, 
+        "id": "05b2e77f-5b1e-4945-a241-241f749188f9", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 1913, 
+        "id": "01a29edb-3929-40e3-944f-9a8d8e78016f", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 4492, 
+        "id": "35eb9753-6abd-4035-80bb-79645c86248c", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://erlangen-crm.org/current/E67_Birth", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 2101, 
+        "id": "7ef15086-5b94-4af1-ad51-dce7aaf6a99a", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 70, 
+        "id": "88c3adb0-6432-4b68-bbc9-327cf875e6b8", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Birth", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 2101, 
+        "id": "3525b9fb-e17d-426b-97d3-2f5a8a957d03", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://erlangen-crm.org/current/E67_Birth", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 2101, 
+        "id": "2e47902a-9f57-4ed4-8a6a-ce701719828e", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/dc/terms/Agent", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 759, 
+        "id": "6700742f-3c05-456f-8558-2d8f35105b5e", 
+        "max_cardinality": 3, 
+        "name": "Agent", 
+        "p": "http://www.w3.org/2002/07/owl#sameAs"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://erlangen-crm.org/current/E69_Death", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 1913, 
+        "id": "2f54a8fb-2453-4d78-9b48-6013b8b99d53", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 4492, 
+        "id": "a076dcd6-6c42-4c9d-934b-b6da08cae4fe", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 2101, 
+        "id": "56c367b5-41d3-4357-a0ee-86ecad9968ef", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Birth", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 2101, 
+        "id": "bd962973-cf23-4731-92be-024425b296b7", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 1252, 
+        "id": "411422dc-8362-40ca-8136-1688a92f775c", 
+        "max_cardinality": 174, 
+        "name": "Agent", 
+        "p": "http://data.archiveshub.ac.uk/def/isMaintenanceAgencyOf"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 1252, 
+        "id": "67bad1e3-ca0d-40c7-bb16-23943a2311fc", 
+        "max_cardinality": 174, 
+        "name": "Agent", 
+        "p": "http://data.archiveshub.ac.uk/def/isMaintenanceAgencyOf"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 1913, 
+        "id": "d092701e-541c-4867-a966-0330a33ae0d4", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/ontology/bibo/Document", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 1010, 
+        "id": "8be6285b-792b-44f6-b506-b8819f3e46ac", 
+        "max_cardinality": 17, 
+        "name": "Agent", 
+        "p": "http://xmlns.com/foaf/0.1/page"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://erlangen-crm.org/current/E67_Birth", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 2101, 
+        "id": "a40acf15-710f-49f5-a0c2-8234e8abe2e2", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 2101, 
+        "id": "c1d8b0bf-c416-4517-ac70-9dac8905993c", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 4492, 
+        "id": "b9d610b9-0aa9-4e66-b1b3-7836637bc9be", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/NET/c4dm/event.owl#Event", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 4492, 
+        "id": "8e4cc766-4e74-44e7-b23f-47d436e15f1f", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 2101, 
+        "id": "858a0335-b084-47c9-9649-ac16bc2bf3ad", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 2101, 
+        "id": "dc4d8853-016e-4c8b-9021-6bad6ed88a2c", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P98i_was_born"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://erlangen-crm.org/current/E69_Death", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 1913, 
+        "id": "c99ac7dc-b75b-46b3-a8a8-553369f41a43", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 70, 
+        "id": "b029af76-2ce0-4a03-8106-b208ba741976", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://data.archiveshub.ac.uk/def/administers"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 4492, 
+        "id": "e14c8e84-bfe4-4880-9564-01ca5a1d02e9", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 4492, 
+        "id": "d3ea4b32-560c-4526-b11f-3f1428e01fed", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 1913, 
+        "id": "f9254ba1-65b4-4442-b10a-1624704800d7", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://erlangen-crm.org/current/P100i_died_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://linkedevents.org/ontology/Event", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 4492, 
+        "id": "d1154b9a-1be7-4487-ad5f-b539e9752469", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/IndividualEvent", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 4492, 
+        "id": "ecdc1e7c-6706-479b-83ae-390837d509d3", 
+        "max_cardinality": 2, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://purl.org/vocab/bio/0.1/Birth", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 2101, 
+        "id": "dfee6ad1-d1dd-4f9e-8d35-cb031d34b806", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://purl.org/vocab/bio/0.1/event"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://erlangen-crm.org/current/E69_Death", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 1913, 
+        "id": "e06b0eeb-7b52-4b38-818e-7f92d9dcc6a5", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://purl.org/NET/c4dm/event.owl#agent_in"
+    }, 
+    {
+        "c1": "http://xmlns.com/foaf/0.1/Agent", 
+        "c2": "http://xmlns.com/foaf/0.1/Document", 
+        "class": "http://xmlns.com/foaf/0.1/Agent", 
+        "count": 70, 
+        "id": "f478ef8b-9488-45f2-809a-b1b2c0f030d3", 
+        "max_cardinality": 1, 
+        "name": "Agent", 
+        "p": "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+    }
+]

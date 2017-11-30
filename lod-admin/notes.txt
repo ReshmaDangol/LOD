@@ -1,0 +1,10 @@
+rethinkdb --bind all & disown
+ctrl+Z
+
+export FLASK_APP=file.py
+python3 -m flask run --host=0.0.0.0
+
+
+sudo fuser -n tcp -k 8080
+
+glances
