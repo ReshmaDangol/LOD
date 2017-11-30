@@ -2,7 +2,9 @@ from flask import Flask, request, jsonify
 from flask_restful import reqparse, abort, Api, Resource
 from flask_cors import CORS, cross_origin
 
-from . import common_functions as cf
+from common_functions import *
+
+
 import json
 app = Flask(__name__)
 CORS(app)  # allow cross domain access
@@ -18,16 +20,15 @@ def get_json(data):
         result.append(document)
     return result
 
-
 def get_class():
-    cursor_class = cf.conn("class").order_by(index=cf.get_r().desc(
+    cursor_class = conn("class").order_by(index=get_r().desc(
         'count')).run()  # need to create index for count to use this
     nodes = get_json(cursor_class)
     return nodes
 
 def get_class1():
-    cursor_class = cf.conn('class').filter(lambda doc:
-    cf.get_r().expr(["http://www.w3.org/2006/time#Interval","http://purl.org/NET/c4dm/event.owl#Event"])
+    cursor_class = conn('class').filter(lambda doc:
+    get_r().expr(["http://www.w3.org/2006/time#Interval","http://purl.org/NET/c4dm/event.owl#Event"])
         .contains(doc["class"])
     ) .run()
     nodes = get_json(cursor_class)
@@ -37,17 +38,17 @@ def get_class1():
 
 def get_class_group(userInputArr=''):
     if(userInputArr == ''):
-        cursor = cf.conn("class").outer_join(
-                        cf.conn("equivalentclass_group"),
+        cursor = conn("class").outer_join(
+                        conn("equivalentclass_group"),
                         lambda left, right:
                         left["class"] == right["class"]
                     ).zip().run()
     else:
-        cursor = cf.conn("class").filter(lambda doc:
-                cf.get_r().expr(userInputArr)
+        cursor = conn("class").filter(lambda doc:
+                get_r().expr(userInputArr)
                     .contains(doc["class"])
                 ).outer_join(
-                    cf.conn("equivalentclass_group"),
+                    conn("equivalentclass_group"),
                     lambda left, right:
                     left["class"] == right["class"]
                 ).zip().run()
@@ -66,8 +67,8 @@ def get_class_group(userInputArr=''):
 
 
 # def get_properties():
-#     cursor = cf.conn("class").inner_join(
-#             cf.conn("property"),
+#     cursor = conn("class").inner_join(
+#             conn("property"),
 #             lambda left, right:
 #                 left["class"] == right["c1"]
 #         ).zip().run()
