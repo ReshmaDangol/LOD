@@ -9,7 +9,7 @@ import rethinkdb as r
 from rdflib import ConjunctiveGraph, Namespace, Literal
 import rdflib
 from rdflib import plugin
-# from . import common_functions as cf
+from common_functions import *
 
 # properties = defaultdict(lambda : defaultdict(lambda : defaultdict(int)))
 global_equivalent_class = []
@@ -177,10 +177,6 @@ def inverse_functional_property():
              
     return render_template("sparql.html")
 
-def get_class_name(url):
-    temp = url.rsplit('/', 1)[-1]
-    return temp.rsplit('#',1)[-1]
-
 @app.route('/class')  
 def popular_class():
     count = 20
@@ -206,6 +202,7 @@ def popular_class():
             "name" : get_class_name(result["class"]["value"])
             })
     print(conn(tableprefix + "class").insert(classes).run())
+    conn(tableprefix + "class").indexCreate('count').run()
     return render_template("sparql.html", results=classes, page="class")
 
 def return_array(*args):
