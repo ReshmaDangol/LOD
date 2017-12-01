@@ -117,6 +117,64 @@ def execute_query(query):
 #Fetch classes with max instances
 
 
+@app.route('/setoperation')
+def set_operation():
+    classes = conn(tableprefix + "class")["class"].distinct().run()
+    len = conn(tableprefix + "class")["class"].distinct().count().run()
+    class_arr = return_array(classes,len)
+
+    for i in range(0, len-1):
+        for j in range(i+1, len):
+            c1 = class_arr[i]
+            c2 = class_arr[j]
+            query1 = """
+            SELECT (count(*) as ?count) ?s
+            WHERE 
+            {?s a <"""+c1+"""> .
+            ?s a <"""+c2+"""> . 
+            }
+            GROUP BY ?s 
+            Having (?count>0)
+            """           
+            results = execute_query(query)
+            count_result= 0
+            for r in results:
+                count_result+=1
+            #     if (len(r['count']['value'])>0):                    
+            #         print(r['count']['value'])
+            #         print(r['s']['value'])
+            
+            if(count_result>0):
+                
+                query2 = """
+                SELECT (count(distinct ?s) as ?count)
+                WHERE 
+                {?s a <"""+c1+"""> 
+                }
+                """
+                result = execute_query(query2)
+                count_c1 = result[0]["count"]["value"]
+                query3 = """
+                SELECT (count(distinct ?s) as ?count)
+                WHERE 
+                {?s a <"""+c2+"""> 
+                }
+                """
+                result = execute_query(query3)
+                count_c2 = result[0]["count"]["value"]
+
+                if(count_result == int(count_c1) == int(count_c2)):
+                    pass
+                else:
+                    print(query1)
+                    print(count_result)
+                    print(count_c1)
+                    print(count_c2)
+                    print('---')
+            
+            
+    return render_template("sparql.html")
+
 @app.route('/x')
 def inverse_functional_property():
     rows = conn(tableprefix + "property")["p"].distinct().run()
