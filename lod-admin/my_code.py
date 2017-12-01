@@ -136,7 +136,7 @@ def set_operation():
             GROUP BY ?s 
             Having (?count>0)
             """           
-            results = execute_query(query)
+            results = execute_query(query1)
             count_result= 0
             for r in results:
                 count_result+=1
