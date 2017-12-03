@@ -176,7 +176,6 @@ def set_operation():
                 count_c2 = result[0]["count"]["value"]
 
                 if(count_result == int(count_c1) or count_result == int(count_c2)):
-                    print(str(count_result) +"=="+ count_c1 +"or"+ str(count_result) +"=="+ count_c2)
                     pass
                 else:
                     print(query1)
@@ -186,8 +185,8 @@ def set_operation():
                     print('---')
 
                     intersection.append({
-                        "c1": count_c1,
-                        "c2": count_c2,
+                        "c1": c1,
+                        "c2": c2,
                         "count": count_result
                     })
     conn(tableprefix + "intersection").insert(intersection).run()
