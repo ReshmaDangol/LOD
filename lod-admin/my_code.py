@@ -1,4 +1,4 @@
-#sudo fuser -k 9001/tcp
+# sudo fuser -k 9001/tcp
 
 
 from flask import Flask, render_template
@@ -34,13 +34,14 @@ endpoint = ""
 
 
 def conn(table):
-    r.connect( "localhost", 28015).repl()
+    r.connect("localhost", 28015).repl()
     return r.db(database_name).table(table)
 
-def sparql_endpoint(): 
-    global endpoint    
+
+def sparql_endpoint():
+    global endpoint
     # url1 = "http://vocabulary.semantic-web.at/PoolParty/sparql/AustrianSkiTeam"
-    # url2 = "http://datos.bcn.cl/sparql" 
+    # url2 = "http://datos.bcn.cl/sparql"
     # url3 = "http://services.data.gov.uk/statistics/sparql"
     # url4 = "http://ring.ciard.net/sparql1"
     # url5 = "http://www.linkedmdb.org/sparql"
@@ -51,43 +52,52 @@ def sparql_endpoint():
     # url = "http://localhost:3030/tdb1/"
     # url10 = "http://sparql.kupkb.org/sparql"
 
-    #local Stardog triplestores
-    url11 = "http://localhost:5820/aat/query" #https://old.datahub.io/dataset/getty-aat
-    url12 = "http://localhost:5820/archiveshub/query" #archives hub
+    # local Stardog triplestores
+    # https://old.datahub.io/dataset/getty-aat
+    url11 = "http://localhost:5820/aat/query"
+    url12 = "http://localhost:5820/archiveshub/query"  # archives hub
     url13 = "http://localhost:5820/jamendo/query"
     url14 = "http://localhost:5820/linkedmdb/query"
-    
+
     url = "http://localhost:5820/" + database_name + "/query"
-    
-    endpoint = SPARQLWrapper(url) #this should be user's input
+
+    endpoint = SPARQLWrapper(url)  # this should be user's input
+
 
 sparql_endpoint()
 
+
 def create_tables():
-    r.connect( "localhost", 28015).repl()    
-    r.db(database_name).table_create(tableprefix + "equivalentclass_group").run()
+    r.connect("localhost", 28015).repl()
+    r.db(database_name).table_create(
+        tableprefix + "equivalentclass_group").run()
     r.db(database_name).table_create(tableprefix + "equivalentclass").run()
     r.db(database_name).table_create(tableprefix + "instance").run()
     r.db(database_name).table_create(tableprefix + "inverse_property").run()
     r.db(database_name).table_create(tableprefix + "property").run()
     r.db(database_name).table_create(tableprefix + "subclass").run()
     r.db(database_name).table_create(tableprefix + "class").run()
+    r.db(database_name).table_create(tableprefix + "intersection").run()
+
 
 def create_database():
-    r.connect( "localhost", 28015).repl()
+    r.connect("localhost", 28015).repl()
     if (r.db_list().contains(database_name).run()):
         pass
     else:
         r.db_create(database_name).run()
         create_tables()
 
+
 create_database()
+
 
 def get_graph():
     path = '../data/triplestore_drugbank'
     graph = ConjunctiveGraph('Sleepycat')
-    graph.open(path, create = False)
+    graph.open(path, create=False)
     return graph
+
 
 def execute_query_graph(graph):
     results = graph.query(query)
@@ -95,61 +105,63 @@ def execute_query_graph(graph):
 
 # create_tables()
 
+
 @app.route('/')
 def homepage():
     variable = "Test"
     return render_template("index.html")
 
+
 @app.route('/about')
 def aboutpage():
     variable = "About Page"
-    return render_template("index.html", variable=variable )
+    return render_template("index.html", variable=variable)
 
 
 def execute_query(query):
     endpoint.setQuery(query)
     endpoint.setReturnFormat(JSON)
-    results = endpoint.query().convert()   
+    results = endpoint.query().convert()
     # print results
     # print len(results["results"]["bindings"])
     return results["results"]["bindings"]
 
-#Fetch classes with max instances
+# Fetch classes with max instances
 
 
 @app.route('/setoperation')
 def set_operation():
     classes = conn(tableprefix + "class")["class"].distinct().run()
     len = conn(tableprefix + "class")["class"].distinct().count().run()
-    class_arr = return_array(classes,len)
-
-    for i in range(0, len-1):
-        for j in range(i+1, len):
+    class_arr = return_array(classes, len)
+    intersection = []
+    for i in range(0, len - 1):
+        for j in range(i + 1, len):
             c1 = class_arr[i]
             c2 = class_arr[j]
             query1 = """
             SELECT (count(*) as ?count) ?s
             WHERE 
-            {?s a <"""+c1+"""> .
-            ?s a <"""+c2+"""> . 
+            {?s a <""" + c1 + """> .
+            ?s a <""" + c2 + """> . 
             }
             GROUP BY ?s 
             Having (?count>0)
-            """           
+            """
             results = execute_query(query1)
-            count_result= 0
+            count_result = 0
             for r in results:
-                count_result+=1
-            #     if (len(r['count']['value'])>0):                    
+                count_result += 1
+            #     if (len(r['count']['value'])>0):
             #         print(r['count']['value'])
             #         print(r['s']['value'])
-            
-            if(count_result>0):
-                
+
+            if(count_result > 0):
+
                 query2 = """
                 SELECT (count(distinct ?s) as ?count)
                 WHERE 
-                {?s a <"""+c1+"""> 
+                {?s a <""" + c1 + """> 
                 }
                 """
                 result = execute_query(query2)
@@ -157,13 +169,13 @@ def set_operation():
                 query3 = """
                 SELECT (count(distinct ?s) as ?count)
                 WHERE 
-                {?s a <"""+c2+"""> 
+                {?s a <""" + c2 + """> 
                 }
                 """
                 result = execute_query(query3)
                 count_c2 = result[0]["count"]["value"]
 
-                if(count_result == int(count_c1) == int(count_c2)):
+                if(count_result == int(count_c1) or count_result == int(count_c2)):
                     pass
                 else:
                     print(query1)
@@ -171,71 +183,77 @@ def set_operation():
                     print(count_c1)
                     print(count_c2)
                     print('---')
-            
-            
+
+                    intersection.append({
+                        "c1": count_c1,
+                        "c2": count_c2,
+                        "count": count_result
+                    })
+    conn(tableprefix + "intersection").insert(intersection).run()
     return render_template("sparql.html")
+
 
 @app.route('/x')
 def inverse_functional_property():
     rows = conn(tableprefix + "property")["p"].distinct().run()
     for row in rows:
         p = row
-        #SymmetricProperty
+        # SymmetricProperty
         query = """
             SELECT (COUNT(*) as ?instanceCount)
             WHERE {              
-                ?s <"""+ p +"""> ?o.
-                ?o <"""+ p +"""> ?s.
+                ?s <""" + p + """> ?o.
+                ?o <""" + p + """> ?s.
             }
         """
-        #Transitive Property exists in aat daraset
+        # Transitive Property exists in aat daraset
         query = """
             SELECT (COUNT(*) as ?instanceCount)
             WHERE {              
-                ?a <"""+ p +"""> ?b.
-                ?b <"""+ p +"""> ?c.
-                ?a <"""+ p +"""> ?c.
+                ?a <""" + p + """> ?b.
+                ?b <""" + p + """> ?c.
+                ?a <""" + p + """> ?c.
             }
         """
-        #SymmetricProperty
+        # SymmetricProperty
         query = """
             SELECT (COUNT(*) as ?instanceCount)
             WHERE {              
-                ?s <"""+ p +"""> ?o.
-                ?o <"""+ p +"""> ?s.
+                ?s <""" + p + """> ?o.
+                ?o <""" + p + """> ?s.
             }
         """
-        #inverse functional
+        # inverse functional
         query = """
             SELECT (COUNT(*) as ?instanceCount)
             WHERE {              
-                ?s1 <"""+ p +"""> ?o.
-                ?s2 <"""+ p +"""> ?o.
+                ?s1 <""" + p + """> ?o.
+                ?s2 <""" + p + """> ?o.
             }
-        """   
-        #functional property
+        """
+        # functional property
         # p = "http://purl.org/dc/terms/replaces"
         query = """
             SELECT *
             WHERE {              
-                ?s <"""+ p +"""> ?o1.
-                ?s <"""+ p +"""> ?o2 
+                ?s <""" + p + """> ?o1.
+                ?s <""" + p + """> ?o2 
             }
-        """   
+        """
         # print query
         rows_ = execute_query(query)
-        print(len(rows_)) #
+        print(len(rows_))
 
-
-        # if(int(rows[0]["instanceCount"]["value"]) > 0):           
+        # if(int(rows[0]["instanceCount"]["value"]) > 0):
         #     # pass
         #     print rows[0]["instanceCount"]["value"]
         # else:
         #     print p
-             
+
     return render_template("sparql.html")
 
-@app.route('/class')  
+
+@app.route('/class')
 def popular_class():
     count = 20
     query = """ 
@@ -246,41 +264,43 @@ def popular_class():
       GROUP BY ?class 
       ORDER BY DESC(?instance_count) 
       limit """ + str(count)
-    
+
     results = execute_query(query)
     i = 0
-    classes = [] #[None] * count
+    classes = []  # [None] * count
     #classDetail = [None] * count
     print(results)
 
     for result in results:
         classes.append({
-            "class" : result["class"]["value"],
-            "count" : int(result["instance_count"]["value"]),
-            "name" : get_class_name(result["class"]["value"])
-            })
+            "class": result["class"]["value"],
+            "count": int(result["instance_count"]["value"]),
+            "name": get_class_name(result["class"]["value"])
+        })
     print(conn(tableprefix + "class").insert(classes).run())
     conn(tableprefix + "class").index_create('count').run()
     return render_template("sparql.html", results=classes, page="class")
 
+
 def return_array(*args):
     classes = args[0]
     len = args[1]
-    class_arr = [None]*len
+    class_arr = [None] * len
     index = 0
-    for i,c in enumerate(classes):
-        class_arr[index] = c#["class"]
-        index +=1
+    for i, c in enumerate(classes):
+        class_arr[index] = c  # ["class"]
+        index += 1
     return class_arr
-    
+
+
 @app.route('/property')
 def fetch_property():
     classes = conn(tableprefix + "class")["class"].distinct().run()
     len = conn(tableprefix + "class")["class"].distinct().count().run()
-    class_arr = return_array(classes,len)
-    
-    for i in range(0, len-1):
-        for j in range(i+1, len):    
+    class_arr = return_array(classes, len)
+
+    for i in range(0, len - 1):
+        for j in range(i + 1, len):
             print(class_arr[i])
             print(class_arr[j])
             poperty_between_class(class_arr[i], class_arr[j])
@@ -294,18 +314,18 @@ def fetch_sub_equivalent_class():
     # global_proper_subset = []
     classes = conn(tableprefix + "class")["class"].distinct().run()
     len = conn(tableprefix + "class")["class"].distinct().count().run()
-    class_arr = return_array(classes,len)
-    for i in range(0, len-1):
-        for j in range(i+1, len):          
-            check_sub_equivalent_class(class_arr[i], class_arr[j])    
-    
-    # check_sub_equivalent_class("http://linkedgeodata.org/ontology/PowerTower", "http://linkedgeodata.org/ontology/PowerThing")    
+    class_arr = return_array(classes, len)
+    for i in range(0, len - 1):
+        for j in range(i + 1, len):
+            check_sub_equivalent_class(class_arr[i], class_arr[j])
+
+    # check_sub_equivalent_class("http://linkedgeodata.org/ontology/PowerTower", "http://linkedgeodata.org/ontology/PowerThing")
     print(global_proper_subset)
     conn(tableprefix + "subclass").insert(global_proper_subset).run()
     conn(tableprefix + "equivalentclass").insert(global_equivalent_class).run()
     return render_template("sparql.html")
 
-  
+
 def poperty_between_class(*args):
     count = 20
     c1 = args[0]
@@ -313,8 +333,8 @@ def poperty_between_class(*args):
     query = """
         SELECT (count(?instanceOfClassA) as ?count) ?prop 
             WHERE {
-                ?instanceOfClassA a <"""+ c1 +"""> . 
-                ?instanceOfClassB a <"""+ c2 +"""> . 
+                ?instanceOfClassA a <""" + c1 + """> . 
+                ?instanceOfClassB a <""" + c2 + """> . 
                 ?instanceOfClassA ?prop ?instanceOfClassB .
             } 
         GROUP BY ?prop 
@@ -323,13 +343,13 @@ def poperty_between_class(*args):
     print(query)
     results = execute_query(query)
     # i = len(properties)
-    #conn()
+    # conn()
     data = []
-    for result in results:        
+    for result in results:
         print(result)
         print(result["count"]["value"])
-        if(int(result["count"]["value"])>0):
-        #properties[c1][c2][i]= result["prop"]["value"]
+        if(int(result["count"]["value"]) > 0):
+            #properties[c1][c2][i]= result["prop"]["value"]
             p = result["prop"]["value"]
             # properties[i]= [c1, c2, p]
             q = """
@@ -357,42 +377,43 @@ def poperty_between_class(*args):
 
             print(q)
             q_result = execute_query(q)
-            max_cardinality = q_result[0]["count"]["value"] 
+            max_cardinality = q_result[0]["count"]["value"]
             data.append({
-                    "c1" : c1,
-                    "c2" : c2,
-                    "p" : p,
-                    "max_cardinality" :int(max_cardinality),
-                    "count" : int(result["count"]["value"])
-                })
-      
-        # i + 1   
+                "c1": c1,
+                "c2": c2,
+                "p": p,
+                "max_cardinality": int(max_cardinality),
+                "count": int(result["count"]["value"])
+            })
+
+        # i + 1
     conn(tableprefix + "property").insert(data).run()
     pass
 
+
 def testquery():
-    #conn()
+    # conn()
     # rows= conn(tableprefix + "property").filter(
     #         (r.row["id"] == "10715377-6086-4010-927e-f4e90436f451") &
     #         (r.row["instance"]['s'] == "http://datos.bcn.cl/recurso/cl/dfl/ministerio-de-salud_subsecretaria-de-salud-publica/2006-04-24/1") &
     #         (r.row["instance"]['o'] == "http://datos.bcn.cl/recurso/cl/ley/ministerio-de-salud/1990-03-09/18933")
-            
+
     #     ).run()
 
     conn(tableprefix + "property").concat_map(
-        lambda doc: doc['instance']           
-                .concat_map(lambda data: [{"id":doc["id"],'instance':data}]
-    )).filter(
+        lambda doc: doc['instance']
+        .concat_map(lambda data: [{"id": doc["id"], 'instance':data}]
+                    )).filter(
         lambda doc:
-            (doc["instance"]["o"]=="http://datos.bcn.cl/recurso/cl/dfl/ministerio-de-salud_subsecretaria-de-salud-publica/2006-04-24/1") &
-            (doc["instance"]["s"]=="http://datos.bcn.cl/recurso/cl/ley/ministerio-de-salud/1990-03-09/18933") &
-            (doc["id"]=="10715377-6086-4010-927e-f4e90436f451")
+            (doc["instance"]["o"] == "http://datos.bcn.cl/recurso/cl/dfl/ministerio-de-salud_subsecretaria-de-salud-publica/2006-04-24/1") &
+            (doc["instance"]["s"] == "http://datos.bcn.cl/recurso/cl/ley/ministerio-de-salud/1990-03-09/18933") &
+            (doc["id"] == "10715377-6086-4010-927e-f4e90436f451")
     ).update(
         {"aa": "ww"}
     ).run()
 
-
     return render_template("dbtest.html")
+
 
 @app.route('/getinstance')
 def get_instances():
@@ -405,9 +426,9 @@ def get_instances():
         query = """
         SELECT distinct * WHERE
         {
-            ?s a <""" + c1 +""">.
-            ?o a <""" + c2 +""">.
-            ?s <"""+ p +"""> ?o
+            ?s a <""" + c1 + """>.
+            ?o a <""" + c2 + """>.
+            ?s <""" + p + """> ?o
         }
         LIMIT 10
         """
@@ -420,23 +441,24 @@ def get_instances():
             q = """
                 SELECT (count(*) as ?count)
                 WHERE {
-                    ?o a <"""+c2+""">.
-                    <"""+s+"""> <"""+p+"""> ?o
+                    ?o a <""" + c2 + """>.
+                    <""" + s + """> <""" + p + """> ?o
                 }      
             """
             print(q)
             res = execute_query(q)
-            count = res[0]["count"]["value"]          
+            count = res[0]["count"]["value"]
             data.append({
-                    "s":s,
-                    "count":count
-                })
+                "s": s,
+                "count": count
+            })
             # i+=1
-        
-        conn(tableprefix + "property").get(id).update({"instance":data}).run()
+
+        conn(tableprefix + "property").get(id).update({"instance": data}).run()
     return render_template("dbtest.html", results=results, page="class")
 
   # print query
+
 
 def count_shared_instance():
     rows = conn(tableprefix + "property").run()
@@ -453,9 +475,9 @@ def count_shared_instance():
             query = """
             SELECT (count(*) as ?count) WHERE
             {
-            ?s a <""" + s +""">.
-            ?o a <""" + o +""">.
-            ?s <"""+ p +"""> ?o
+            ?s a <""" + s + """>.
+            ?o a <""" + o + """>.
+            ?s <""" + p + """> ?o
 
             }
             """
@@ -465,10 +487,9 @@ def count_shared_instance():
             conn(tableprefix + "property").get(id).filter(
                 # lambda instance: instance["instance"]["s"]==s & instance["instance"]["o"]==o
                 (r.row["instance"]["s"] == s) & (r.row["instance"]["o"] == o)
-            ).update({"instance":{"count":count}}).run()
+            ).update({"instance": {"count": count}}).run()
 
-        #    conn(tableprefix + "property").get(id).update({"count":count}).run() 
-
+        #    conn(tableprefix + "property").get(id).update({"count":count}).run()
 
 
 def instance_count(c1):
@@ -483,15 +504,16 @@ def instance_count(c1):
     print(c1)
     print(results[0]["instance_count"]["value"])
     return int(results[0]["instance_count"]["value"])
-    
+
+
 def common_instance_count(*args):
     c1 = args[0]
     c2 = args[1]
-    query ="""
+    query = """
     SELECT (COUNT(?instance) AS ?instance_count)
       WHERE { 
-        ?instance a <"""+ c1 +""">.
-        ?instance a <"""+ c2 +"""> . 
+        ?instance a <""" + c1 + """>.
+        ?instance a <""" + c2 + """> . 
       }
     """
 
@@ -503,27 +525,28 @@ def common_instance_count(*args):
         count = 0
     print(query)
     return count
-  
+
 
 def check_sub_equivalent_class(*args):
-    
+
     c1 = args[0]
     c2 = args[1]
     c1Count = instance_count(c1)
     c2Count = instance_count(c2)
-    c1c2Count = common_instance_count(c1,c2)
-    if (c1Count < c2Count): 
+    c1c2Count = common_instance_count(c1, c2)
+    if (c1Count < c2Count):
         if(c1c2Count == c1Count):
-            global_proper_subset.append({"subclass":c1, "class":c2})
+            global_proper_subset.append({"subclass": c1, "class": c2})
     elif c2Count < c1Count:
         if(c1c2Count == c2Count):
-            global_proper_subset.append({"subclass":c2, "class":c1})
+            global_proper_subset.append({"subclass": c2, "class": c1})
     elif c1c2Count == c1Count and c1c2Count == c2Count:
-            global_equivalent_class.append({"c1":c1,"c2":c2})
+        global_equivalent_class.append({"c1": c1, "c2": c2})
+
 
 @app.route("/inverse")
-def inverse_property():   
-    
+def inverse_property():
+
     properties = conn(tableprefix + "property")['p'].distinct().run()
     print(properties)
     rows = conn(tableprefix + "property").run()
@@ -532,18 +555,18 @@ def inverse_property():
     for row in rows:
         c1 = row["c1"]
         c2 = row["c2"]
-        p = row["p"]      
-        
+        p = row["p"]
+
         if p in checked_property:
-            print("found")         
+            print("found")
         else:
             checked_property.append(p)
             q = """
             SELECT  (count(?p) as ?count) ?p
             WHERE {
-            ?s a <"""+ c1 +""">.
-            ?o a <"""+ c2 +""">.
-            ?s <"""+ p +"""> ?o.
+            ?s a <""" + c1 + """>.
+            ?o a <""" + c2 + """>.
+            ?s <""" + p + """> ?o.
             ?o ?p ?s
             }
             group by ?p
@@ -553,38 +576,32 @@ def inverse_property():
             print(q)
             q_results = execute_query(q)
             print(q_results)
-            if(len(q_results)>0):
+            if(len(q_results) > 0):
                 print(q_results[0]["count"]["value"])
-                if(int(q_results[0]["count"]["value"])>0):
+                if(int(q_results[0]["count"]["value"]) > 0):
                     inverse = q_results[0]["p"]["value"]
                     checked_property.append(inverse)
-                    inverse_property.append({"p1":p, "p2": inverse})
-            
-       
+                    inverse_property.append({"p1": p, "p2": inverse})
+
     print("---")
-    conn(tableprefix+ "inverse_property").insert(inverse_property).run()
+    conn(tableprefix + "inverse_property").insert(inverse_property).run()
     return render_template("sparql.html")
-    
+
 
 @app.route('/sparql')
-def sparqlTest():    
+def sparqlTest():
     sparql_endpoint()
     query = """ select * where {?s ?p ?o} limit 2 """
     endpoint.setQuery(query)
     endpoint.setReturnFormat(JSON)
-    results = endpoint.query().convert()   
+    results = endpoint.query().convert()
     print(len(results))
 
-    #for result in results:
+    # for result in results:
     #   print(result)#["x"]["value"])#+" -- "+result["o"]["value"])
-
 
     return render_template("sparql.html", results=results)
 
 
-
-
-
-
 if __name__ == "__main__":
-    app.run(debug=True, host = '0.0.0.0', port=5001)
+    app.run(debug=True, host='0.0.0.0', port=5001)
