@@ -176,7 +176,7 @@ def set_operation():
                 count_c2 = result[0]["count"]["value"]
 
                 if(count_result == int(count_c1) or count_result == int(count_c2)):
-                    print(count_result +"=="+ int(count_c1) +"or"+ count_result +"=="+ int(count_c2))
+                    print(count_result +"=="+ count_c1 +"or"+ count_result +"=="+ count_c2)
                     pass
                 else:
                     print(query1)
