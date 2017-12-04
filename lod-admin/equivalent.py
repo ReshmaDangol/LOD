@@ -1,11 +1,11 @@
-import common_functions as cf
+from common_functions import *
 
 
 def modify_equiv_class():
-    cursor = cf.conn("equivalentclass").run()
+    cursor = conn("equivalentclass").run()
     result = []
     for row in cursor:
-        groupname = cf.get_class_name(row["c1"]) + "-" + cf.get_class_name(row["c2"])
+        groupname = get_class_name(row["c1"]) + "-" + get_class_name(row["c2"])
         result.append({
             "class": row["c1"],
             "group": groupname
@@ -15,6 +15,6 @@ def modify_equiv_class():
             "group": groupname
         })
 
-    cf.conn("equivalentclass_group").insert(result).run()
+    conn("equivalentclass_group").insert(result).run()
 
 modify_equiv_class()
