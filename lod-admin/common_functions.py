@@ -1,9 +1,19 @@
 import rethinkdb as r
+import os
+database_name = "cultura"
+database_name = "kupkb"
+database_name = "jamendo"
+database_name = "linkedmdb"
+database_name = "jamendo"
+
 
 database_name = "archiveshub"
+database_name = "aat"
+
 
 def conn(table):
-    r.connect( "localhost", 28015).repl()
+    print(os.environ)
+    r.connect(os.environ['DB_URL'], 28015).repl()
     return r.db(database_name).table(table)
 
 def get_r():

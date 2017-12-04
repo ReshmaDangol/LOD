@@ -4,3 +4,5 @@ rethinkdb_data
 data
 myfile.txt
 lod-app
+lod-admin/environment.env
+lod-admin/app-env
