@@ -15,27 +15,9 @@ from common_functions import *
 global_equivalent_class = []
 global_proper_subset = []
 tableprefix = ""
-database_name = "cultura"
-database_name = "kupkb"
-
-database_name = "jamendo"
-
-
-database_name = "linkedmdb"
-database_name = "jamendo"
-database_name = "archiveshub"
-database_name = "aat"
-# tableprefix = "bcn_"
-
-#<http(|s):\/\/+[^<>]+>
 
 app = Flask(__name__)
 endpoint = ""
-
-
-def conn(table):
-    r.connect("localhost", 28015).repl()
-    return r.db(database_name).table(table)
 
 
 def sparql_endpoint():
@@ -58,6 +40,8 @@ def sparql_endpoint():
     url12 = "http://localhost:5820/archiveshub/query"  # archives hub
     url13 = "http://localhost:5820/jamendo/query"
     url14 = "http://localhost:5820/linkedmdb/query"
+
+    
 
     url = "http://localhost:5820/" + database_name + "/query"
 
@@ -280,17 +264,6 @@ def popular_class():
     print(conn(tableprefix + "class").insert(classes).run())
     conn(tableprefix + "class").index_create('count').run()
     return render_template("sparql.html", results=classes, page="class")
-
-
-def return_array(*args):
-    classes = args[0]
-    len = args[1]
-    class_arr = [None] * len
-    index = 0
-    for i, c in enumerate(classes):
-        class_arr[index] = c  # ["class"]
-        index += 1
-    return class_arr
 
 
 @app.route('/property')
