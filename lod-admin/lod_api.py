@@ -5,6 +5,9 @@ from flask_cors import CORS, cross_origin
 from common_functions import *
 import numpy as np
 
+from datetime import datetime 
+
+
 import json
 app = Flask(__name__)
 CORS(app)  # allow cross domain access
@@ -41,6 +44,7 @@ def get_class1():
 
 
 def get_class_group(userInputArr=''):  
+    
     if(userInputArr == ''):
         cursor = conn("class").outer_join(
             conn("equivalentclass_group"),
@@ -61,10 +65,12 @@ def get_class_group(userInputArr=''):
     i = 0
     index = 0
 
+    startTime= datetime.now() 
     for document in cursor:
         c = document["class"]
         document["id"] = index
         index +=1
+        
         is_subclass = conn("subclass").filter(
             lambda class_: class_["subclass"] == c).count().run()
         document['subclass'] = 1 if is_subclass > 0 else 0
@@ -86,8 +92,11 @@ def get_class_group(userInputArr=''):
         ).run()
     
     
+        intersection_aar = []
         for r in does_intersect:            
-            if(r["c1"] in userInputArr and r["c2"] in userInputArr):                
+            if(r["c1"] in userInputArr and r["c2"] in userInputArr):   
+                intersection_aar.append(r["c1"])
+                intersection_aar.append(r["c2"])             
                 # print(r)
                 result.append(
                     {
@@ -109,43 +118,53 @@ def get_class_group(userInputArr=''):
             i += 1
         # print(document['group'])
         result.append(document)
+    timeElapsed=datetime.now()-startTime 
+    print('Nodes Time elpased (hh:mm:ss.ms) {}'.format(timeElapsed))  
+    
 
     
     if(userInputArr == ''):
         links = conn("graph_data").run() #remove redundancy
         len_ = conn("graph_data").count().run()
     else:
-        new_arr = userInputArr
-        for i in range(-1, len(userInputArr) - 2):            
+        output = set()
+        for x in intersection_aar:
+            output.add(x)
+        print output
+        new_arr = list(output)
+        filter_arr = userInputArr
+        for i in range(-1, len(new_arr) - 2):            
             # print(i)
-            for j in range(i+1, len(userInputArr)-1):
+            for j in range(i+1, len(new_arr)-1):
                 i+=1
                 i+=1
                 # print(j)
-                new_arr.append(userInputArr[i]+"~~~"+userInputArr[j])
-                new_arr.append(userInputArr[j]+"~~~"+userInputArr[i])
+                filter_arr.append(new_arr[i]+"~~~"+new_arr[j])
+                filter_arr.append(new_arr[j]+"~~~"+new_arr[i])
         
-        # print(new_arr)
+        count__ = len(filter_arr)
+        print(count__)
+        startTime= datetime.now() 
         links = conn("graph_data").filter(
             lambda doc:
-                get_r().expr(new_arr)
+                get_r().expr(filter_arr)
                 .contains(doc["source"]).and_( 
-                get_r().expr(new_arr)
+                get_r().expr(filter_arr)
                 .contains(doc["target"])
                 )
         ).run()
 
-        len_ = conn("graph_data").filter(
-            lambda doc:
-              get_r().expr(new_arr)
-                .contains(doc["source"]).and_( 
-                get_r().expr(new_arr)
-                .contains(doc["target"])
-                )
-        ).count().run()
+        timeElapsed=datetime.now()-startTime 
+        print('Links list Time elpased (hh:mm:ss.ms) {}'.format(timeElapsed))  
     
+  
+    link_arr = list(links)
+    len_ = len(link_arr)
+    print(len_)
+    
+    startTime= datetime.now() 
     i=0
-    link_arr = return_array(links, len_)
+    # link_arr = return_array(links, len_)
     for node in result:
         for j in range(0, len_):
             link = link_arr[j]   
@@ -156,7 +175,8 @@ def get_class_group(userInputArr=''):
                 link["target"] = i
         i+=1
 
-    
+    timeElapsed=datetime.now()-startTime 
+    print('Links list Time elpased (hh:mm:ss.ms) {}'.format(timeElapsed))  
     
     json_data = {"nodes":result,"links":np.array(link_arr).tolist()}
 
