@@ -130,7 +130,6 @@ def get_class_group(userInputArr=''):
         output = set()
         for x in intersection_aar:
             output.add(x)
-        print output
         new_arr = list(output)
         filter_arr = userInputArr
         for i in range(-1, len(new_arr) - 2):            
