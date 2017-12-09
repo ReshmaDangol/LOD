@@ -92,11 +92,12 @@ def get_class_group(userInputArr=''):
         ).run()
     
     
-        intersection_aar = []
+        intersection_arr = userInputArr
         for r in does_intersect:            
             if(r["c1"] in userInputArr and r["c2"] in userInputArr):   
-                intersection_aar.append(r["c1"])
-                intersection_aar.append(r["c2"])             
+                intersection_arr.append(r["c1"] + "~~~" + r["c2"])
+                intersection_arr.append(r["c2"] + "~~~" + r["c1"])
+                # intersection_arr.append(r["c2"])             
                 # print(r)
                 result.append(
                     {
@@ -127,19 +128,20 @@ def get_class_group(userInputArr=''):
         links = conn("graph_data").run() #remove redundancy
         len_ = conn("graph_data").count().run()
     else:
-        output = set()
-        for x in intersection_aar:
-            output.add(x)
-        new_arr = list(output)
-        filter_arr = userInputArr
-        for i in range(-1, len(new_arr) - 2):            
-            # print(i)
-            for j in range(i+1, len(new_arr)-1):
-                i+=1
-                i+=1
-                # print(j)
-                filter_arr.append(new_arr[i]+"~~~"+new_arr[j])
-                filter_arr.append(new_arr[j]+"~~~"+new_arr[i])
+        filter_arr = intersection_arr
+        # output = set()
+        # for x in intersection_arr:
+        #     output.add(x)
+        # new_arr = list(output)
+        # filter_arr = userInputArr
+        # for i in range(-1, len(new_arr) - 2):            
+        #     # print(i)
+        #     for j in range(i+1, len(new_arr)-1):
+        #         i+=1
+        #         i+=1
+        #         # print(j)
+        #         filter_arr.append(new_arr[i]+"~~~"+new_arr[j])
+        #         filter_arr.append(new_arr[j]+"~~~"+new_arr[i])
         
         count__ = len(filter_arr)
         print(count__)
