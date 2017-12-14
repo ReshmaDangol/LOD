@@ -116,11 +116,13 @@ def execute_query(query):
 @app.route('/setoperation')
 def set_operation():
     classes = conn(tableprefix + "class")["class"].distinct().run()
-    len = conn(tableprefix + "class")["class"].distinct().count().run()
-    class_arr = return_array(classes, len)
+    class_arr = list(classes)
+    len_ = len(class_arr)
+    # len_ = conn(tableprefix + "class")["class"].distinct().count().run()
+    # class_arr = return_array(classes, len_)
     intersection = []
-    for i in range(0, len - 1):
-        for j in range(i + 1, len):
+    for i in range(0, len_ - 1):
+        for j in range(i + 1, len_):
             c1 = class_arr[i]
             c2 = class_arr[j]
             query1 = """
@@ -269,11 +271,13 @@ def popular_class():
 @app.route('/property')
 def fetch_property():
     classes = conn(tableprefix + "class")["class"].distinct().run()
-    len = conn(tableprefix + "class")["class"].distinct().count().run()
-    class_arr = return_array(classes, len)
+    class_arr = list(classes)
+    len_ = len(class_arr)
+    # len_ = conn(tableprefix + "class")["class"].distinct().count().run()
+    # class_arr = return_array(classes, len_)
 
-    for i in range(0, len - 1):
-        for j in range(i + 1, len):
+    for i in range(0, len_ - 1):
+        for j in range(i + 1, len_):
             print(class_arr[i])
             print(class_arr[j])
             poperty_between_class(class_arr[i], class_arr[j])
@@ -286,10 +290,12 @@ def fetch_sub_equivalent_class():
     # global_equivalent_class = []
     # global_proper_subset = []
     classes = conn(tableprefix + "class")["class"].distinct().run()
-    len = conn(tableprefix + "class")["class"].distinct().count().run()
-    class_arr = return_array(classes, len)
-    for i in range(0, len - 1):
-        for j in range(i + 1, len):
+    class_arr = list(classes)
+    len_ = len(class_arr)
+    # len_ = conn(tableprefix + "class")["class"].distinct().count().run()
+    # class_arr = return_array(classes, len_)
+    for i in range(0, len_ - 1):
+        for j in range(i + 1, len_):
             check_sub_equivalent_class(class_arr[i], class_arr[j])
 
     # check_sub_equivalent_class("http://linkedgeodata.org/ontology/PowerTower", "http://linkedgeodata.org/ontology/PowerThing")
@@ -361,6 +367,7 @@ def poperty_between_class(*args):
 
         # i + 1
     conn(tableprefix + "property").insert(data).run()
+    conn(tableprefix + "property").index_create('count').run()
     pass
 
 
@@ -520,7 +527,7 @@ def check_sub_equivalent_class(*args):
 @app.route("/inverse")
 def inverse_property():
 
-    properties = conn(tableprefix + "property")['p'].distinct().run()
+    properties = conn(tableprefix + "property")['p'].distinct().limit(5).run()
     print(properties)
     rows = conn(tableprefix + "property").run()
     checked_property = []
@@ -543,21 +550,22 @@ def inverse_property():
             ?o ?p ?s
             }
             group by ?p
-            order by desc(?count)
-            limit 1
+            order by desc(?count)            
             """
-            print(q)
+            # limit 1
+            # print(q)
+            print("--")
             q_results = execute_query(q)
             print(q_results)
-            if(len(q_results) > 0):
-                print(q_results[0]["count"]["value"])
-                if(int(q_results[0]["count"]["value"]) > 0):
-                    inverse = q_results[0]["p"]["value"]
-                    checked_property.append(inverse)
-                    inverse_property.append({"p1": p, "p2": inverse})
+            # if(len(q_results) > 0):
+            #     print(q_results[0]["count"]["value"])
+            #     if(int(q_results[0]["count"]["value"]) > 0):
+            #         inverse = q_results[0]["p"]["value"]
+            #         checked_property.append(inverse)
+            #         inverse_property.append({"p1": p, "p2": inverse})
 
     print("---")
-    conn(tableprefix + "inverse_property").insert(inverse_property).run()
+    # conn(tableprefix + "inverse_property").insert(inverse_property).run()
     return render_template("sparql.html")
 
 
