@@ -527,8 +527,8 @@ def check_sub_equivalent_class(*args):
 @app.route("/inverse")
 def inverse_property():
 
-    properties = conn(tableprefix + "property")['p'].distinct().limit(5).run()
-    print(properties)
+    # properties = conn(tableprefix + "property")['p'].distinct().limit(5).run()
+    # print(properties)
     rows = conn(tableprefix + "property").run()
     checked_property = []
     inverse_property = []
@@ -540,7 +540,7 @@ def inverse_property():
         if p in checked_property:
             print("found")
         else:
-            # checked_property.append(p)
+            checked_property.append(p)
             q = """
             SELECT  (count(?p) as ?count) ?p
             WHERE {
