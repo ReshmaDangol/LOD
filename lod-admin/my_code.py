@@ -559,8 +559,9 @@ def inverse_property():
             q_results = execute_query(q)
             print(q_results)
             for r in q_results:
-                inverse = r["p"]["value"]
-                inverse_property.append({"p1": p, "p2": inverse})
+                if(r["count"]["value"]>0):
+                    inverse = r["p"]["value"]
+                    inverse_property.append({"p1": p, "p2": inverse})
                 
             # if(len(q_results) > 0):
             #     print(q_results[0]["count"]["value"])
