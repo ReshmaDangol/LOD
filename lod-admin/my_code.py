@@ -550,8 +550,7 @@ def inverse_property():
             ?o ?p ?s
             }
             group by ?p
-            order by desc(?count)            
-            limit 5
+            order by desc(?count)  
             """
             # 
             # print(q)
