@@ -540,7 +540,7 @@ def inverse_property():
         if p in checked_property:
             print("found")
         else:
-            checked_property.append(p)
+            # checked_property.append(p)
             q = """
             SELECT  (count(?p) as ?count) ?p
             WHERE {
@@ -558,10 +558,13 @@ def inverse_property():
             print("--")
             q_results = execute_query(q)
             print(q_results)
+            i_properties = []
             for r in q_results:
                 if(int(r["count"]["value"])>0):
                     inverse = r["p"]["value"]
-                    inverse_property.append({"p1": p, "p2": inverse})
+                    i_properties.append({"p":inverse,"count": r["count"]["value"]})
+            
+            inverse_property.append({"p": p, "inverse": i_properties})
                 
             # if(len(q_results) > 0):
             #     print(q_results[0]["count"]["value"])
