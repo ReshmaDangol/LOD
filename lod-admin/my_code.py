@@ -561,8 +561,8 @@ def inverse_property():
             for r in q_results:
                 if(int(r["count"]["value"])>0):
                     inverse = r["p"]["value"]
-                    i_properties.append(inverse)
-                    # i_properties.append({"p":inverse,"count": r["count"]["value"]})
+                    # i_properties.append(inverse)
+                    i_properties.append({"p":inverse,"count": r["count"]["value"]})
             
             if i_properties:
                 inverse_property.append({"p": p, "inverse": i_properties})
