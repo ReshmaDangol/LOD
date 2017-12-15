@@ -559,7 +559,7 @@ def inverse_property():
             q_results = execute_query(q)
             print(q_results)
             for r in q_results:
-                if(r["count"]["value"]>0):
+                if(int(r["count"]["value"])>0):
                     inverse = r["p"]["value"]
                     inverse_property.append({"p1": p, "p2": inverse})
                 
@@ -571,7 +571,7 @@ def inverse_property():
             #         inverse_property.append({"p1": p, "p2": inverse})
 
     print("---")
-    # conn(tableprefix + "inverse_property").insert(inverse_property).run()
+    conn(tableprefix + "inverse_property").insert(inverse_property).run()
     return render_template("sparql.html")
 
 
