@@ -160,8 +160,8 @@ def prepare_propertydata():
     conn("graph_data_property_temp").insert(tempdata).run()
     sparql_endpoint()
     for p in tempdata:
-        # try:
-        for i in p["inverse"]:
+        try:
+            for i in p["inverse"]:
                 query = """
                 SELECT (count(*) as ?count)
                 WHERE{
@@ -173,8 +173,8 @@ def prepare_propertydata():
                 result = execute_query(query)
                 count = result[0]["count"]["value"]
                 i["count_"] = count
-        # except:
-        #     pass
+        except:
+            pass
 
     conn("graph_data_property_temp2").insert(tempdata).run()
 
