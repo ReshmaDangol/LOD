@@ -148,7 +148,7 @@ def prepare_propertydata():
         conn("inverse_property"),
         lambda left, right:
             (left["p"].eq(right["p"])) #.and_(left["p"].ne(right["p2"]))
-    ).zip().run())
+    ).zip().without('id').run())
     # pluck({'right': ['p', 'inverse']}, {'left': ['c1', 'c2', 'count', 'p']}).map(lambda doc: doc.merge({
     #     'c1': doc['left']['c1'],
     #     'c2': doc['left']['c2'],
