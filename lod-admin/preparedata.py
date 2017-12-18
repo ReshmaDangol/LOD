@@ -172,7 +172,7 @@ def prepare_propertydata():
                 """ 
                 result = execute_query(query)
                 count = result[0]["count"]["value"]
-                i["count_"] = count
+                i["count_"] = int(count)
         except:
             pass
 
