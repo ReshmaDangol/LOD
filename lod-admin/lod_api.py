@@ -16,32 +16,25 @@ api = Api(app)
 userInputArr = []
 parser = reqparse.RequestParser()
 parser.add_argument('class')
+parser.add_argument('s')
+parser.add_argument('t')
+parser.add_argument('b')
+parser.add_argument('p')
+parser.add_argument('limit')
 
 
-def get_json(data):
-    result = []
-    for document in data:
-        result.append(document)
-    return result
-
+# def list(data):
+#     # result = []
+#     # for document in data:
+#     #     result.append(document)
+#     # return result
+#     return list(data)
 
 def get_class():
     cursor_class = conn("class").order_by(index=get_r().desc(
         'count')).run()  # need to create index for count to use this
-    nodes = get_json(cursor_class)
+    nodes = list(cursor_class)
     return nodes
-
-
-def get_class1():
-    cursor_class = conn('class').filter(lambda doc:
-                                        get_r().expr(
-                                            ["http://www.w3.org/2006/time#Interval", "http://purl.org/NET/c4dm/event.owl#Event"])
-                                        .contains(doc["class"])
-                                        ) .run()
-    nodes = get_json(cursor_class)
-    return nodes
-
-
 
 def get_class_group(userInputArr=''):  
     
@@ -190,7 +183,92 @@ def get_class_group(userInputArr=''):
 #             lambda left, right:
 #                 left["class"] == right["c1"]
 #         ).zip().run()
-#     return get_json(cursor)
+#     return list(cursor)
+
+def get_property(s,t,b,l):
+    
+    # cursor1 = list(conn("property").order_by(index=get_r().desc('count')).filter({"c1":s, "c2": t}).outer_join(
+    #     conn("inverse_property"),
+    #     lambda left, right:
+    #         (left["p"].eq(right["p"])) #.and_(left["p"].ne(right["p2"]))
+    # ).zip().limit(int(l)).run())
+
+    cursor1 = list(conn("graph_data_property_temp2").order_by(index=get_r().desc('count')).filter(
+        {"c1":s, "c2": t}
+        ).limit(int(l)).without('id').run())
+    
+    print(s)
+    print(t)
+    print(cursor1)
+    if(int(b) == 1):
+        cursor2 = list(conn("graph_data_property_temp2").order_by(index=get_r().desc('count')).filter(
+        {"c1":t, "c2": s}
+        ).limit(int(l)).without('id').run())
+        # cursor2 = list(conn("property").order_by(index=get_r().desc('count')).filter({"c1":t, "c2": s}).outer_join(
+        # conn("inverse_property"),
+        # lambda left, right:
+        #     (left["p"].eq(right["p"])) #.and_(left["p"].ne(right["p2"]))
+        # ).zip().limit(int(l)).run())
+
+        property_list = cursor1+cursor2
+    else:
+        property_list = cursor1  
+    
+    print(property_list)
+          
+    x = []
+    for p in property_list:
+        x.append(p["p"])
+    
+    for p in property_list:
+        try:        
+            for i in p["inverse"]:
+                if(i["p"] in x):
+                    print(i["p"])
+                    i["show"] = 1
+                    # i.append({"show":1})
+        except:
+            pass
+    return property_list
+
+def _get_property(s,t,b,l):
+    
+    cursor1 = conn("property").order_by(index=get_r().desc('count')).filter({"c1":s, "c2": t}).outer_join(
+            conn("inverse_property"),
+            lambda left, right:
+            (left["p"].eq(right["p1"])).or_(left["p"].eq(right["p2"]))
+        ).zip().limit(int(l)).run()
+    # return list(cursor)
+
+    # cursor1 = conn("property").order_by(index=get_r().desc('count')).filter({"c1":s, "c2": t}).limit(int(l)).run()
+    # print(int(b))
+    if(int(b) == 1):
+        cursor2 = conn("property").order_by(index=get_r().desc('count')).filter({"c1":t, "c2": s}).outer_join(
+            conn("inverse_property"),
+            lambda left, right:
+            (left["p"].eq(right["p1"])).or_(left["p"].eq(right["p2"]))
+        ).zip().limit(int(l)).run()
+        # cursor2 = conn("property").order_by(index=get_r().desc('count')).filter({"c1":t, "c2": s}).limit(int(l)).run()
+        return list(cursor1)+list(cursor2)
+    else:
+        return list(cursor1)
+
+def query_subject(s):
+    query = """
+        SELECT * 
+        WHERE {
+            ?s a <"""+ s +"""> .
+            ?s ?p ?o
+        } limit 10
+    """
+    result = execute_query(query)
+    return result
+
+
+def sparql_query(s,p,o):
+    if(p == '') and (o == ''):
+        result = query_subject(s)
+    return result
 
 class ClassList(Resource):
     def get(self):
@@ -216,10 +294,23 @@ class AddNode(Resource):
         args = json.loads(args['class'])
         return args, 201
 
+class Property(Resource):
+    def post(self):
+        args = parser.parse_args()
+        return get_property(args['s'].strip(), args['t'].strip(), args['b'].strip(), args['limit'].strip())
+
+class SPARQLQuery(Resource):
+    def post(self):
+        args = parser.parse_args()
+        return sparql_query(args['s'], args['p'], args['o'])
+
+
 
 api.add_resource(ClassList, '/classlist')
 api.add_resource(ClassWithDetail, '/class')
 api.add_resource(AddNode, '/addnode')
+api.add_resource(Property, '/property')
+api.add_resource(SPARQLQuery, '/query')
 # api.add_resource(EquivalentClass,'/equivalentclass')
 
 if __name__ == '__main__':
