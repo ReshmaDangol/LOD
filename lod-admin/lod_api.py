@@ -303,7 +303,7 @@ class Property(Resource):
 class SPARQLQuery(Resource):
     def post(self):
         args = parser.parse_args()
-        return sparql_query(args['s'], args['p'], args['t'])
+        return {"nodes":sparql_query(args['s'], args['p'], args['t'])}
 
 
 
