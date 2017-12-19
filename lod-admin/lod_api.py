@@ -266,6 +266,7 @@ def query_subject(s):
 
 
 def sparql_query(s,p,o):
+    sparql_endpoint()
     if(p == '') and (o == ''):
         result = query_subject(s)
     return result
