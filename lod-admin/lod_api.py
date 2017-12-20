@@ -254,12 +254,19 @@ def _get_property(s,t,b,l):
         return list(cursor1)
 
 def query_subject(s):
+    rows = conn("property").filter({"c1":s})["p"].distinct().run()
+    p = "1"
+    for row in rows:
+        p += """ || ?p =<"""+ row +""">"""
+
     query = """
         SELECT * 
         WHERE {
             ?s a <"""+ s +"""> .
-            ?s ?p ?o
-        } limit 10
+            ?s ?p ?o .
+            FILTER ("""+ p +""")
+        }
+        limit 200
     """
     result = execute_query(query)
     return result
