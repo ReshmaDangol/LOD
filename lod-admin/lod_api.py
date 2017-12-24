@@ -5,7 +5,7 @@ from flask_cors import CORS, cross_origin
 from common_functions import *
 import numpy as np
 
-from datetime import datetime 
+from datetime import datetime
 
 
 import json
@@ -21,6 +21,9 @@ parser.add_argument('t')
 parser.add_argument('b')
 parser.add_argument('p')
 parser.add_argument('limit')
+parser.add_argument('link_subclass')
+parser.add_argument('link_intersection')
+parser.add_argument('link_property')
 
 
 # def list(data):
@@ -36,8 +39,14 @@ def get_class():
     nodes = list(cursor_class)
     return nodes
 
-def get_class_group(userInputArr=''):  
-    
+
+def get_class_group(args):
+    print(args)
+    userInputArr = json.loads(args['class'])
+    link_property = args['link_property']
+    link_intersection = args['link_intersection']
+    link_subclass = args['link_subclass']
+
     if(userInputArr == ''):
         cursor = conn("class").outer_join(
             conn("equivalentclass_group"),
@@ -58,12 +67,12 @@ def get_class_group(userInputArr=''):
     i = 0
     index = 0
 
-    startTime= datetime.now() 
+    startTime = datetime.now()
     for document in cursor:
         c = document["class"]
         document["id"] = index
-        index +=1
-        
+        index += 1
+
         is_subclass = conn("subclass").filter(
             lambda class_: class_["subclass"] == c).count().run()
         document['subclass'] = 1 if is_subclass > 0 else 0
@@ -76,35 +85,34 @@ def get_class_group(userInputArr=''):
         ).run()
 
         for r in is_equivalent:
-            document['equivalent'] = 1 if(r["c1"] in userInputArr and r["c2"] in userInputArr) else 0
-             
-
-        does_intersect = conn("intersection").filter(
-            lambda class_:
-            class_["c1"].default('foo').eq(c)
-        ).run()
-    
-    
+            document['equivalent'] = 1 if(
+                r["c1"] in userInputArr and r["c2"] in userInputArr) else 0
         intersection_arr = userInputArr
-        for r in does_intersect:            
-            if(r["c1"] in userInputArr and r["c2"] in userInputArr):   
-                intersection_arr.append(r["c1"] + "~~~" + r["c2"])
-                intersection_arr.append(r["c2"] + "~~~" + r["c1"])
-                # intersection_arr.append(r["c2"])             
-                # print(r)
-                result.append(
-                    {
-                        "class": r["c1"] + "~~~" + r["c2"],
-                        "count":	0,
-                        "equivalent":	0,
-                        "group":	"nogroup_"+ str(i)+"_intersect",
-                        "id":	str(index)+"_intersect",
-                        "name":	"",
-                        "subclass":	0,
-                        "intersect" :1
-                    }
-                )
- 
+
+        if(link_intersection == 'true'):
+            does_intersect = conn("intersection").filter(
+                lambda class_:
+                class_["c1"].default('foo').eq(c)
+            ).run()
+            for r in does_intersect:
+                if(r["c1"] in userInputArr and r["c2"] in userInputArr):
+                    intersection_arr.append(r["c1"] + "~~~" + r["c2"])
+                    intersection_arr.append(r["c2"] + "~~~" + r["c1"])
+                    # intersection_arr.append(r["c2"])
+                    # print(r)
+                    result.append(
+                        {
+                            "class": r["c1"] + "~~~" + r["c2"],
+                            "count":	0,
+                            "equivalent":	0,
+                            "group":	"nogroup_" + str(i) + "_intersect",
+                            "id":	str(index) + "_intersect",
+                            "name":	"",
+                            "subclass":	0,
+                            "intersect": 1
+                        }
+                    )
+
         try:
             x = document['group']
         except:
@@ -112,13 +120,11 @@ def get_class_group(userInputArr=''):
             i += 1
         # print(document['group'])
         result.append(document)
-    timeElapsed=datetime.now()-startTime 
-    print('Nodes Time elpased (hh:mm:ss.ms) {}'.format(timeElapsed))  
-    
+    timeElapsed = datetime.now() - startTime
+    print('Nodes Time elpased (hh:mm:ss.ms) {}'.format(timeElapsed))
 
-    
     if(userInputArr == ''):
-        links = conn("graph_data").run() #remove redundancy
+        links = conn("graph_data").run()  # remove redundancy
         len_ = conn("graph_data").count().run()
     else:
         filter_arr = intersection_arr
@@ -127,7 +133,7 @@ def get_class_group(userInputArr=''):
         #     output.add(x)
         # new_arr = list(output)
         # filter_arr = userInputArr
-        # for i in range(-1, len(new_arr) - 2):            
+        # for i in range(-1, len(new_arr) - 2):
         #     # print(i)
         #     for j in range(i+1, len(new_arr)-1):
         #         i+=1
@@ -135,44 +141,55 @@ def get_class_group(userInputArr=''):
         #         # print(j)
         #         filter_arr.append(new_arr[i]+"~~~"+new_arr[j])
         #         filter_arr.append(new_arr[j]+"~~~"+new_arr[i])
-        
+
         count__ = len(filter_arr)
         print(count__)
-        startTime= datetime.now() 
+        filter_ = {}
+        if(link_intersection == 'false') and (link_subclass == 'false'):
+            filter_ = {'subclass': 0, 'intersect': 0}
+        elif(link_intersection == 'false'):
+            filter_ = {'intersect': 0}
+        elif(link_subclass == 'false'):
+            filter_ = {'subclass': 0}
+            print("--")
+
+        print(filter_)
+
+        startTime = datetime.now()
+
         links = conn("graph_data").filter(
             lambda doc:
                 get_r().expr(filter_arr)
-                .contains(doc["source"]).and_( 
-                get_r().expr(filter_arr)
-                .contains(doc["target"])
+                .contains(doc["source"]).and_(
+                    get_r().expr(filter_arr)
+                    .contains(doc["target"])
                 )
-        ).run()
+        ).filter(filter_).run()
 
-        timeElapsed=datetime.now()-startTime 
-        print('Links list Time elpased (hh:mm:ss.ms) {}'.format(timeElapsed))  
-    
-  
+        timeElapsed = datetime.now() - startTime
+        print('Links list Time elpased (hh:mm:ss.ms) {}'.format(timeElapsed))
+
     link_arr = list(links)
     len_ = len(link_arr)
     print(len_)
-    
-    startTime= datetime.now() 
-    i=0
+
+    startTime = datetime.now()
+    i = 0
     # link_arr = return_array(links, len_)
     for node in result:
         for j in range(0, len_):
-            link = link_arr[j]   
-            # print(node["class"])  
+            link = link_arr[j]
+            # print(node["class"])
             if(link["source"] == node["class"]):
                 link["source"] = i
             if(link["target"] == node["class"]):
                 link["target"] = i
-        i+=1
+        i += 1
 
-    timeElapsed=datetime.now()-startTime 
-    print('Links list Time elpased (hh:mm:ss.ms) {}'.format(timeElapsed))  
-    
-    json_data = {"nodes":result,"links":np.array(link_arr).tolist()}
+    timeElapsed = datetime.now() - startTime
+    print('Links list Time elpased (hh:mm:ss.ms) {}'.format(timeElapsed))
+
+    json_data = {"nodes": result, "links": np.array(link_arr).tolist()}
 
     return json_data
 
@@ -185,8 +202,8 @@ def get_class_group(userInputArr=''):
 #         ).zip().run()
 #     return list(cursor)
 
-def get_property(s,t,b,l):
-    
+def get_property(s, t, b, l):
+
     # cursor1 = list(conn("property").order_by(index=get_r().desc('count')).filter({"c1":s, "c2": t}).outer_join(
     #     conn("inverse_property"),
     #     lambda left, right:
@@ -194,15 +211,15 @@ def get_property(s,t,b,l):
     # ).zip().limit(int(l)).run())
 
     cursor1 = list(conn("graph_data_property_temp2").order_by(index=get_r().desc('count')).filter(
-        {"c1":s, "c2": t}
-        ).limit(int(l)).without('id').run())
-    
+        {"c1": s, "c2": t}
+    ).limit(int(l)).without('id').run())
+
     print(s)
     print(t)
     print(cursor1)
     if(int(b) == 1):
         cursor2 = list(conn("graph_data_property_temp2").order_by(index=get_r().desc('count')).filter(
-        {"c1":t, "c2": s}
+            {"c1": t, "c2": s}
         ).limit(int(l)).without('id').run())
         # cursor2 = list(conn("property").order_by(index=get_r().desc('count')).filter({"c1":t, "c2": s}).outer_join(
         # conn("inverse_property"),
@@ -210,18 +227,18 @@ def get_property(s,t,b,l):
         #     (left["p"].eq(right["p"])) #.and_(left["p"].ne(right["p2"]))
         # ).zip().limit(int(l)).run())
 
-        property_list = cursor1+cursor2
+        property_list = cursor1 + cursor2
     else:
-        property_list = cursor1  
-    
+        property_list = cursor1
+
     print(property_list)
-          
+
     x = []
     for p in property_list:
         x.append(p["p"])
-    
+
     for p in property_list:
-        try:        
+        try:
             for i in p["inverse"]:
                 if(i["p"] in x):
                     print(i["p"])
@@ -231,40 +248,42 @@ def get_property(s,t,b,l):
             pass
     return property_list
 
-def _get_property(s,t,b,l):
-    
-    cursor1 = conn("property").order_by(index=get_r().desc('count')).filter({"c1":s, "c2": t}).outer_join(
-            conn("inverse_property"),
-            lambda left, right:
-            (left["p"].eq(right["p1"])).or_(left["p"].eq(right["p2"]))
-        ).zip().limit(int(l)).run()
+
+def _get_property(s, t, b, l):
+
+    cursor1 = conn("property").order_by(index=get_r().desc('count')).filter({"c1": s, "c2": t}).outer_join(
+        conn("inverse_property"),
+        lambda left, right:
+        (left["p"].eq(right["p1"])).or_(left["p"].eq(right["p2"]))
+    ).zip().limit(int(l)).run()
     # return list(cursor)
 
     # cursor1 = conn("property").order_by(index=get_r().desc('count')).filter({"c1":s, "c2": t}).limit(int(l)).run()
     # print(int(b))
     if(int(b) == 1):
-        cursor2 = conn("property").order_by(index=get_r().desc('count')).filter({"c1":t, "c2": s}).outer_join(
+        cursor2 = conn("property").order_by(index=get_r().desc('count')).filter({"c1": t, "c2": s}).outer_join(
             conn("inverse_property"),
             lambda left, right:
             (left["p"].eq(right["p1"])).or_(left["p"].eq(right["p2"]))
         ).zip().limit(int(l)).run()
         # cursor2 = conn("property").order_by(index=get_r().desc('count')).filter({"c1":t, "c2": s}).limit(int(l)).run()
-        return list(cursor1)+list(cursor2)
+        return list(cursor1) + list(cursor2)
     else:
         return list(cursor1)
 
+
 def query_subject(s):
-    rows = conn("property").filter({"c1":s})["p"].distinct().run()
+    rows = conn("property").filter({"c1": s})["p"].distinct().run()
     p = "1"
     for row in rows:
-        p += """ || ?p =<"""+ row +""">"""
+        p += """ || ?p =<""" + row + """>"""
 
     query = """
         SELECT * 
         WHERE {
-            ?s a <"""+ s +"""> .
+            ?s a <""" + s + """> .
             ?s ?p ?o .
-            FILTER ("""+ p +""")
+            FILTER (""" + p + """)
         }
         limit 200
     """
@@ -272,11 +291,12 @@ def query_subject(s):
     return result
 
 
-def sparql_query(s,p,o):
+def sparql_query(s, p, o):
     sparql_endpoint()
     if(p == '') and (o == ''):
         result = query_subject(s)
     return result
+
 
 class ClassList(Resource):
     def get(self):
@@ -287,11 +307,13 @@ class ClassWithDetail(Resource):
     def get(self):
         # return {'nodes': get_class_group(), 'links': get_class_links()}
         return get_class_group()
+
     def post(self):
         args = parser.parse_args()
-        args = json.loads(args['class'])
+        # args = json.loads(args['class'])
         # return {'nodes': get_class_group(args), 'links': get_class_links(args)}
         return get_class_group(args)
+
 
 class AddNode(Resource):
     def get(self):
@@ -302,16 +324,17 @@ class AddNode(Resource):
         args = json.loads(args['class'])
         return args, 201
 
+
 class Property(Resource):
     def post(self):
         args = parser.parse_args()
         return get_property(args['s'].strip(), args['t'].strip(), args['b'].strip(), args['limit'].strip())
 
+
 class SPARQLQuery(Resource):
     def post(self):
         args = parser.parse_args()
-        return {"data":sparql_query(args['s'], args['p'], args['t'])}
-
+        return {"data": sparql_query(args['s'], args['p'], args['t'])}
 
 
 api.add_resource(ClassList, '/classlist')
