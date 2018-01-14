@@ -11,8 +11,9 @@ database_name = "jamendo"
 
 database_name = "archiveshub"
 database_name = "aat"
+db_url = os.environ['DB_URL']
 
-print(os.environ['DB_URL'])
+print(db_url)
 
 def sparql_endpoint():
     global endpoint
@@ -30,10 +31,10 @@ def sparql_endpoint():
 
     # local Stardog triplestores
     # https://old.datahub.io/dataset/getty-aat
-    url11 = "http://localhost:5820/aat/query"
-    url12 = "http://localhost:5820/archiveshub/query"  # archives hub
-    url13 = "http://localhost:5820/jamendo/query"
-    url14 = "http://localhost:5820/linkedmdb/query"    
+    # url11 = "http://localhost:5820/aat/query"
+    # url12 = "http://localhost:5820/archiveshub/query"  # archives hub
+    # url13 = "http://localhost:5820/jamendo/query"
+    # url14 = "http://localhost:5820/linkedmdb/query"    
 
     url = "http://localhost:5820/" + database_name + "/query"
 
@@ -49,12 +50,12 @@ def execute_query(query):
     return results["results"]["bindings"]
 
 def conn_db():
-    r.connect(os.environ['DB_URL'], 28015).repl()
+    r.connect(db_url, 28015).repl()
     return r.db(database_name)
 
 
 def conn(table):
-    r.connect(os.environ['DB_URL'], 28015).repl()
+    r.connect(db_url, 28015).repl()
     return r.db(database_name).table(table)
 
 
