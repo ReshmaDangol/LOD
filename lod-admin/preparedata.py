@@ -58,7 +58,7 @@ def prepare():
                     "bidirection": bd,
                     "intersect": 0,
                     "subclass": 0,
-                    "linkid": str(i) + "_property"
+                    "linkid": str(i) + str(j) + "_property"
                 }
                 # print(result)
                 conn("graph_data").insert(result).run()
