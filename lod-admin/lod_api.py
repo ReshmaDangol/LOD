@@ -304,12 +304,33 @@ def query_property(s,p,o):
     result = execute_query(query)
     return result
 
+def query_intersect(s,o):
+    rows = conn("property").filter({"c1": s})["p"].distinct().run()
+    p = "1"
+    for row in rows:
+        p += """ || ?p =<""" + row + """>"""
+
+    query = """
+        SELECT * 
+        WHERE {
+            ?s a <""" + s + """> .
+            ?s a <""" + o + """> .
+            ?s ?p ?o .
+            FILTER (""" + p + """)
+        }
+        limit 200
+    """
+    result = execute_query(query)
+    return result
+    
 
 def sparql_query(s, p, o):
     sparql_endpoint()
     if(p == '') and (o == ''):
         result = query_subject(s)
-    else:
+    elif p == '':
+       result = query_intersect(s,o)
+    else:        
         result = query_property(s,p,o)
     return result
 
