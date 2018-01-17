@@ -315,8 +315,6 @@ def query_intersect(s,o):
         WHERE {
             ?s a <""" + s + """> .
             ?s a <""" + o + """> .
-            ?s ?p ?o .
-            FILTER (""" + p + """)
         }
         limit 200
     """
