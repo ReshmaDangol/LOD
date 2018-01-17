@@ -7,4 +7,56 @@ python3 -m flask run --host=0.0.0.0
 
 sudo fuser -n tcp -k 8080
 
-glances
+glances 
+
+2to3 -w filename.py
+
+rm -r folder
+
+stardog/bin$ ./stardog-admin server start --disable-security
+
+nohup python3 lod_api.py & disown 
+
+Ports
+http://192.41.170.50:8080 rethinkdb
+http://192.41.170.50:5001 Admin - schema extractor
+http://192.41.170.50:5000 API 
+http://192.41.170.50 Frontend
+http://192.41.170.50:5820 Stardog
+
+
+nohup
+
+http://www.coppelia.io/2014/07/an-a-to-z-of-extra-features-for-the-d3-force-layout/
+http://bl.ocks.org/GerHobbelt/3637711
+Bugs
+- fast click-> old graph stays
+- collection, guideterm, statement ->sbclass link disappears
+
+Fixed bugs
+- node names //fixed
+- equivalent class
+
+Issues
+- node link spread
+
+
+
+Steps to follow to prepare the data for a LOD source
+- Preparedata.py
+# prepares data for the actual graph
+# Run prepare() function - inserts into graph_data table
+# Run prepare_propertydata() function - inserts into graph_data_property_temp2 - need to rename the table
+# 
+
+- equivalent.py
+# inserts into equivalentclass_group
+
+-my_code.py
+#/class - popular 20 class
+#/subclass - identifies subclass
+#/property - property between class
+#/inverse - inverse property
+#/setoperation - intersection
+#/getinstance - Update the property instance information
+#/x - experiments - transitive, symmetric, inverse functional, functional
