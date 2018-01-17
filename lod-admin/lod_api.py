@@ -273,6 +273,7 @@ def _get_property(s, t, b, l):
 
 
 def query_subject(s):
+    #query subjects based of the popular properties
     rows = conn("property").filter({"c1": s})["p"].distinct().run()
     p = "1"
     for row in rows:
@@ -290,11 +291,26 @@ def query_subject(s):
     result = execute_query(query)
     return result
 
+def query_property(s,p,o):
+    query = """
+        SELECT * 
+        WHERE {
+            ?s a <""" + s + """> .
+            ?o a <""" + o + """> .
+            ?s <""" + p + """> ?o
+        }
+        limit 200
+    """
+    result = execute_query(query)
+    return result
+
 
 def sparql_query(s, p, o):
     sparql_endpoint()
     if(p == '') and (o == ''):
         result = query_subject(s)
+    else:
+        result = query_property(s,p,o)
     return result
 
 
