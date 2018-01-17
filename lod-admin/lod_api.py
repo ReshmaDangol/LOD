@@ -210,7 +210,7 @@ def get_property(s, t, b, l):
     #         (left["p"].eq(right["p"])) #.and_(left["p"].ne(right["p2"]))
     # ).zip().limit(int(l)).run())
 
-    cursor1 = list(conn("graph_data_property_temp2").order_by(index=get_r().desc('count')).filter(
+    cursor1 = list(conn("graph_data_property").order_by(index=get_r().desc('count')).filter(
         {"c1": s, "c2": t}
     ).limit(int(l)).without('id').run())
 
@@ -218,7 +218,7 @@ def get_property(s, t, b, l):
     print(t)
     print(cursor1)
     if(int(b) == 1):
-        cursor2 = list(conn("graph_data_property_temp2").order_by(index=get_r().desc('count')).filter(
+        cursor2 = list(conn("graph_data_property").order_by(index=get_r().desc('count')).filter(
             {"c1": t, "c2": s}
         ).limit(int(l)).without('id').run())
         # cursor2 = list(conn("property").order_by(index=get_r().desc('count')).filter({"c1":t, "c2": s}).outer_join(
