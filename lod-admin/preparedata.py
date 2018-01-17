@@ -144,6 +144,7 @@ def prepare():
 
 
 def prepare_propertydata():
+    conn_db().table_create("graph_data_property_temp").run()
     tempdata = list(conn("property").order_by(index=get_r().desc('count')).outer_join(
         conn("inverse_property"),
         lambda left, right:
@@ -176,7 +177,9 @@ def prepare_propertydata():
         except:
             pass
 
-    conn("graph_data_property_temp2").insert(tempdata).run()
+    conn("graph_data_property").insert(tempdata).run()
+    conn("graph_data_property").index_create('count').run()
+    conn_db().table_drop("graph_data_property_temp").run()
 
 
     # tempdata2 = list(conn("property").order_by(index=get_r().desc('count')).inner_join(
@@ -233,7 +236,7 @@ def prepare_propertydata_part2():
 
     # print list(tempdata)
 
-    conn("graph_data_property_temp2").insert(list(tempdata)).run()
+    conn("graph_data_property").insert(list(tempdata)).run()
 
     # conn("graph_data_property_temp").innerJoin(conn("graph_data_property_temp"), function(left, right){
     #     #  left("parent").eq(right("id"))
