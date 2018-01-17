@@ -39,9 +39,7 @@ def sparql_endpoint():
     url11 = "http://localhost:5820/aat/query"
     url12 = "http://localhost:5820/archiveshub/query"  # archives hub
     url13 = "http://localhost:5820/jamendo/query"
-    url14 = "http://localhost:5820/linkedmdb/query"
-
-    
+    url14 = "http://localhost:5820/linkedmdb/query"    
 
     url = "http://localhost:5820/" + database_name + "/query"
 
@@ -62,6 +60,10 @@ def create_tables():
     r.db(database_name).table_create(tableprefix + "subclass").run()
     r.db(database_name).table_create(tableprefix + "class").run()
     r.db(database_name).table_create(tableprefix + "intersection").run()
+    r.db(database_name).table_create(tableprefix + "graph_data").run()
+    r.db(database_name).table_create(tableprefix + "graph_data_property").run()
+
+    
 
 
 def create_database():
