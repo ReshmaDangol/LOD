@@ -292,7 +292,8 @@ def query_subject(s):
             ?s a <""" + s + """> .
             ?s ?p ?o .
             ?s rdfs:label ?s_label .
-            ?o rdfs:label ?o_label 
+            ?o rdfs:label ?o_label .
+            ?p rdfs:label ?p_label
             FILTER (""" + p + """)
         }
         limit 200
