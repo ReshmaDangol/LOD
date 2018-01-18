@@ -25,6 +25,13 @@ parser.add_argument('link_subclass')
 parser.add_argument('link_intersection')
 parser.add_argument('link_property')
 
+query_prefix = """
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+"""
 
 # def list(data):
 #     # result = []
@@ -279,11 +286,13 @@ def query_subject(s):
     for row in rows:
         p += """ || ?p =<""" + row + """>"""
 
-    query = """
+    query = query_prefix + """
         SELECT * 
         WHERE {
             ?s a <""" + s + """> .
             ?s ?p ?o .
+            ?s rdfs:label ?s_label .
+            ?o rdfs:label ?o_label
             FILTER (""" + p + """)
         }
         limit 200
