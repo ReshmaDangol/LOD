@@ -292,7 +292,8 @@ def query_subject(s):
             ?s a <""" + s + """> .
             ?s ?p ?o .
             ?s rdfs:label ?s_label .
-            ?o rdfs:label ?o_label
+            ?o rdfs:label ?o_label .
+            ?p rdfs:label ?p_label
             FILTER (""" + p + """)
         }
         limit 200
@@ -301,12 +302,14 @@ def query_subject(s):
     return result
 
 def query_property(s,p,o):
-    query = """
+    query = query_prefix + """
         SELECT * 
         WHERE {
             ?s a <""" + s + """> .
             ?o a <""" + o + """> .
-            ?s <""" + p + """> ?o
+            ?s <""" + p + """> ?o .
+            ?s rdfs:label ?s_label .
+            ?o rdfs:label ?o_label 
         }
         limit 200
     """
@@ -319,11 +322,12 @@ def query_intersect(s,o):
     for row in rows:
         p += """ || ?p =<""" + row + """>"""
 
-    query = """
+    query = query_prefix + """
         SELECT * 
         WHERE {
             ?s a <""" + s + """> .
             ?s a <""" + o + """> .
+            ?s rdfs:label ?s_label .
         }
         limit 200
     """
