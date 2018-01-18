@@ -62,7 +62,7 @@ def create_tables():
     r.db(database_name).table_create(tableprefix + "intersection").run()
     r.db(database_name).table_create(tableprefix + "graph_data").run()
     r.db(database_name).table_create(tableprefix + "graph_data_property").run()
-
+    conn(tableprefix + "property").index_create('count').run()
     
 
 
@@ -369,7 +369,7 @@ def poperty_between_class(*args):
 
         # i + 1
     conn(tableprefix + "property").insert(data).run()
-    conn(tableprefix + "property").index_create('count').run()
+   
     pass
 
 
