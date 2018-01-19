@@ -380,6 +380,7 @@ def sparql_query(s, p, o, p_filter):
     return result
 
 def query_instance_property(i):
+    sparql_endpoint()
     query ="""
         SELECT DISTINCT ?p  (COUNT(?p) as ?count)
         WHERE {
@@ -400,6 +401,7 @@ def query_instance_property(i):
     index = 1
     for result in results:
         p = result["p"]["value"]
+        print(p)
         count = result["count"]["value"]
         nodes.append({
             "id":index,
