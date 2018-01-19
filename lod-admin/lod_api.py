@@ -340,8 +340,11 @@ def query_property(s,p,o):
     result = execute_query(query)
     return result
 
+def query_property_list(s):
+    return conn("property").filter({"c1": s})["p"].distinct().run()
+
 def query_intersect(s,o):
-    rows = conn("property").filter({"c1": s})["p"].distinct().run()
+    rows = query_property_list(s)
     p = "1"
     for row in rows:
         p += """ || ?p =<""" + row + """>"""
@@ -413,12 +416,19 @@ class SPARQLQuery(Resource):
         args = parser.parse_args()
         return {"data": sparql_query(args['s'], args['p'], args['t'])}
 
+class PropertyList(Resource):
+    def post(self):
+        args = parser.parse_args()
+        return query_property_list(args['s'].strip())
+
 
 api.add_resource(ClassList, '/classlist')
 api.add_resource(ClassWithDetail, '/class')
 api.add_resource(AddNode, '/addnode')
 api.add_resource(Property, '/property')
 api.add_resource(SPARQLQuery, '/query')
+api.add_resource(PropertyList, '/query/propertylist')
+
 # api.add_resource(EquivalentClass,'/equivalentclass')
 
 if __name__ == '__main__':
