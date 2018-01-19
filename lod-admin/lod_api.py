@@ -304,10 +304,10 @@ def query_subject(s):
             }
             OPTIONAL{?o foaf:name ?o_name .
             }
-            OPTIONAL{?p foaf:name ?p_name.
-            }            
-            
-            FILTER (""" + p + """)
+            OPTIONAL{?p foaf:name ?p_name .
+            }                        
+            FILTER (""" + p + """) .
+            FILTER (?o != <""" + s + """>)
         }
         limit 200
     """
@@ -332,6 +332,7 @@ def query_property(s,p,o):
             }
             OPTIONAL{?o foaf:name ?o_name .
             }
+            
         }
         limit 200
     """
