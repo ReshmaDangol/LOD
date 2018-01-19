@@ -25,6 +25,7 @@ parser.add_argument('link_subclass')
 parser.add_argument('link_intersection')
 parser.add_argument('link_property')
 parser.add_argument('p_filter') #selected property
+parser.add_argument('i') #an instance of a class
 
 query_prefix = """
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
@@ -378,6 +379,46 @@ def sparql_query(s, p, o, p_filter):
         result = query_property(s,p,o)
     return result
 
+def query_instance_property(i):
+    query ="""
+        SELECT DISTINCT ?p  (COUNT(?p) as ?count)
+        WHERE {
+            <"""+ i +"""> ?p ?o.
+            }
+        GROUP BY ?p
+        ORDER BY DESC(?count)  
+    """
+    print(query)
+    results = execute_query(query)
+    
+    nodes = []
+    nodes.append({
+        "name": "xx",
+        "class": i
+    })
+    links = []
+    index = 1
+    for result in results:
+        p = result["p"]["value"]
+        count = result["count"]["value"]
+        nodes.append({
+            "id":index,
+            "class": p,
+            "name":count
+        })
+        links.append(
+            {
+            "linkid": "property_" + index , 
+            "source": 0,  
+            "target": index
+            }
+        )
+        index +=1
+    
+    json_data = {"nodes": nodes, "links": links}
+    print(json_data)        
+    return json_data 
+
 
 class ClassList(Resource):
     def get(self):
@@ -422,6 +463,12 @@ class PropertyList(Resource):
         args = parser.parse_args()
         return query_property_list(args['s'].strip())
 
+class InstancePropertyList(Resource):
+    def post(self):
+        args = parser.parse_args()
+        return query_instance_property(args['i'].strip())
+
+
 
 
 api.add_resource(ClassList, '/classlist')
@@ -430,6 +477,7 @@ api.add_resource(AddNode, '/addnode')
 api.add_resource(Property, '/property')
 api.add_resource(SPARQLQuery, '/query')
 api.add_resource(PropertyList, '/query/propertylist')
+api.add_resource(InstancePropertyList, '/query/instance/propertylist')
 
 # api.add_resource(EquivalentClass,'/equivalentclass')
 
