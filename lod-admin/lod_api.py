@@ -299,6 +299,15 @@ def query_subject(s):
             }
             OPTIONAL{?p rdfs:label ?p_label.
             FILTER (langMatches(lang(?p_label),"en"))
+            }   
+            OPTIONAL{?s foaf:name ?s_name .
+            FILTER (langMatches(lang(?s_name),"en"))
+            }
+            OPTIONAL{?o foaf:name ?o_name .
+            FILTER (langMatches(lang(?o_name),"en"))
+            }
+            OPTIONAL{?p foaf:name ?p_name.
+            FILTER (langMatches(lang(?p_name),"en"))
             }            
             
             FILTER (""" + p + """)
@@ -322,6 +331,12 @@ def query_property(s,p,o):
             OPTIONAL{?o rdfs:label ?o_label .
             FILTER (langMatches(lang(?o_label),"en"))
             }
+            OPTIONAL{?s foaf:name ?s_name.
+            FILTER (langMatches(lang(?s_name),"en"))
+            }
+            OPTIONAL{?o foaf:name ?o_name .
+            FILTER (langMatches(lang(?o_name),"en"))
+            }
         }
         limit 200
     """
@@ -342,6 +357,9 @@ def query_intersect(s,o):
             ?s a <""" + o + """> .
             OPTIONAL{?s rdfs:label ?s_label .
             FILTER (langMatches(lang(?s_label),"en"))
+            }
+            OPTIONAL{?s foaf:name ?s_name .
+            FILTER (langMatches(lang(?s_name),"en"))
             }
         }
         limit 200
