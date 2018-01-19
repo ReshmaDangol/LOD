@@ -410,7 +410,7 @@ def query_instance_property(i):
         })
         links.append(
             {
-            "linkid": "property_" + index , 
+            "linkid": "property_" + str(index) , 
             "source": 0,  
             "target": index
             }
