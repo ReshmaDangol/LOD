@@ -301,13 +301,10 @@ def query_subject(s):
             FILTER (langMatches(lang(?p_label),"en"))
             }   
             OPTIONAL{?s foaf:name ?s_name .
-            FILTER (langMatches(lang(?s_name),"en"))
             }
             OPTIONAL{?o foaf:name ?o_name .
-            FILTER (langMatches(lang(?o_name),"en"))
             }
             OPTIONAL{?p foaf:name ?p_name.
-            FILTER (langMatches(lang(?p_name),"en"))
             }            
             
             FILTER (""" + p + """)
@@ -332,10 +329,8 @@ def query_property(s,p,o):
             FILTER (langMatches(lang(?o_label),"en"))
             }
             OPTIONAL{?s foaf:name ?s_name.
-            FILTER (langMatches(lang(?s_name),"en"))
             }
             OPTIONAL{?o foaf:name ?o_name .
-            FILTER (langMatches(lang(?o_name),"en"))
             }
         }
         limit 200
@@ -359,7 +354,6 @@ def query_intersect(s,o):
             FILTER (langMatches(lang(?s_label),"en"))
             }
             OPTIONAL{?s foaf:name ?s_name .
-            FILTER (langMatches(lang(?s_name),"en"))
             }
         }
         limit 200
