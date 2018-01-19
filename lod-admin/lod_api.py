@@ -301,7 +301,7 @@ def query_subject(s):
         }
         limit 200
     """
-    
+    print(query)
     result = execute_query(query)
     return result
 
