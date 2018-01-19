@@ -291,11 +291,15 @@ def query_subject(s):
         WHERE {
             ?s a <""" + s + """> .
             ?s ?p ?o .
-            OPTIONAL{?s rdfs:label ?s_label .}
-            OPTIONAL{?o rdfs:label ?o_label .}
-            OPTIONAL{?p rdfs:label ?p_label}
-            FILTER (langMatches(lang(?s_label),"en") && langMatches(lang(?p_label),"en")  && langMatches(lang(?o_label),"en") )
+            OPTIONAL{?s rdfs:label ?s_label .
+            FILTER (langMatches(lang(?s_label),"en"))
             }
+            OPTIONAL{?o rdfs:label ?o_label .
+            FILTER (langMatches(lang(?o_label),"en"))
+            }
+            OPTIONAL{?p rdfs:label ?p_label.
+            FILTER (langMatches(lang(?p_label),"en"))
+            }            
             
             FILTER (""" + p + """)
         }
@@ -312,12 +316,16 @@ def query_property(s,p,o):
             ?s a <""" + s + """> .
             ?o a <""" + o + """> .
             ?s <""" + p + """> ?o .
-            OPTIONAL{?s rdfs:label ?s_label.}
-            OPTIONAL{?o rdfs:label ?o_label }
-             FILTER (langMatches(lang(?s_label),"en")  && langMatches(lang(?o_label),"en") )
+            OPTIONAL{?s rdfs:label ?s_label.
+            FILTER (langMatches(lang(?s_label),"en"))
+            }
+            OPTIONAL{?o rdfs:label ?o_label .
+            FILTER (langMatches(lang(?o_label),"en"))
+            }
         }
         limit 200
     """
+    print(query)
     result = execute_query(query)
     return result
 
@@ -332,11 +340,13 @@ def query_intersect(s,o):
         WHERE {
             ?s a <""" + s + """> .
             ?s a <""" + o + """> .
-            OPTIONAL{?s rdfs:label ?s_label .}
+            OPTIONAL{?s rdfs:label ?s_label .
             FILTER (langMatches(lang(?s_label),"en"))
+            }
         }
         limit 200
     """
+    print(query)
     result = execute_query(query)
     return result
     
