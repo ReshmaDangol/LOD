@@ -368,10 +368,10 @@ def query_intersect(s,o):
     return result
     
 
-def sparql_query(s, p, o):
+def sparql_query(s, p, o, p_filter):
     sparql_endpoint()
     if(p == '') and (o == ''):
-        result = query_subject(s)
+        result = query_subject(s,p_filter)
     elif p == '':
        result = query_intersect(s,o)
     else:        
