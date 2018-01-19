@@ -18,12 +18,13 @@ parser = reqparse.RequestParser()
 parser.add_argument('class')
 parser.add_argument('s')
 parser.add_argument('t')
-parser.add_argument('b')
+parser.add_argument('b') #bidirection
 parser.add_argument('p')
 parser.add_argument('limit')
 parser.add_argument('link_subclass')
 parser.add_argument('link_intersection')
 parser.add_argument('link_property')
+parser.add_argument('p_filter') #selected property
 
 query_prefix = """
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
@@ -279,11 +280,11 @@ def _get_property(s, t, b, l):
         return list(cursor1)
 
 
-def query_subject(s):
+def query_subject(s, p_filter):
     #query subjects based of the popular properties
-    rows = conn("property").filter({"c1": s})["p"].distinct().run()
+    # rows = conn("property").filter({"c1": s})["p"].distinct().run()
     p = "1"
-    for row in rows:
+    for row in p_filter:
         p += """ || ?p =<""" + row + """>"""
 
     query = query_prefix + """
@@ -414,12 +415,13 @@ class Property(Resource):
 class SPARQLQuery(Resource):
     def post(self):
         args = parser.parse_args()
-        return {"data": sparql_query(args['s'], args['p'], args['t'])}
+        return {"data": sparql_query(args['s'], args['p'], args['t'], json.loads(args['p_filter'].strip()))}
 
 class PropertyList(Resource):
     def post(self):
         args = parser.parse_args()
         return query_property_list(args['s'].strip())
+
 
 
 api.add_resource(ClassList, '/classlist')
