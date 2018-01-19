@@ -466,7 +466,7 @@ class PropertyList(Resource):
 class InstancePropertyList(Resource):
     def post(self):
         args = parser.parse_args()
-        return query_instance_property(args['i'].strip())
+        return query_instance_property(args['i'])
 
 
 
