@@ -392,10 +392,10 @@ def query_instance_property(i):
     """
     result = execute_query(query)
     try:
-        node_name = result[0]["s_label"]["value"]
+        node_name = result[0]["s_name"]["value"]
     except:
         try:
-            node_name = result[0]["s_name"]["value"]
+            node_name = result[0]["s_label"]["value"]
         except :
             node_name = i
 
