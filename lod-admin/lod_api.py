@@ -381,7 +381,7 @@ def sparql_query(s, p, o, p_filter):
 
 def query_instance_property(i):
     sparql_endpoint()
-    query = """
+    query = query_prefix + """
         SELECT *
         WHERE{            
             OPTIONAL{ <"""+ i +""">  rdfs:label ?s_label .
