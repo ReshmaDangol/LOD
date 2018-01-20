@@ -391,8 +391,13 @@ def query_instance_property(i):
         }
     """
     result = execute_query(query)
-    print(result[0]["s_label"]["value"])
-    print(result[1]["s_label"]["value"])
+    try:
+        node_name = result[0]["s_label"]["value"]
+    except:
+        try:
+            node_name = result[0]["s_name"]["value"]
+        except :
+            node_name = i
 
     query ="""
         SELECT DISTINCT ?p  (COUNT(?p) as ?count)
@@ -409,7 +414,7 @@ def query_instance_property(i):
 
     nodes = []
     nodes.append({
-        "name": "xx",
+        "name": node_name,
         "class": i
     })
     links = []
