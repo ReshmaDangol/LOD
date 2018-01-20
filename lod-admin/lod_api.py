@@ -381,6 +381,19 @@ def sparql_query(s, p, o, p_filter):
 
 def query_instance_property(i):
     sparql_endpoint()
+    query = """
+        SELECT *
+        WHERE{            
+            OPTIONAL{ <"""+ i +""">  rdfs:label ?s_label .
+            FILTER (langMatches(lang(?s_label),"en"))
+            }
+            OPTIONAL{ <"""+ i +""">  foaf:name ?s_name .}
+        }
+    """
+    result = execute_query(query)
+    print(result[0]["s_label"]["value"])
+    print(result[1]["s_label"]["value"])
+
     query ="""
         SELECT DISTINCT ?p  (COUNT(?p) as ?count)
         WHERE {
@@ -392,6 +405,8 @@ def query_instance_property(i):
     print(query)
     results = execute_query(query)
     
+   
+
     nodes = []
     nodes.append({
         "name": "xx",
