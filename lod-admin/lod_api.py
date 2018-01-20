@@ -406,12 +406,11 @@ def query_instance_property(i):
             }
         GROUP BY ?p
         ORDER BY DESC(?count)  
+        LIMIT 10
     """
     print(query)
     results = execute_query(query)
     
-   
-
     nodes = []
     nodes.append({
         "name": node_name,
@@ -432,7 +431,8 @@ def query_instance_property(i):
             {
             "linkid": "property_" + str(index) , 
             "source": 0,  
-            "target": index
+            "target": index,
+            "name":p
             }
         )
         index +=1
