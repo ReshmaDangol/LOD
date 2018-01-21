@@ -42,15 +42,18 @@ ignore_properties = ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject", 
 "http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate", 
 "http://www.w3.org/1999/02/22-rdf-syntax-ns#object", 
-"http://www.w3.org/2000/01/rdf-schema#subClassOf", 
-"http://www.w3.org/2000/01/rdf-schema#subPropertyOf", 
+
 "http://www.w3.org/2000/01/rdf-schema#domain", 
 "http://www.w3.org/2000/01/rdf-schema#range", 
 "http://www.w3.org/2000/01/rdf-schema#label", 
-"http://www.w3.org/2000/01/rdf-schema#comment", 
 "http://www.w3.org/2000/01/rdf-schema#member", 
-"http://www.w3.org/2000/01/rdf-schema#seeAlso", 
-"http://www.w3.org/2000/01/rdf-schema#isDefinedBy"]
+]
+
+#"http://www.w3.org/2000/01/rdf-schema#seeAlso", 
+#"http://www.w3.org/2000/01/rdf-schema#comment", 
+#"http://www.w3.org/2000/01/rdf-schema#isDefinedBy"
+#"http://www.w3.org/2000/01/rdf-schema#subClassOf", 
+#"http://www.w3.org/2000/01/rdf-schema#subPropertyOf", 
 
 # def list(data):
 #     # result = []
@@ -448,11 +451,11 @@ def query_instance_property(i):
         SELECT DISTINCT ?p  (COUNT(?p) as ?count)
         WHERE {
             <""" + i + """> ?p ?o.
+            FILTER("""+p+""")      
             }
         GROUP BY ?p
         ORDER BY DESC(?count)  
-        FILTER("""+p+""")
-        
+         
     """
     print(query)
     results = execute_query(query)
