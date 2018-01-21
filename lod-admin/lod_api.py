@@ -16,16 +16,16 @@ api = Api(app)
 userInputArr = []
 parser = reqparse.RequestParser()
 parser.add_argument('class')
-parser.add_argument('s')
-parser.add_argument('t')
-parser.add_argument('b') #bidirection
-parser.add_argument('p')
-parser.add_argument('limit')
+parser.add_argument('s') #subject
+parser.add_argument('t') #target, object
+parser.add_argument('b')  # bidirection
+parser.add_argument('p') # property
+parser.add_argument('limit') #result limit
 parser.add_argument('link_subclass')
 parser.add_argument('link_intersection')
 parser.add_argument('link_property')
-parser.add_argument('p_filter') #selected property
-parser.add_argument('i') #an instance of a class
+parser.add_argument('p_filter')  # selected property
+parser.add_argument('i')  # an instance of a class
 
 query_prefix = """
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
@@ -41,6 +41,7 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 #     #     result.append(document)
 #     # return result
 #     return list(data)
+
 
 def get_class():
     cursor_class = conn("class").order_by(index=get_r().desc(
@@ -282,7 +283,7 @@ def _get_property(s, t, b, l):
 
 
 def query_subject(s, p_filter):
-    #query subjects based of the popular properties
+    # query subjects based of the popular properties
     # rows = conn("property").filter({"c1": s})["p"].distinct().run()
     p = "1"
     for row in p_filter:
@@ -317,7 +318,8 @@ def query_subject(s, p_filter):
     result = execute_query(query)
     return result
 
-def query_property(s,p,o):
+
+def query_property(s, p, o):
     query = query_prefix + """
         SELECT * 
         WHERE {
@@ -342,10 +344,12 @@ def query_property(s,p,o):
     result = execute_query(query)
     return result
 
+
 def query_property_list(s):
     return conn("property").filter({"c1": s})["p"].distinct().run()
 
-def query_intersect(s,o):
+
+def query_intersect(s, o):
     rows = query_property_list(s)
     p = "1"
     for row in rows:
@@ -367,27 +371,46 @@ def query_intersect(s,o):
     print(query)
     result = execute_query(query)
     return result
-    
+
 
 def sparql_query(s, p, o, p_filter):
     sparql_endpoint()
     if(p == '') and (o == ''):
-        result = query_subject(s,p_filter)
+        result = query_subject(s, p_filter)
     elif p == '':
-       result = query_intersect(s,o)
-    else:        
-        result = query_property(s,p,o)
+        result = query_intersect(s, o)
+    else:
+        result = query_property(s, p, o)
     return result
+
+
+def query_instance_property_object(s, p):
+    sparql_endpoint()
+    query = query_prefix + """
+        SELECT *
+        WHERE{            
+            <""" + s + """> <""" + p + """> ?o.
+            OPTIONAL{ ?o rdfs:label ?o_label .
+            FILTER (langMatches(lang(?o_label),"en"))
+            }
+            OPTIONAL{ ?o  foaf:name ?o_name .}
+        }
+        
+    """
+    print(query)
+    result = execute_query(query)
+    return result
+
 
 def query_instance_property(i):
     sparql_endpoint()
     query = query_prefix + """
         SELECT *
         WHERE{            
-            OPTIONAL{ <"""+ i +""">  rdfs:label ?s_label .
+            OPTIONAL{ <""" + i + """>  rdfs:label ?s_label .
             FILTER (langMatches(lang(?s_label),"en"))
             }
-            OPTIONAL{ <"""+ i +""">  foaf:name ?s_name .}
+            OPTIONAL{ <""" + i + """>  foaf:name ?s_name .}
         }
     """
     result = execute_query(query)
@@ -396,13 +419,13 @@ def query_instance_property(i):
     except:
         try:
             node_name = result[0]["s_label"]["value"]
-        except :
+        except:
             node_name = i
 
-    query ="""
+    query = """
         SELECT DISTINCT ?p  (COUNT(?p) as ?count)
         WHERE {
-            <"""+ i +"""> ?p ?o.
+            <""" + i + """> ?p ?o.
             }
         GROUP BY ?p
         ORDER BY DESC(?count)  
@@ -410,13 +433,13 @@ def query_instance_property(i):
     """
     print(query)
     results = execute_query(query)
-    
+
     nodes = []
     nodes.append({
         "id": 0,
         "name": node_name,
         "node": i,
-        "subject":i
+        "subject": i
     })
     links = []
     index = 1
@@ -425,24 +448,24 @@ def query_instance_property(i):
         print(p)
         count = result["count"]["value"]
         nodes.append({
-            "id":index,
+            "id": index,
             "node": p,
-            "name":count,
-            "subject":i
+            "name": count,
+            "subject": i
         })
         links.append(
             {
-            "linkid": "property_" + str(index) , 
-            "source": 0,  
-            "target": index,
-            "name":p
+                "linkid": "property_" + str(index),
+                "source": 0,
+                "target": index,
+                "name": p
             }
         )
-        index +=1
-    
+        index += 1
+
     json_data = {"nodes": nodes, "links": links}
-    print(json_data)        
-    return json_data 
+    print(json_data)
+    return json_data
 
 
 class ClassList(Resource):
@@ -483,10 +506,12 @@ class SPARQLQuery(Resource):
         args = parser.parse_args()
         return {"data": sparql_query(args['s'], args['p'], args['t'], json.loads(args['p_filter'].strip()))}
 
+
 class PropertyList(Resource):
     def post(self):
         args = parser.parse_args()
         return query_property_list(args['s'].strip())
+
 
 class InstancePropertyList(Resource):
     def post(self):
@@ -494,6 +519,10 @@ class InstancePropertyList(Resource):
         return query_instance_property(args['i'])
 
 
+class InstancePropertyObject(Resource):
+    def post(self):
+        args = parser.parse_args()
+        return query_instance_property_object(args['s'], args['p'])
 
 
 api.add_resource(ClassList, '/classlist')
@@ -503,6 +532,7 @@ api.add_resource(Property, '/property')
 api.add_resource(SPARQLQuery, '/query')
 api.add_resource(PropertyList, '/query/propertylist')
 api.add_resource(InstancePropertyList, '/query/instance/propertylist')
+api.add_resource(InstancePropertyObject, '/query/instance/property/object')
 
 # api.add_resource(EquivalentClass,'/equivalentclass')
 
