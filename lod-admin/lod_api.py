@@ -35,6 +35,23 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 """
 
+ignore_properties = ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type", 
+"http://www.w3.org/1999/02/22-rdf-syntax-ns#first", 
+"http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", 
+"http://www.w3.org/1999/02/22-rdf-syntax-ns#value", 
+"http://www.w3.org/1999/02/22-rdf-syntax-ns#subject", 
+"http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate", 
+"http://www.w3.org/1999/02/22-rdf-syntax-ns#object", 
+"http://www.w3.org/2000/01/rdf-schema#subClassOf", 
+"http://www.w3.org/2000/01/rdf-schema#subPropertyOf", 
+"http://www.w3.org/2000/01/rdf-schema#domain", 
+"http://www.w3.org/2000/01/rdf-schema#range", 
+"http://www.w3.org/2000/01/rdf-schema#label", 
+"http://www.w3.org/2000/01/rdf-schema#comment", 
+"http://www.w3.org/2000/01/rdf-schema#member", 
+"http://www.w3.org/2000/01/rdf-schema#seeAlso", 
+"http://www.w3.org/2000/01/rdf-schema#isDefinedBy"]
+
 # def list(data):
 #     # result = []
 #     # for document in data:
@@ -404,6 +421,10 @@ def query_instance_property_object(s, p):
 
 def query_instance_property(i):
     sparql_endpoint()
+    p = ''
+    for row in ignore_properties:
+            p += """ ?p !=<""" + row + """> &&"""
+    p = p[:-2]
     query = query_prefix + """
         SELECT *
         WHERE{            
@@ -412,6 +433,7 @@ def query_instance_property(i):
             }
             OPTIONAL{ <""" + i + """>  foaf:name ?s_name .}
         }
+        
     """
     result = execute_query(query)
     try:
@@ -429,7 +451,8 @@ def query_instance_property(i):
             }
         GROUP BY ?p
         ORDER BY DESC(?count)  
-        LIMIT 10
+        FILTER("""+p+""")
+        
     """
     print(query)
     results = execute_query(query)
