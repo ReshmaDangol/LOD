@@ -413,8 +413,10 @@ def query_instance_property(i):
     
     nodes = []
     nodes.append({
+        "id": 0,
         "name": node_name,
-        "class": i
+        "node": i,
+        "subject":i
     })
     links = []
     index = 1
@@ -424,8 +426,9 @@ def query_instance_property(i):
         count = result["count"]["value"]
         nodes.append({
             "id":index,
-            "class": p,
-            "name":count
+            "node": p,
+            "name":count,
+            "subject":i
         })
         links.append(
             {
