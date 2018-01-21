@@ -470,24 +470,27 @@ def query_instance_property(i):
     links = []
     index = 1
     for result in results:
-        p = result["p"]["value"]
-        print(p)
-        count = result["count"]["value"]
-        nodes.append({
-            "id": index,
-            "node": p,
-            "name": count,
-            "subject": i
-        })
-        links.append(
-            {
-                "linkid": "property_" + str(index),
-                "source": 0,
-                "target": index,
-                "name": p
-            }
-        )
-        index += 1
+        try:                   
+            p = result["p"]["value"]
+            print(p)
+            count = result["count"]["value"]
+            nodes.append({
+                "id": index,
+                "node": p,
+                "name": count,
+                "subject": i
+            })
+            links.append(
+                {
+                    "linkid": "property_" + str(index),
+                    "source": 0,
+                    "target": index,
+                    "name": p
+                }
+            )
+            index += 1
+        except :
+            pass
 
     json_data = {"nodes": nodes, "links": links}
     print(json_data)
