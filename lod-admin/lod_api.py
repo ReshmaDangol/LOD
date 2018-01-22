@@ -307,8 +307,8 @@ def query_subject(s, p_filter):
     # rows = conn("property").filter({"c1": s})["p"].distinct().run()
     p = ""
     for row in p_filter:
-        p += """ ?p =<""" + row + """> ||"""
-    p = p[:-2]
+        p += """ || ?p =<""" + row + """>"""
+
     query = query_prefix + """
         SELECT * 
         WHERE {
