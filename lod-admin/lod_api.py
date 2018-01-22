@@ -305,10 +305,10 @@ def _get_property(s, t, b, l):
 def query_subject(s, p_filter):
     # query subjects based of the popular properties
     # rows = conn("property").filter({"c1": s})["p"].distinct().run()
-    p = "1"
+    p = ""
     for row in p_filter:
-        p += """ || ?p =<""" + row + """>"""
-
+        p += """ ?p =<""" + row + """> ||"""
+    p = p[:-2]
     query = query_prefix + """
         SELECT * 
         WHERE {
