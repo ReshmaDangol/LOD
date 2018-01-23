@@ -17,6 +17,7 @@ db_url = os.environ['DB_URL']
 print(db_url)
 def set_db(db):
     database_name = db
+    print(database_name)
 
 set_db("archiveshub")
 
