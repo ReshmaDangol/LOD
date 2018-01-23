@@ -20,30 +20,30 @@ app = Flask(__name__)
 endpoint = ""
 
 
-# def sparql_endpoint():
-#     global endpoint
-#     # url1 = "http://vocabulary.semantic-web.at/PoolParty/sparql/AustrianSkiTeam"
-#     # url2 = "http://datos.bcn.cl/sparql"
-#     # url3 = "http://services.data.gov.uk/statistics/sparql"
-#     # url4 = "http://ring.ciard.net/sparql1"
-#     # url5 = "http://www.linkedmdb.org/sparql"
-#     # url6 = "http://data.archiveshub.ac.uk/sparql"
-#     # url7 = "http://cultura.linkeddata.es/sparql"
-#     # url8 = "http://linkedgeodata.org/sparql/"
-#     # url9 = "http://canlink.library.ualberta.ca"
-#     # url = "http://localhost:3030/tdb1/"
-#     # url10 = "http://sparql.kupkb.org/sparql"
+def sparql_endpoint():
+    global endpoint
+    # url1 = "http://vocabulary.semantic-web.at/PoolParty/sparql/AustrianSkiTeam"
+    # url2 = "http://datos.bcn.cl/sparql"
+    # url3 = "http://services.data.gov.uk/statistics/sparql"
+    # url4 = "http://ring.ciard.net/sparql1"
+    # url5 = "http://www.linkedmdb.org/sparql"
+    # url6 = "http://data.archiveshub.ac.uk/sparql"
+    # url7 = "http://cultura.linkeddata.es/sparql"
+    # url8 = "http://linkedgeodata.org/sparql/"
+    # url9 = "http://canlink.library.ualberta.ca"
+    # url = "http://localhost:3030/tdb1/"
+    # url10 = "http://sparql.kupkb.org/sparql"
 
-#     # local Stardog triplestores
-#     # https://old.datahub.io/dataset/getty-aat
-#     url11 = "http://localhost:5820/aat/query"
-#     url12 = "http://localhost:5820/archiveshub/query"  # archives hub
-#     url13 = "http://localhost:5820/jamendo/query"
-#     url14 = "http://localhost:5820/linkedmdb/query"    
+    # local Stardog triplestores
+    # https://old.datahub.io/dataset/getty-aat
+    url11 = "http://localhost:5820/aat/query"
+    url12 = "http://localhost:5820/archiveshub/query"  # archives hub
+    url13 = "http://localhost:5820/jamendo/query"
+    url14 = "http://localhost:5820/linkedmdb/query"    
 
-#     url = "http://localhost:5820/" + database_name + "/query"
+    url = "http://localhost:5820/" + database_name + "/query"
 
-#     endpoint = SPARQLWrapper(url)  # this should be user's input
+    endpoint = SPARQLWrapper(url)  # this should be user's input
 
 
 sparql_endpoint()
