@@ -8,9 +8,9 @@ database_name = "jamendo"
 database_name = "linkedmdb"
 database_name = "jamendo"
 
-
-database_name = "archiveshub"
 database_name = "aat"
+database_name = "archiveshub"
+
 db_url = os.environ['DB_URL']
 
 print(db_url)
