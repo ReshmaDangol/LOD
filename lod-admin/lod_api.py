@@ -26,6 +26,7 @@ parser.add_argument('link_intersection')
 parser.add_argument('link_property')
 parser.add_argument('p_filter')  # selected property
 parser.add_argument('i')  # an instance of a class
+parser.add_argument('database_name')
 
 query_prefix = """
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
