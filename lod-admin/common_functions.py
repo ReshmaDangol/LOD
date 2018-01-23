@@ -1,8 +1,10 @@
 import rethinkdb as r
 import os
 from SPARQLWrapper import SPARQLWrapper, JSON
+from http import cookies
 endpoint = ""
 database_name =""
+C = cookies.SimpleCookie()
 # database_name = "cultura"
 # database_name = "kupkb"
 # database_name = "jamendo"
@@ -17,13 +19,18 @@ db_url = os.environ['DB_URL']
 
 print(db_url)
 def set_db(db):
+    
+    C["database_name"] = db
     global database_name
     database_name = db
     print(database_name)
 
 # set_db("archiveshub")
+def get_db():
+    database_name = C["database_name"].value
 
 def sparql_endpoint():
+    get_db()
     global endpoint
     # url1 = "http://vocabulary.semantic-web.at/PoolParty/sparql/AustrianSkiTeam"
     # url2 = "http://datos.bcn.cl/sparql"
@@ -50,6 +57,7 @@ def sparql_endpoint():
 
 
 def execute_query(query):
+    get_db()
     endpoint.setQuery(query)
     endpoint.setReturnFormat(JSON)
     results = endpoint.query().convert()
@@ -58,11 +66,13 @@ def execute_query(query):
     return results["results"]["bindings"]
 
 def conn_db():
+    get_db()
     r.connect(db_url, 28015).repl()
     return r.db(database_name)
 
 
 def conn(table):
+    get_db()
     r.connect(db_url, 28015).repl()
     return r.db(database_name).table(table)
 
