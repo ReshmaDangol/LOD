@@ -498,7 +498,9 @@ def query_instance_property(i):
 
 
 class ClassList(Resource):
-    def get(self):
+    def post(self):
+        args = parser.parse_args()
+        set_db(args['database_name'])
         return get_class()
 
 
