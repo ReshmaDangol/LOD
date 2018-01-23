@@ -2,6 +2,7 @@ import rethinkdb as r
 import os
 from SPARQLWrapper import SPARQLWrapper, JSON
 endpoint = ""
+database_name =""
 # database_name = "cultura"
 # database_name = "kupkb"
 # database_name = "jamendo"
@@ -16,10 +17,11 @@ db_url = os.environ['DB_URL']
 
 print(db_url)
 def set_db(db):
+    global database_name
     database_name = db
     print(database_name)
 
-set_db("archiveshub")
+# set_db("archiveshub")
 
 def sparql_endpoint():
     global endpoint
