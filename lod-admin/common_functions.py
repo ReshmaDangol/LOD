@@ -2,18 +2,23 @@ import rethinkdb as r
 import os
 from SPARQLWrapper import SPARQLWrapper, JSON
 endpoint = ""
-database_name = "cultura"
-database_name = "kupkb"
-database_name = "jamendo"
-database_name = "linkedmdb"
-database_name = "jamendo"
+# database_name = "cultura"
+# database_name = "kupkb"
+# database_name = "jamendo"
+# database_name = "linkedmdb"
+# database_name = "jamendo"
 
-database_name = "aat"
-database_name = "archiveshub"
+# database_name = "aat"
+# database_name = "archiveshub"
+
 
 db_url = os.environ['DB_URL']
 
 print(db_url)
+def set_db(db):
+    database_name = db
+
+set_db("archiveshub")
 
 def sparql_endpoint():
     global endpoint
