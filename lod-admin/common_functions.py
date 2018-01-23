@@ -18,12 +18,11 @@ C = cookies.SimpleCookie()
 db_url = os.environ['DB_URL']
 
 print(db_url)
-def set_db(db):
-    
+def set_db(db):    
     C["database_name"] = db
-    global database_name
-    database_name = db
-    print(database_name)
+    # global database_name
+    # database_name = db
+    # print(database_name)
 
 # set_db("archiveshub")
 def get_db():
