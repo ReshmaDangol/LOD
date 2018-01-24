@@ -32,7 +32,7 @@ def modify_equiv_class():
         })
 
     # print(result)
-    conn("equivalentclass_group").insert(result).run()
+    conn("equivalentclass_group").insert(list(set(result))).run()
 
 
 modify_equiv_class()
