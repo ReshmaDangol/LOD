@@ -261,7 +261,7 @@ def popular_class():
 
     for result in results:
         class_uri = result["class"]["value"]
-        if("http://" not in result["class"]["value"]) or ("https://" not in result["class"]["value"]) :
+        if("http://" not in result["class"]["value"]) and ("https://" not in result["class"]["value"]) :
             class_uri = "_:" + result["class"]["value"] #if blank node
         classes.append({
             "class": class_uri,
