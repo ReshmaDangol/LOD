@@ -260,8 +260,11 @@ def popular_class():
     print(results)
 
     for result in results:
+        class_uri = result["class"]["value"]
+        if("http://" not in result["class"]["value"]) or ("https://" not in result["class"]["value"]) :
+            class_uri = "_:" + result["class"]["value"] #if blank node
         classes.append({
-            "class": result["class"]["value"],
+            "class": class_uri,
             "count": int(result["instance_count"]["value"]),
             "name": get_class_name(result["class"]["value"])
         })
