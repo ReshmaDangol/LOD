@@ -104,13 +104,13 @@ def aboutpage():
     return render_template("index.html", variable=variable)
 
 
-# def execute_query(query):
-#     endpoint.setQuery(query)
-#     endpoint.setReturnFormat(JSON)
-#     results = endpoint.query().convert()
-#     # print results
-#     # print len(results["results"]["bindings"])
-#     return results["results"]["bindings"]
+def execute_query(query):
+    endpoint.setQuery(query)
+    endpoint.setReturnFormat(JSON)
+    results = endpoint.query().convert()
+    # print results
+    # print len(results["results"]["bindings"])
+    return results["results"]["bindings"]
 
 # Fetch classes with max instances
 
