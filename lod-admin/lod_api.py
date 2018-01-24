@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_restful import reqparse, abort, Api, Resource
 from flask_cors import CORS, cross_origin
 
+
 from common_functions import *
 import numpy as np
 
@@ -114,9 +115,12 @@ def get_class_group(args):
                 class_["c2"].default('foo').eq(c)
             )
         ).run()
-
+        document['equivalent'] = 0
         for r in is_equivalent:
-            document['equivalent'] = 1 if(
+            if(document['equivalent'] == 1):
+                pass
+            else:
+                document['equivalent'] = 1 if(
                 r["c1"] in userInputArr and r["c2"] in userInputArr) else 0
         intersection_arr = userInputArr
 
@@ -149,7 +153,6 @@ def get_class_group(args):
         except:
             document['group'] = "nogroup_" + str(i)
             i += 1
-        # print(document['group'])
         result.append(document)
     timeElapsed = datetime.now() - startTime
     print('Nodes Time elpased (hh:mm:ss.ms) {}'.format(timeElapsed))
