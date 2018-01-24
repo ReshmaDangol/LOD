@@ -104,13 +104,13 @@ def aboutpage():
     return render_template("index.html", variable=variable)
 
 
-def execute_query(query):
-    endpoint.setQuery(query)
-    endpoint.setReturnFormat(JSON)
-    results = endpoint.query().convert()
-    # print results
-    # print len(results["results"]["bindings"])
-    return results["results"]["bindings"]
+# def execute_query(query):
+#     endpoint.setQuery(query)
+#     endpoint.setReturnFormat(JSON)
+#     results = endpoint.query().convert()
+#     # print results
+#     # print len(results["results"]["bindings"])
+#     return results["results"]["bindings"]
 
 # Fetch classes with max instances
 
@@ -301,7 +301,10 @@ def fetch_sub_equivalent_class():
             check_sub_equivalent_class(class_arr[i], class_arr[j])
 
     # check_sub_equivalent_class("http://linkedgeodata.org/ontology/PowerTower", "http://linkedgeodata.org/ontology/PowerThing")
+    print("subclass->")
     print(global_proper_subset)
+    print("equivalent->")
+    print(global_equivalent_class)
     conn(tableprefix + "subclass").insert(global_proper_subset).run()
     conn(tableprefix + "equivalentclass").insert(global_equivalent_class).run()
     return render_template("sparql.html")
@@ -481,10 +484,9 @@ def instance_count(c1):
             ?instance a <""" + c1 + """>
         }
     """
-    print(query)
     results = execute_query(query)
-    print(c1)
-    print(results[0]["instance_count"]["value"])
+    # print(c1)
+    # print(results[0]["instance_count"]["value"])
     return int(results[0]["instance_count"]["value"])
 
 
@@ -498,14 +500,13 @@ def common_instance_count(*args):
         ?instance a <""" + c2 + """> . 
       }
     """
-
-    print(query)
+    # print(query)
     results = execute_query(query)
     try:
         count = int(results[0]["instance_count"]["value"])
     except:
         count = 0
-    print(query)
+    # print(query)
     return count
 
 
@@ -517,12 +518,12 @@ def check_sub_equivalent_class(*args):
     c2Count = instance_count(c2)
     c1c2Count = common_instance_count(c1, c2)
     if (c1Count < c2Count):
-        if(c1c2Count == c1Count):
+        if(c1c2Count == c1Count) and c1Count!=0:            
             global_proper_subset.append({"subclass": c1, "class": c2})
     elif c2Count < c1Count:
-        if(c1c2Count == c2Count):
+        if(c1c2Count == c2Count) and c2Count!=0:
             global_proper_subset.append({"subclass": c2, "class": c1})
-    elif c1c2Count == c1Count and c1c2Count == c2Count:
+    elif c1c2Count == c1Count and c1c2Count == c2Count and c1Count!=0:
         global_equivalent_class.append({"c1": c1, "c2": c2})
 
 
