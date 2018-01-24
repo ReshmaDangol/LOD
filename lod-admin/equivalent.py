@@ -19,7 +19,7 @@ def modify_equiv_class():
             group_classlist.append(s["c1"])
             group_classlist.append(s["c2"])                    
         
-        group_classlist = sorted(list(set(group_classlistt)), key=str.lower)
+        group_classlist = sorted(list(set(group_classlist)), key=str.lower)
         groupname = "_".join(get_class_name(str(x)) for x in group_classlist)
 
         # groupname = get_class_name(row["c1"]) + "-" + get_class_name(row["c2"])
