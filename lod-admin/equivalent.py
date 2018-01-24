@@ -31,8 +31,8 @@ def modify_equiv_class():
             "group": groupname
         })
 
-    print(result)
-    # conn("equivalentclass_group").insert(result).run()
+    # print(result)
+    conn("equivalentclass_group").insert(result).run()
 
 
 modify_equiv_class()
