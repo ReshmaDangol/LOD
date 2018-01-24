@@ -21,7 +21,7 @@ def modify_equiv_class():
         classlist = sorted(list(set(classlist)), key=str.lower)
         groupname = "_".join(get_class_name(str(x)) for x in classlist)
 
-        groupname = get_class_name(row["c1"]) + "-" + get_class_name(row["c2"])
+        # groupname = get_class_name(row["c1"]) + "-" + get_class_name(row["c2"])
         result.append({
             "class": row["c1"],
             "group": groupname
