@@ -8,6 +8,7 @@ def modify_equiv_class():
         c1 = row["c1"]
         c2 = row["c2"]
         id = row["id"]
+        group_classlist = []
         classlist = []
 
         search = conn("equivalentclass").filter(
@@ -15,24 +16,30 @@ def modify_equiv_class():
         ).filter(r.row["id"] != id).run()
 
         for s in search:
-            classlist.append(s["c1"])
-            classlist.append(s["c2"])                    
+            group_classlist.append(s["c1"])
+            group_classlist.append(s["c2"])                    
         
-        classlist = sorted(list(set(classlist)), key=str.lower)
-        groupname = "_".join(get_class_name(str(x)) for x in classlist)
+        group_classlist = sorted(list(set(group_classlistt)), key=str.lower)
+        groupname = "_".join(get_class_name(str(x)) for x in group_classlist)
 
         # groupname = get_class_name(row["c1"]) + "-" + get_class_name(row["c2"])
-        result.append({
+
+        if(c1 not in classlist):
+            classlist.append(c1)       
+            result.append({
             "class": row["c1"],
             "group": groupname
         })
-        result.append({
+
+        if(c2 not in classlist):
+            classlist.append(c2)
+            result.append({
             "class": row["c2"],
             "group": groupname
         })
 
     # print(result)
-    conn("equivalentclass_group").insert(list(set(result))).run()
+    conn("equivalentclass_group").insert(result).run()
 
 
 modify_equiv_class()
