@@ -430,12 +430,12 @@ def query_class_detail(s):
         if(p == p_prev or p_prev == ''):
             p_prev = result["p"]["value"]
             json_datatype.append(result["datatype"]["value"])
-        else:
-            p_prev = result["p"]["value"]
+        else:            
             json.append({
                 "p" : p_prev,
-                "datatype" : json_dtatype
+                "datatype" : json_datatype
             })
+            p_prev = result["p"]["value"]
             json_datatype = []
 
     
