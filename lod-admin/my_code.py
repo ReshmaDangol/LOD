@@ -600,5 +600,56 @@ def sparqlTest():
     return render_template("sparql.html", results=results)
 
 
+
+
+
+@app.route('/datatype')
+def get_datatye():
+    classes = conn(tableprefix + "class")["class"].distinct().run()
+    class_arr = list(classes)
+    len_ = len(class_arr)
+    json_result = []
+    for i in range(0, len_ - 1):
+        query = query_prefix + """
+            SELECT DISTINCT ?p ?datatype
+            WHERE {
+                ?s a <""" + class_arr[i] + """>.
+                ?s ?p ?o.
+            BIND (datatype(?o) AS ?datatype) . 
+                Filter (?datatype !='') . 
+            }
+            ORDER BY ?p
+        """
+        results = execute_query(query)
+        json = []
+        p_prev = ''
+        json_datatype = []
+        for index,result in enumerate(results):        
+            p = result["p"]["value"]
+            type_value = get_class_name(result["datatype"]["value"])
+            if(p == p_prev or p_prev == ''):
+                p_prev = result["p"]["value"]
+                json_datatype.append(type_value)
+            else:            
+                json.append({
+                    "p" : p_prev,
+                    "datatype" : json_datatype
+                })
+                p_prev = result["p"]["value"]
+                json_datatype = []
+                json_datatype.append(type_value)
+            
+            if(index == len(results)-1):
+                json.append({
+                    "p" : p_prev,
+                    "datatype" : json_datatype
+                })
+        json_result.append({
+            class_arr[i]:json
+        })
+        
+    conn(tableprefix + "property_datatype").insert(json_result).run()
+
+
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5001)
