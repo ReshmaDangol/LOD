@@ -605,12 +605,12 @@ def sparqlTest():
 
 @app.route('/datatype')
 def get_datatye():
-    classes = conn(tableprefix + "class")["class"].distinct().run()
-    class_arr = list(classes)
-    len_ = len(class_arr)
+    classes = conn(tablepes)
+    len_ = len(class_arr)refix + "class")["class"].distinct().run()
+    class_arr = list(class
     json_result = []
     for i in range(0, len_ - 1):
-        query = query_prefix + """
+        query = """
             SELECT DISTINCT ?p ?datatype
             WHERE {
                 ?s a <""" + class_arr[i] + """>.
