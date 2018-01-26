@@ -605,9 +605,9 @@ def sparqlTest():
 
 @app.route('/datatype')
 def get_datatye():
-    classes = conn(tablepes)
-    len_ = len(class_arr)refix + "class")["class"].distinct().run()
-    class_arr = list(class
+    classes = conn(tableprefix + "class")["class"].distinct().run()
+    class_arr = list(classes)
+    len_ = len(class_arr)
     json_result = []
     for i in range(0, len_ - 1):
         query = """
