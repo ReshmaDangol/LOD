@@ -437,6 +437,7 @@ def query_class_detail(s):
             })
             p_prev = result["p"]["value"]
             json_datatype = []
+            json_datatype.append(result["datatype"]["value"])
 
     
     return json
