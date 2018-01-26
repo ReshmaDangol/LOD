@@ -17,11 +17,11 @@ api = Api(app)
 userInputArr = []
 parser = reqparse.RequestParser()
 parser.add_argument('class')
-parser.add_argument('s') #subject
-parser.add_argument('t') #target, object
+parser.add_argument('s')  # subject
+parser.add_argument('t')  # target, object
 parser.add_argument('b')  # bidirection
-parser.add_argument('p') # property
-parser.add_argument('limit') #result limit
+parser.add_argument('p')  # property
+parser.add_argument('limit')  # result limit
 parser.add_argument('link_subclass')
 parser.add_argument('link_intersection')
 parser.add_argument('link_property')
@@ -37,25 +37,25 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 """
 
-ignore_properties = ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type", 
-"http://www.w3.org/1999/02/22-rdf-syntax-ns#first", 
-"http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", 
-"http://www.w3.org/1999/02/22-rdf-syntax-ns#value", 
-"http://www.w3.org/1999/02/22-rdf-syntax-ns#subject", 
-"http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate", 
-"http://www.w3.org/1999/02/22-rdf-syntax-ns#object", 
+ignore_properties = ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+                     "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+                     "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+                     "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+                     "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject",
+                     "http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate",
+                     "http://www.w3.org/1999/02/22-rdf-syntax-ns#object",
 
-"http://www.w3.org/2000/01/rdf-schema#domain", 
-"http://www.w3.org/2000/01/rdf-schema#range", 
-"http://www.w3.org/2000/01/rdf-schema#label", 
-"http://www.w3.org/2000/01/rdf-schema#member", 
-]
+                     "http://www.w3.org/2000/01/rdf-schema#domain",
+                     "http://www.w3.org/2000/01/rdf-schema#range",
+                     "http://www.w3.org/2000/01/rdf-schema#label",
+                     "http://www.w3.org/2000/01/rdf-schema#member",
+                     ]
 
-#"http://www.w3.org/2000/01/rdf-schema#seeAlso", 
-#"http://www.w3.org/2000/01/rdf-schema#comment", 
+#"http://www.w3.org/2000/01/rdf-schema#seeAlso",
+#"http://www.w3.org/2000/01/rdf-schema#comment",
 #"http://www.w3.org/2000/01/rdf-schema#isDefinedBy"
-#"http://www.w3.org/2000/01/rdf-schema#subClassOf", 
-#"http://www.w3.org/2000/01/rdf-schema#subPropertyOf", 
+#"http://www.w3.org/2000/01/rdf-schema#subClassOf",
+#"http://www.w3.org/2000/01/rdf-schema#subPropertyOf",
 
 # def list(data):
 #     # result = []
@@ -100,6 +100,7 @@ def get_class_group(args):
     index = 0
 
     startTime = datetime.now()
+    intersection_arr = ''
     for document in cursor:
         c = document["class"]
         document["id"] = index
@@ -121,7 +122,7 @@ def get_class_group(args):
                 pass
             else:
                 document['equivalent'] = 1 if(
-                r["c1"] in userInputArr and r["c2"] in userInputArr) else 0
+                    r["c1"] in userInputArr and r["c2"] in userInputArr) else 0
         intersection_arr = userInputArr
 
         if(link_intersection == 'true'):
@@ -408,6 +409,37 @@ def sparql_query(s, p, o, p_filter):
     return result
 
 
+def query_class_detail(s):
+    sparql_endpoint()
+    query = query_prefix + """
+        SELECT DISTINCT ?p ?datatype
+        WHERE {
+            ?s a <""" + s + """>.
+            ?s ?p ?o.
+        BIND (datatype(?o) AS ?datatype) . 
+            Filter (?datatype !='') . 
+        }
+        ORDER BY ?p
+    """
+    results = execute_query(query)
+    # json = []
+    # for result in results:
+    #     key = result["p"]["value"]
+    #     json[key] +="~~" + result["datatype"]["value"]
+
+    
+    return 1#result
+
+    # SELECT distinct ?datatype
+    #     WHERE {
+    #         ?s a <"""+ s +""">.
+    #         ?s ?p ?o.
+    #         BIND (datatype(?o) AS ?datatype) .
+    #     }
+
+    # """
+
+
 def query_instance_property_object(s, p):
     sparql_endpoint()
     query = query_prefix + """
@@ -430,7 +462,7 @@ def query_instance_property(i):
     sparql_endpoint()
     p = ''
     for row in ignore_properties:
-            p += """ ?p !=<""" + row + """> &&"""
+        p += """ ?p !=<""" + row + """> &&"""
     p = p[:-2]
     query = query_prefix + """
         SELECT *
@@ -455,7 +487,7 @@ def query_instance_property(i):
         SELECT DISTINCT ?p  (COUNT(?p) as ?count)
         WHERE {
             <""" + i + """> ?p ?o.
-            FILTER("""+p+""")      
+            FILTER(""" + p + """)      
             }
         GROUP BY ?p
         ORDER BY DESC(?count)  
@@ -474,7 +506,7 @@ def query_instance_property(i):
     links = []
     index = 1
     for result in results:
-        try:                   
+        try:
             p = result["p"]["value"]
             print(p)
             count = result["count"]["value"]
@@ -493,7 +525,7 @@ def query_instance_property(i):
                 }
             )
             index += 1
-        except :
+        except:
             pass
 
     json_data = {"nodes": nodes, "links": links}
@@ -560,6 +592,12 @@ class InstancePropertyObject(Resource):
         return query_instance_property_object(args['s'], args['p'])
 
 
+class ClassAllDetail(Resource):
+    def post(self):
+        args = parser.parse_args()
+        return query_class_detail(args['s'])
+
+
 api.add_resource(ClassList, '/classlist')
 api.add_resource(ClassWithDetail, '/class')
 api.add_resource(AddNode, '/addnode')
@@ -568,6 +606,8 @@ api.add_resource(SPARQLQuery, '/query')
 api.add_resource(PropertyList, '/query/propertylist')
 api.add_resource(InstancePropertyList, '/query/instance/propertylist')
 api.add_resource(InstancePropertyObject, '/query/instance/property/object')
+api.add_resource(ClassAllDetail, '/query/class/detail')
+
 
 # api.add_resource(EquivalentClass,'/equivalentclass')
 
