@@ -439,7 +439,7 @@ def query_class_detail(s):
             json_datatype = []
             json_datatype.append(result["datatype"]["value"])
         
-        if(index == len(results-1)):
+        if(index == len(results)-1):
             json.append({
                 "p" : p_prev,
                 "datatype" : json_datatype
