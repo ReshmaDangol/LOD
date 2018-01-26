@@ -62,6 +62,7 @@ def create_tables():
     r.db(database_name).table_create(tableprefix + "intersection").run()
     r.db(database_name).table_create(tableprefix + "graph_data").run()
     r.db(database_name).table_create(tableprefix + "graph_data_property").run()
+    r.db(database_name).table_create(tableprefix + "property_datatype").run()    
     conn(tableprefix + "property").index_create('count').run()
     
 
@@ -649,6 +650,8 @@ def get_datatye():
         })
         
     conn(tableprefix + "property_datatype").insert(json_result).run()
+    return render_template("sparql.html")
+
 
 
 if __name__ == "__main__":
