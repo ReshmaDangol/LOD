@@ -559,6 +559,7 @@ class ClassWithDetail(Resource):
 
     def post(self):
         args = parser.parse_args()
+        set_db(args['database_name'])
         # args = json.loads(args['class'])
         # return {'nodes': get_class_group(args), 'links': get_class_links(args)}
         return get_class_group(args)
@@ -570,6 +571,7 @@ class AddNode(Resource):
 
     def post(self):
         args = parser.parse_args()
+        set_db(args['database_name'])
         args = json.loads(args['class'])
         return args, 201
 
@@ -577,36 +579,42 @@ class AddNode(Resource):
 class Property(Resource):
     def post(self):
         args = parser.parse_args()
+        set_db(args['database_name'])
         return get_property(args['s'].strip(), args['t'].strip(), args['b'].strip(), args['limit'].strip())
 
 
 class SPARQLQuery(Resource):
     def post(self):
         args = parser.parse_args()
+        set_db(args['database_name'])
         return {"data": sparql_query(args['s'], args['p'], args['t'], json.loads(args['p_filter'].strip()))}
 
 
 class PropertyList(Resource):
     def post(self):
         args = parser.parse_args()
+        set_db(args['database_name'])
         return query_property_list(args['s'].strip())
 
 
 class InstancePropertyList(Resource):
     def post(self):
         args = parser.parse_args()
+        set_db(args['database_name'])
         return query_instance_property(args['i'])
 
 
 class InstancePropertyObject(Resource):
     def post(self):
         args = parser.parse_args()
+        set_db(args['database_name'])
         return query_instance_property_object(args['s'], args['p'])
 
 
 class ClassAllDetail(Resource):
     def post(self):
         args = parser.parse_args()
+        set_db(args['database_name'])
         return query_class_detail(args['s'])
 
 
