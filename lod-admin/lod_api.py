@@ -422,13 +422,23 @@ def query_class_detail(s):
         ORDER BY ?p
     """
     results = execute_query(query)
-    # json = []
-    # for result in results:
-    #     key = result["p"]["value"]
-    #     json[key] +="~~" + result["datatype"]["value"]
+    json = []
+    p_prev = ''
+    json_datatype = []
+    for result in results:        
+        p = result["p"]["value"]
+        if(p == p_prev or p_prev == ''):
+            json_datatype.append(result["datatype"]["value"])
+        else:
+            p_prev = result["p"]["value"]
+            json.append({
+                "p" : p_prev,
+                "datatype" : json_datatype
+            })
+            json_datatype = []
 
     
-    return 1#result
+    return json
 
     # SELECT distinct ?datatype
     #     WHERE {
