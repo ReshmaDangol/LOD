@@ -427,9 +427,10 @@ def query_class_detail(s):
     json_datatype = []
     for index,result in enumerate(results):        
         p = result["p"]["value"]
+        type_value = result["datatype"]["value"]
         if(p == p_prev or p_prev == ''):
             p_prev = result["p"]["value"]
-            json_datatype.append(result["datatype"]["value"])
+            json_datatype.append(get_class_name(type_value))
         else:            
             json.append({
                 "p" : p_prev,
@@ -437,7 +438,7 @@ def query_class_detail(s):
             })
             p_prev = result["p"]["value"]
             json_datatype = []
-            json_datatype.append(result["datatype"]["value"])
+            json_datatype.append(type_value)
         
         if(index == len(results)-1):
             json.append({
