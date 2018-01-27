@@ -320,13 +320,13 @@ def query_subject(s, p_filter):
             ?s a <""" + s + """> .
             ?s ?p ?o .
             OPTIONAL{?s rdfs:label ?s_label .
-            FILTER (langMatches(lang(?s_label),"en"))
+            FILTER (langMatches(lang(?s_label),"en") || (lang(?s_label)=""))
             }
             OPTIONAL{?o rdfs:label ?o_label .
-            FILTER (langMatches(lang(?o_label),"en"))
+            FILTER (langMatches(lang(?o_label),"en") || (lang(?o_label)=""))
             }
             OPTIONAL{?p rdfs:label ?p_label.
-            FILTER (langMatches(lang(?p_label),"en"))
+            FILTER (langMatches(lang(?p_label),"en") || (lang(?p_label)=""))
             }   
             OPTIONAL{?s foaf:name ?s_name .
             }
@@ -352,10 +352,10 @@ def query_property(s, p, o):
             ?o a <""" + o + """> .
             ?s <""" + p + """> ?o .
             OPTIONAL{?s rdfs:label ?s_label.
-            FILTER (langMatches(lang(?s_label),"en"))
+            FILTER (langMatches(lang(?s_label),"en") || (lang(?s_label)=""))
             }
             OPTIONAL{?o rdfs:label ?o_label .
-            FILTER (langMatches(lang(?o_label),"en"))
+            FILTER (langMatches(lang(?o_label),"en") || (lang(?o_label)=""))
             }
             OPTIONAL{?s foaf:name ?s_name.
             }
@@ -386,7 +386,7 @@ def query_intersect(s, o):
             ?s a <""" + s + """> .
             ?s a <""" + o + """> .
             OPTIONAL{?s rdfs:label ?s_label .
-            FILTER (langMatches(lang(?s_label),"en"))
+            FILTER (langMatches(lang(?s_label),"en") || (lang(?s_label)=""))
             }
             OPTIONAL{?s foaf:name ?s_name .
             }
@@ -474,7 +474,7 @@ def query_instance_property_object(s, p):
         WHERE{            
             <""" + s + """> <""" + p + """> ?o.
             OPTIONAL{ ?o rdfs:label ?o_label .
-            FILTER (langMatches(lang(?o_label),"en"))
+            FILTER (langMatches(lang(?o_label),"en") || (lang(?o_label)=""))
             }
             OPTIONAL{ ?o  foaf:name ?o_name .}
         }
@@ -495,7 +495,7 @@ def query_instance_property(i):
         SELECT *
         WHERE{            
             OPTIONAL{ <""" + i + """>  rdfs:label ?s_label .
-            FILTER (langMatches(lang(?s_label),"en"))
+            FILTER (langMatches(lang(?s_label),"en") || (lang(?s_label)=""))
             }
             OPTIONAL{ <""" + i + """>  foaf:name ?s_name .}
         }
