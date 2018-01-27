@@ -412,7 +412,11 @@ def sparql_query(s, p, o, p_filter):
 def query_class_detail(c):
     cursor = conn("property_datatype").filter({"class":c}).run()  # need to create index for count to use this
     nodes = list(cursor)
-    return nodes[0]["property_datatype"]
+    try:
+        return nodes[0]["property_datatype"]
+    except expression as identifier:
+        return ""
+    
 
 # def query_class_detail(s):
 #     sparql_endpoint()
