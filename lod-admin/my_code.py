@@ -646,7 +646,8 @@ def get_datatye():
                     "datatype" : json_datatype
                 })
         json_result.append({
-            class_arr[i]:json
+            "class" : class_arr[i],
+            "property_datatype":json
         })
         
     conn(tableprefix + "property_datatype").insert(json_result).run()
