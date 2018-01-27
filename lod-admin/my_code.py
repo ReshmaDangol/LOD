@@ -628,12 +628,24 @@ def get_datatye():
         for index,result in enumerate(results):        
             p = result["p"]["value"]
             type_value = get_class_name(result["datatype"]["value"])
+            count_query = """
+                SELECT (count(*) as ?count)
+                WHERE
+                {
+                    ?s a <""" + class_arr[i] + """>.
+                    ?s <"""+ p +"""> ?o.
+                }
+            """
+            res = execute_query(count_query)
+            instance_count = res[0]["count"]["value"]
+            
             if(p == p_prev or p_prev == ''):
                 p_prev = result["p"]["value"]
                 json_datatype.append(type_value)
             else:            
                 json.append({
                     "p" : p_prev,
+                    "count" : instance_count,
                     "datatype" : json_datatype
                 })
                 p_prev = result["p"]["value"]
@@ -643,8 +655,10 @@ def get_datatye():
             if(index == len(results)-1):
                 json.append({
                     "p" : p_prev,
+                    "count" : instance_count,
                     "datatype" : json_datatype
                 })
+        
         json_result.append({
             "class" : class_arr[i],
             "property_datatype":json
