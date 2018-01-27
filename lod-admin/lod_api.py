@@ -414,7 +414,7 @@ def query_class_detail(c):
     nodes = list(cursor)
     try:
         return nodes[0]["property_datatype"]
-    except expression as identifier:
+    except:
         return ""
     
 
