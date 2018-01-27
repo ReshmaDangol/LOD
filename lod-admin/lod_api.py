@@ -409,44 +409,49 @@ def sparql_query(s, p, o, p_filter):
     return result
 
 
-def query_class_detail(s):
-    sparql_endpoint()
-    query = query_prefix + """
-        SELECT DISTINCT ?p ?datatype
-        WHERE {
-            ?s a <""" + s + """>.
-            ?s ?p ?o.
-        BIND (datatype(?o) AS ?datatype) . 
-            Filter (?datatype !='') . 
-        }
-        ORDER BY ?p
-    """
-    results = execute_query(query)
-    json = []
-    p_prev = ''
-    json_datatype = []
-    for index,result in enumerate(results):        
-        p = result["p"]["value"]
-        type_value = get_class_name(result["datatype"]["value"])
-        if(p == p_prev or p_prev == ''):
-            p_prev = result["p"]["value"]
-            json_datatype.append(type_value)
-        else:            
-            json.append({
-                "p" : p_prev,
-                "datatype" : json_datatype
-            })
-            p_prev = result["p"]["value"]
-            json_datatype = []
-            json_datatype.append(type_value)
+def query_class_detail(c):
+    cursor = conn("property_datatype").filter({"class":c}).run()  # need to create index for count to use this
+    nodes = list(cursor)
+    return nodes["property_datatype"]
+
+# def query_class_detail(s):
+#     sparql_endpoint()
+#     query = query_prefix + """
+#         SELECT DISTINCT ?p ?datatype
+#         WHERE {
+#             ?s a <""" + s + """>.
+#             ?s ?p ?o.
+#         BIND (datatype(?o) AS ?datatype) . 
+#             Filter (?datatype !='') . 
+#         }
+#         ORDER BY ?p
+#     """
+#     results = execute_query(query)
+#     json = []
+#     p_prev = ''
+#     json_datatype = []
+#     for index,result in enumerate(results):        
+#         p = result["p"]["value"]
+#         type_value = get_class_name(result["datatype"]["value"])
+#         if(p == p_prev or p_prev == ''):
+#             p_prev = result["p"]["value"]
+#             json_datatype.append(type_value)
+#         else:            
+#             json.append({
+#                 "p" : p_prev,
+#                 "datatype" : json_datatype
+#             })
+#             p_prev = result["p"]["value"]
+#             json_datatype = []
+#             json_datatype.append(type_value)
         
-        if(index == len(results)-1):
-            json.append({
-                "p" : p_prev,
-                "datatype" : json_datatype
-            })
+#         if(index == len(results)-1):
+#             json.append({
+#                 "p" : p_prev,
+#                 "datatype" : json_datatype
+#             })
     
-    return json
+#     return json
 
     # SELECT distinct ?datatype
     #     WHERE {
