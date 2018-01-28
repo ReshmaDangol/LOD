@@ -371,7 +371,16 @@ def query_property(s, p, o):
 
 
 def query_property_list(s):
-    return conn("property").filter({"c1": s})["p"].distinct().run()
+    # return conn("property").filter({"c1": s})["p"].distinct().run()
+    query = query_prefix + """
+        SELECT DISTINCT ?p  
+        WHERE {
+            ?s a <""" + s + """> .
+            ?s ?p ?o    
+        }   
+        GROUP BY ?p 
+    """
+    return list(execute_query(query))
 
 
 def query_intersect(s, o):
