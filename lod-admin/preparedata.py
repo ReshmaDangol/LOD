@@ -1,5 +1,6 @@
 from common_functions import *
-
+from flask import Flask, render_template
+app = Flask(__name__)
 
 def assign_graph_id():
     cursor = conn("class").distinct().run()
@@ -10,6 +11,7 @@ def assign_graph_id():
         i += 1
 
 
+@app.route('/part1')
 def prepare():
     # assign_graph_id()
     cursor = conn("class").distinct().run()
@@ -141,8 +143,11 @@ def prepare():
 
         conn("graph_data").filter({'id': id}).update(
             {'intersect': intersect, 'subclass': subclass, 'linkid': i}).run()
+    return render_template("sparql.html")
 
 
+
+@app.route('/part2')
 def prepare_propertydata():
     conn_db().table_create("graph_data_property_temp").run()
     tempdata = list(conn("property").order_by(index=get_r().desc('count')).outer_join(
@@ -180,7 +185,7 @@ def prepare_propertydata():
     conn("graph_data_property").insert(tempdata).run()
     conn("graph_data_property").index_create('count').run()
     conn_db().table_drop("graph_data_property_temp").run()
-
+    return render_template("sparql.html")
 
     # tempdata2 = list(conn("property").order_by(index=get_r().desc('count')).inner_join(
     #     conn("inverse_property"),
@@ -215,48 +220,52 @@ def prepare_propertydata():
     # conn_db().table_drop("temp").run()
 
 
-def prepare_propertydata_part2():
-    tempdata = conn("graph_data_property_temp").inner_join(
-        conn("graph_data_property_temp").has_fields('p2'),
-        lambda left, right:
-        (left["c1"].eq(right["c2"])).and_(left["c2"].eq(
-            right["c1"])).and_((left["p"].eq(right["p1"])).or_(left["p"].eq(right["p2"]))).and_(left["id"].ne(right["id"]))
-    ).pluck({'right': ['c1', 'c2', 'count', 'p', 'p1', 'p2']}, {'left': ['c1', 'c2', 'count', 'p', 'p1', 'p2']}).map(
-        lambda doc:
-        doc.merge({
-            # 'c1':doc['right']['c1'],
-            # 'c2':doc['right']['c2'],
-            # 'count':doc['right']['count'],
-            # 'p':doc['right']['p'],
-            # 'p1':doc['right']['p1'],
-            # 'p2':doc['right']['p2'],
-            # 'count2': doc['left']['count']
-        })
-    ).run()
+# def prepare_propertydata_part2():
+#     tempdata = conn("graph_data_property_temp").inner_join(
+#         conn("graph_data_property_temp").has_fields('p2'),
+#         lambda left, right:
+#         (left["c1"].eq(right["c2"])).and_(left["c2"].eq(
+#             right["c1"])).and_((left["p"].eq(right["p1"])).or_(left["p"].eq(right["p2"]))).and_(left["id"].ne(right["id"]))
+#     ).pluck({'right': ['c1', 'c2', 'count', 'p', 'p1', 'p2']}, {'left': ['c1', 'c2', 'count', 'p', 'p1', 'p2']}).map(
+#         lambda doc:
+#         doc.merge({
+#             # 'c1':doc['right']['c1'],
+#             # 'c2':doc['right']['c2'],
+#             # 'count':doc['right']['count'],
+#             # 'p':doc['right']['p'],
+#             # 'p1':doc['right']['p1'],
+#             # 'p2':doc['right']['p2'],
+#             # 'count2': doc['left']['count']
+#         })
+#     ).run()
 
-    # print list(tempdata)
+#     # print list(tempdata)
 
-    conn("graph_data_property").insert(list(tempdata)).run()
+#     conn("graph_data_property").insert(list(tempdata)).run()
 
-    # conn("graph_data_property_temp").innerJoin(conn("graph_data_property_temp"), function(left, right){
-    #     #  left("parent").eq(right("id"))
-    #    return (left["c1"].eq(right["c1"])).and_(left["c2"].eq(right["c2"])).and_(left["p"].eq(right["p2"]))
-    #     # .or( left("parent").eq("").and(left("id").eq(right("id"))))
-    # }).merge(function(val) {
-    # return {
-    #     "left": {
-    #     "parent": r.branch(
-    #         val("left")("parent").eq(""),
-    #         "",
-    #         val("right")("label")
-    #     )
-    #     }
-    # }
-    # }).without({
-    # "right": true
-    # }).zip().orderBy("id")
+#     # conn("graph_data_property_temp").innerJoin(conn("graph_data_property_temp"), function(left, right){
+#     #     #  left("parent").eq(right("id"))
+#     #    return (left["c1"].eq(right["c1"])).and_(left["c2"].eq(right["c2"])).and_(left["p"].eq(right["p2"]))
+#     #     # .or( left("parent").eq("").and(left("id").eq(right("id"))))
+#     # }).merge(function(val) {
+#     # return {
+#     #     "left": {
+#     #     "parent": r.branch(
+#     #         val("left")("parent").eq(""),
+#     #         "",
+#     #         val("right")("label")
+#     #     )
+#     #     }
+#     # }
+#     # }).without({
+#     # "right": true
+#     # }).zip().orderBy("id")
 
 
-# prepare()
+# # prepare()
 # prepare_propertydata_part2()
-prepare_propertydata()
+# prepare_propertydata()
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0', port=5001)
