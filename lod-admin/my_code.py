@@ -201,7 +201,7 @@ def inverse_functional_property():
             }
         """
         result = execute_query(query)
-        if(result[0]["instanceCount"]["value"]>0):
+        if(int(result[0]["instanceCount"]["value"]>0)):
             property_type.append({
                 "p" : p,
                 "type" : "symmetric"
@@ -218,7 +218,7 @@ def inverse_functional_property():
         """
 
         result = execute_query(query)
-        if(result[0]["instanceCount"]["value"]>0):
+        if(int(result[0]["instanceCount"]["value"]>0)):
             property_type.append({
                 "p" : p,
                 "type" : "transitive"
@@ -234,7 +234,7 @@ def inverse_functional_property():
         """
 
         result = execute_query(query)
-        if(result[0]["instanceCount"]["value"]>0):
+        if(int(result[0]["instanceCount"]["value"]>0)):
             property_type.append({
                 "p" : p,
                 "type" : "inverse_functional"
@@ -250,7 +250,7 @@ def inverse_functional_property():
             }
         """
         result = execute_query(query)
-        if(result[0]["instanceCount"]["value"]>0):
+        if(int(result[0]["instanceCount"]["value"]>0)):
             property_type.append({
                 "p" : p,
                 "type" : "functional"
