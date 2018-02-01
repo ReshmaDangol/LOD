@@ -63,6 +63,9 @@ def create_tables():
     r.db(database_name).table_create(tableprefix + "graph_data").run()
     r.db(database_name).table_create(tableprefix + "graph_data_property").run()
     r.db(database_name).table_create(tableprefix + "property_datatype").run()    
+    r.db(database_name).table_create(tableprefix + "property_type").run()    
+
+    
     conn(tableprefix + "property").index_create('count').run()
     
 
@@ -182,9 +185,11 @@ def set_operation():
     return render_template("sparql.html")
 
 
-@app.route('/x')
+
+@app.route('/property_type')
 def inverse_functional_property():
     rows = conn(tableprefix + "property")["p"].distinct().run()
+    property_type = []
     for row in rows:
         p = row
         # SymmetricProperty
@@ -195,6 +200,13 @@ def inverse_functional_property():
                 ?o <""" + p + """> ?s.
             }
         """
+        result = execute_query(query)
+        if(result[0]["instanceCount"]["value"]>0):
+            property_type.append({
+                "p" : p,
+                "type" : "symmetric"
+            })
+
         # Transitive Property exists in aat daraset
         query = """
             SELECT (COUNT(*) as ?instanceCount)
@@ -204,14 +216,14 @@ def inverse_functional_property():
                 ?a <""" + p + """> ?c.
             }
         """
-        # SymmetricProperty
-        query = """
-            SELECT (COUNT(*) as ?instanceCount)
-            WHERE {              
-                ?s <""" + p + """> ?o.
-                ?o <""" + p + """> ?s.
-            }
-        """
+
+        result = execute_query(query)
+        if(result[0]["instanceCount"]["value"]>0):
+            property_type.append({
+                "p" : p,
+                "type" : "transitive"
+            })
+      
         # inverse functional
         query = """
             SELECT (COUNT(*) as ?instanceCount)
@@ -220,19 +232,33 @@ def inverse_functional_property():
                 ?s2 <""" + p + """> ?o.
             }
         """
+
+        result = execute_query(query)
+        if(result[0]["instanceCount"]["value"]>0):
+            property_type.append({
+                "p" : p,
+                "type" : "inverse_functional"
+            })
+
         # functional property
         # p = "http://purl.org/dc/terms/replaces"
         query = """
-            SELECT *
+            SELECT (COUNT(*) as ?instanceCount)
             WHERE {              
                 ?s <""" + p + """> ?o1.
                 ?s <""" + p + """> ?o2 
             }
         """
-        # print query
-        rows_ = execute_query(query)
-        print(len(rows_))
+        result = execute_query(query)
+        if(result[0]["instanceCount"]["value"]>0):
+            property_type.append({
+                "p" : p,
+                "type" : "functional"
+            })
 
+
+
+    conn(tableprefix + "property_type").insert(property_type).run()
         # if(int(rows[0]["instanceCount"]["value"]) > 0):
         #     # pass
         #     print rows[0]["instanceCount"]["value"]
@@ -283,7 +309,7 @@ def fetch_property():
     # class_arr = return_array(classes, len_)
 
     for i in range(0, len_ - 1):
-        for j in range(i + 1, len_):
+        for j in range(i, len_):
             print(class_arr[i])
             print(class_arr[j])
             poperty_between_class(class_arr[i], class_arr[j])
