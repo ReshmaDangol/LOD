@@ -41,7 +41,7 @@ def sparql_endpoint():
     url13 = "http://localhost:5820/jamendo/query"
     url14 = "http://localhost:5820/linkedmdb/query"    
 
-    url = "http://localhost:5820/" + database_name + "/query"
+    url = "http://localhost:5820/" + database_name + "/query?reasoning=true&"
 
     endpoint = SPARQLWrapper(url)  # this should be user's input
 
@@ -114,7 +114,10 @@ def execute_query(query):
     results = endpoint.query().convert()
     # print results
     # print len(results["results"]["bindings"])
-    return results["results"]["bindings"]
+    try:
+        return results["results"]["bindings"]
+    except:
+        return -1
 
 # Fetch classes with max instances
 
@@ -200,12 +203,14 @@ def inverse_functional_property():
                 ?o <""" + p + """> ?s.
             }
         """
+        print(query)
         result = execute_query(query)
-        if(int(result[0]["instanceCount"]["value"])>0):
-            property_type.append({
-                "p" : p,
-                "type" : "symmetric"
-            })
+        if result != -1:
+            if(int(result[0]["instanceCount"]["value"])>0):
+                property_type.append({
+                    "p" : p,
+                    "type" : "symmetric"
+                })
 
         # Transitive Property exists in aat daraset
         query = """
@@ -216,14 +221,15 @@ def inverse_functional_property():
                 ?a <""" + p + """> ?c.
             }
         """
-
+        print(query)
         result = execute_query(query)
-        if(int(result[0]["instanceCount"]["value"])>0):
-            property_type.append({
-                "p" : p,
-                "type" : "transitive"
-            })
-      
+        if result != -1:
+            if(int(result[0]["instanceCount"]["value"])>0):
+                property_type.append({
+                    "p" : p,
+                    "type" : "transitive"
+                })
+        
         # inverse functional
         query = """
             SELECT (COUNT(*) as ?instanceCount)
@@ -232,13 +238,14 @@ def inverse_functional_property():
                 ?s2 <""" + p + """> ?o.
             }
         """
-
+        print(query)
         result = execute_query(query)
-        if(int(result[0]["instanceCount"]["value"]) == 0):
-            property_type.append({
-                "p" : p,
-                "type" : "inverse_functional"
-            })
+        if result != -1:
+            if(int(result[0]["instanceCount"]["value"]) == 0):
+                property_type.append({
+                    "p" : p,
+                    "type" : "inverse_functional"
+                })
 
         # functional property
         # p = "http://purl.org/dc/terms/replaces"
@@ -249,12 +256,14 @@ def inverse_functional_property():
                 ?s <""" + p + """> ?o2 
             }
         """
+        print(query)
         result = execute_query(query)
-        if(int(result[0]["instanceCount"]["value"]) == 0):
-            property_type.append({
-                "p" : p,
-                "type" : "functional"
-            })
+        if result != -1:
+            if(int(result[0]["instanceCount"]["value"]) == 0):
+                property_type.append({
+                    "p" : p,
+                    "type" : "functional"
+                })
 
 
 
@@ -574,11 +583,21 @@ def inverse_property():
             print("found")
         else:
             checked_property.append(p)
+            # q = """
+            # SELECT  (count(?p) as ?count) ?p
+            # WHERE {
+            # ?s a <""" + c1 + """>.
+            # ?o a <""" + c2 + """>.
+            # ?s <""" + p + """> ?o.
+            # ?o ?p ?s
+            # }
+            # group by ?p
+            # order by desc(?count)  
+            # """
+
             q = """
             SELECT  (count(?p) as ?count) ?p
             WHERE {
-            ?s a <""" + c1 + """>.
-            ?o a <""" + c2 + """>.
             ?s <""" + p + """> ?o.
             ?o ?p ?s
             }
@@ -630,6 +649,7 @@ def sparqlTest():
 
 
 
+@app.route('/datatype')
 @app.route('/datatype')
 def get_datatye():
     classes = conn(tableprefix + "class")["class"].distinct().run()
