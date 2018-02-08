@@ -111,10 +111,11 @@ def aboutpage():
 def execute_query(query):
     endpoint.setQuery(query)
     endpoint.setReturnFormat(JSON)
-    results = endpoint.query().convert()
+   
     # print results
     # print len(results["results"]["bindings"])
     try:
+        results = endpoint.query().convert()
         return results["results"]["bindings"]
     except:
         return -1
@@ -603,12 +604,14 @@ def inverse_property():
             # order by desc(?count)  
             # """
 
+            #FILTER regex(str(?p), '"""+ get_uri(p) +"""') #filter by vocab
+
             q = """
             SELECT  (count(?p) as ?count) ?p
             WHERE {
             ?s <""" + p + """> ?o.
             ?o ?p ?s .
-            FILTER regex(str(?p), '"""+ get_uri(p) +"""')
+            
             }
             group by ?p
             order by desc(?count)  
