@@ -569,7 +569,7 @@ def check_sub_equivalent_class(*args):
 
 def get_uri(uri):
     temp = uri.rsplit('#', 1)
-    if(temp.length>1):
+    if(len(temp)>1):
         return temp[0]
     else:
         return uri.rsplit('/', 1)[0]
