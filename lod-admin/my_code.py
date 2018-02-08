@@ -64,6 +64,7 @@ def create_tables():
     r.db(database_name).table_create(tableprefix + "graph_data_property").run()
     r.db(database_name).table_create(tableprefix + "property_datatype").run()    
     r.db(database_name).table_create(tableprefix + "property_type").run()    
+    r.db(database_name).table_create(tableprefix + "error_log").run()    
 
     
     conn(tableprefix + "property").index_create('count').run()
@@ -118,6 +119,7 @@ def execute_query(query):
         results = endpoint.query().convert()
         return results["results"]["bindings"]
     except:
+        conn(tableprefix + "error_log").insert({"query":query}).run()
         return -1
 
 # Fetch classes with max instances
