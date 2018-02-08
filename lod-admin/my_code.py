@@ -41,7 +41,7 @@ def sparql_endpoint():
     url13 = "http://localhost:5820/jamendo/query"
     url14 = "http://localhost:5820/linkedmdb/query"    
 
-    url = "http://localhost:5820/" + database_name + "/query?reasoning=true&"
+    url = "http://localhost:5820/" + database_name + "/query" #?reasoning=true&"
 
     endpoint = SPARQLWrapper(url)  # this should be user's input
 
@@ -195,6 +195,7 @@ def inverse_functional_property():
     property_type = []
     for row in rows:
         p = row
+        #may be perform count to confirm?
         # SymmetricProperty
         query = """
             SELECT (COUNT(*) as ?instanceCount)
@@ -566,6 +567,13 @@ def check_sub_equivalent_class(*args):
         global_equivalent_class.append({"c1": c1, "c2": c2})
 
 
+def get_uri(uri):
+    temp = uri.rsplit('#', 1)
+    if(temp.length>1):
+        return temp[0]
+    else:
+        return uri.rsplit('/', 1)[0]
+
 @app.route("/inverse")
 def inverse_property():
 
@@ -599,7 +607,8 @@ def inverse_property():
             SELECT  (count(?p) as ?count) ?p
             WHERE {
             ?s <""" + p + """> ?o.
-            ?o ?p ?s
+            ?o ?p ?s .
+            FILTER regex(str(?p), '"""+ get_uri(p) +"""')
             }
             group by ?p
             order by desc(?count)  
