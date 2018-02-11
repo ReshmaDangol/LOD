@@ -614,7 +614,7 @@ class SPARQLQuery(Resource):
     def post(self):
         args = parser.parse_args()
         set_db(args['database_name'])
-        return {"data": sparql_query(args['s'], args['p'], args['t'], json.loads(args['p_filter'].strip()),  args['l'],  args['offset'])}
+        return {"data": sparql_query(args['s'], args['p'], args['t'], json.loads(args['p_filter'].strip()),  args['limit'],  args['offset'])}
 
 
 class PropertyList(Resource):
