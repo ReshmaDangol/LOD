@@ -38,18 +38,19 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 """
 
-ignore_properties = ["http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-                     "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
-                     "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
-                     "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
-                     "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject",
-                     "http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate",
-                     "http://www.w3.org/1999/02/22-rdf-syntax-ns#object",
+ignore_properties = [
+                    # "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+                    #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+                    #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+                    #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+                    #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject",
+                    #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate",
+                    #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#object",
 
-                     "http://www.w3.org/2000/01/rdf-schema#domain",
-                     "http://www.w3.org/2000/01/rdf-schema#range",
-                     "http://www.w3.org/2000/01/rdf-schema#label",
-                     "http://www.w3.org/2000/01/rdf-schema#member",
+                    #  "http://www.w3.org/2000/01/rdf-schema#domain",
+                    #  "http://www.w3.org/2000/01/rdf-schema#range",
+                    #  "http://www.w3.org/2000/01/rdf-schema#label",
+                    #  "http://www.w3.org/2000/01/rdf-schema#member",
                      ]
 
 #"http://www.w3.org/2000/01/rdf-schema#seeAlso",
