@@ -477,7 +477,7 @@ def query_class_detail(c):
     # """
 
 
-def query_instance_property_object(s, p, l, offset):
+def query_instance_property_object(s, p):#, l, offset):
     sparql_endpoint()
     query = query_prefix + """
         SELECT *
@@ -488,9 +488,8 @@ def query_instance_property_object(s, p, l, offset):
             }
             OPTIONAL{ ?o  foaf:name ?o_name .}
         }
-    LIMIT """ + l +"""
-    OFFSET """ + offset 
-    
+    """
+
     print(query)
     result = execute_query(query)
     return result
@@ -628,7 +627,7 @@ class InstancePropertyList(Resource):
     def post(self):
         args = parser.parse_args()
         set_db(args['database_name'])
-        return query_instance_property(args['i'], args['limit'], args['offset'] )
+        return query_instance_property(args['i'])#, args['limit'], args['offset'] )
 
 
 class InstancePropertyObject(Resource):
