@@ -38,7 +38,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 """
 
-ignore_properties = [
+ignore_properties = []
                     # "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
                     #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
                     #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
@@ -51,7 +51,7 @@ ignore_properties = [
                     #  "http://www.w3.org/2000/01/rdf-schema#range",
                     #  "http://www.w3.org/2000/01/rdf-schema#label",
                     #  "http://www.w3.org/2000/01/rdf-schema#member",
-                     ]
+                     
 
 #"http://www.w3.org/2000/01/rdf-schema#seeAlso",
 #"http://www.w3.org/2000/01/rdf-schema#comment",
@@ -497,10 +497,10 @@ def query_instance_property_object(s, p):
 
 def query_instance_property(i):#, l, offset):
     sparql_endpoint()
-    p = ''
-    for row in ignore_properties:
-        p += """ ?p !=<""" + row + """> &&"""
-    p = p[:-2]
+    # p = ''
+    # for row in ignore_properties:
+    #     p += """ ?p !=<""" + row + """> &&"""
+    # p = p[:-2]
     query = query_prefix + """
         SELECT *
         WHERE{            
@@ -523,12 +523,13 @@ def query_instance_property(i):#, l, offset):
         SELECT DISTINCT ?p  (COUNT(?p) as ?count)
         WHERE {
             <""" + i + """> ?p ?o.
-            FILTER(""" + p + """)      
+             
             }
         GROUP BY ?p
         ORDER BY DESC(?count)  
          
     """
+    # FILTER(""" + p + """)    
     print(query)
     results = execute_query(query)
 
