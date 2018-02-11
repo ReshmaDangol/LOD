@@ -22,6 +22,7 @@ parser.add_argument('t')  # target, object
 parser.add_argument('b')  # bidirection
 parser.add_argument('p')  # property
 parser.add_argument('limit')  # result limit
+parser.add_argument('offset')  # result limit
 parser.add_argument('link_subclass')
 parser.add_argument('link_intersection')
 parser.add_argument('link_property')
@@ -476,7 +477,7 @@ def query_class_detail(c):
     # """
 
 
-def query_instance_property_object(s, p):
+def query_instance_property_object(s, p, l, o):
     sparql_endpoint()
     query = query_prefix + """
         SELECT *
@@ -487,14 +488,15 @@ def query_instance_property_object(s, p):
             }
             OPTIONAL{ ?o  foaf:name ?o_name .}
         }
-        
-    """
+    LIMIT """ + l +"""
+    OFFSET """ + o 
+    
     print(query)
     result = execute_query(query)
     return result
 
 
-def query_instance_property(i):
+def query_instance_property(i, l, o):
     sparql_endpoint()
     p = ''
     for row in ignore_properties:
@@ -508,8 +510,9 @@ def query_instance_property(i):
             }
             OPTIONAL{ <""" + i + """>  foaf:name ?s_name .}
         }
-        
-    """
+        LIMIT """ + l +"""
+        OFFSET """ + o 
+
     result = execute_query(query)
     try:
         node_name = result[0]["s_name"]["value"]
@@ -625,14 +628,14 @@ class InstancePropertyList(Resource):
     def post(self):
         args = parser.parse_args()
         set_db(args['database_name'])
-        return query_instance_property(args['i'])
+        return query_instance_property(args['i'], args['limit'], args['offset'] )
 
 
 class InstancePropertyObject(Resource):
     def post(self):
         args = parser.parse_args()
         set_db(args['database_name'])
-        return query_instance_property_object(args['s'], args['p'])
+        return query_instance_property_object(args['s'], args['p'], args['limit'], args['offset'] )
 
 
 class ClassAllDetail(Resource):
