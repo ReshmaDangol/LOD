@@ -308,7 +308,7 @@ def _get_property(s, t, b, l):
         return list(cursor1)
 
 
-def query_subject(s, p_filter):
+def query_subject(s, p_filter, l, offset):
     # query subjects based of the popular properties
     # rows = conn("property").filter({"c1": s})["p"].distinct().run()
     p = "1"
@@ -338,14 +338,14 @@ def query_subject(s, p_filter):
             FILTER (""" + p + """) .
             FILTER (?o != <""" + s + """>)
         }
-        limit 200
-    """
+        LIMIT """ + l +"""
+        OFFSET """ + offset 
     print(query)
     result = execute_query(query)
     return result
 
 
-def query_property(s, p, o):
+def query_property(s, p, o, l, offset):
     query = query_prefix + """
         SELECT * 
         WHERE {
@@ -364,8 +364,8 @@ def query_property(s, p, o):
             }
             
         }
-        limit 200
-    """
+       LIMIT """ + l +"""
+    OFFSET """ + offset 
     print(query)
     result = execute_query(query)
     return result
@@ -384,7 +384,7 @@ def query_property_list(s):
     return list(execute_query(query))
 
 
-def query_intersect(s, o):
+def query_intersect(s, o, l, offset):
     rows = query_property_list(s)
     p = "1"
     for row in rows:
@@ -401,21 +401,21 @@ def query_intersect(s, o):
             OPTIONAL{?s foaf:name ?s_name .
             }
         }
-        limit 200
-    """
+        LIMIT """ + l +"""
+    OFFSET """ + offset 
     print(query)
     result = execute_query(query)
     return result
 
 
-def sparql_query(s, p, o, p_filter):
+def sparql_query(s, p, o, p_filter, l, offset):
     sparql_endpoint()
     if(p == '') and (o == ''):
-        result = query_subject(s, p_filter)
+        result = query_subject(s, p_filter,  l, offset)
     elif p == '':
-        result = query_intersect(s, o)
+        result = query_intersect(s, o,  l, offset)
     else:
-        result = query_property(s, p, o)
+        result = query_property(s, p, o,  l, offset)
     return result
 
 
@@ -477,7 +477,7 @@ def query_class_detail(c):
     # """
 
 
-def query_instance_property_object(s, p, l, o):
+def query_instance_property_object(s, p, l, offset):
     sparql_endpoint()
     query = query_prefix + """
         SELECT *
@@ -489,14 +489,14 @@ def query_instance_property_object(s, p, l, o):
             OPTIONAL{ ?o  foaf:name ?o_name .}
         }
     LIMIT """ + l +"""
-    OFFSET """ + o 
+    OFFSET """ + offset 
     
     print(query)
     result = execute_query(query)
     return result
 
 
-def query_instance_property(i, l, o):
+def query_instance_property(i, l, offset):
     sparql_endpoint()
     p = ''
     for row in ignore_properties:
@@ -511,7 +511,7 @@ def query_instance_property(i, l, o):
             OPTIONAL{ <""" + i + """>  foaf:name ?s_name .}
         }
         LIMIT """ + l +"""
-        OFFSET """ + o 
+        OFFSET """ + offset 
 
     result = execute_query(query)
     try:
@@ -614,7 +614,7 @@ class SPARQLQuery(Resource):
     def post(self):
         args = parser.parse_args()
         set_db(args['database_name'])
-        return {"data": sparql_query(args['s'], args['p'], args['t'], json.loads(args['p_filter'].strip()))}
+        return {"data": sparql_query(args['s'], args['p'], args['t'], json.loads(args['p_filter'].strip()),  args['l'],  args['offset'])}
 
 
 class PropertyList(Resource):
