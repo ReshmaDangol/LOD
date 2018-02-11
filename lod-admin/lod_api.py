@@ -477,7 +477,7 @@ def query_class_detail(c):
     # """
 
 
-def query_instance_property_object(s, p):#, l, offset):
+def query_instance_property_object(s, p, l, offset):
     sparql_endpoint()
     query = query_prefix + """
         SELECT *
@@ -488,14 +488,15 @@ def query_instance_property_object(s, p):#, l, offset):
             }
             OPTIONAL{ ?o  foaf:name ?o_name .}
         }
-    """
-
+    ""LIMIT """ + l +"""
+    OFFSET """ + offset 
+    ""
     print(query)
     result = execute_query(query)
     return result
 
 
-def query_instance_property(i, l, offset):
+def query_instance_property(i):#, l, offset):
     sparql_endpoint()
     p = ''
     for row in ignore_properties:
@@ -508,9 +509,7 @@ def query_instance_property(i, l, offset):
             FILTER (langMatches(lang(?s_label),"en") || (lang(?s_label)=""))
             }
             OPTIONAL{ <""" + i + """>  foaf:name ?s_name .}
-        }
-        LIMIT """ + l +"""
-        OFFSET """ + offset 
+        }"""
 
     result = execute_query(query)
     try:
