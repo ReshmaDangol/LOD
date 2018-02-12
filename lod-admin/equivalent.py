@@ -10,6 +10,9 @@ def modify_equiv_class():
         c2 = row["c2"]
         id = row["id"]
         group_classlist = []
+        group_classlist.append(c1)
+        group_classlist.append(c2)
+
 
         search = conn("equivalentclass").filter(
             (r.row["c1"] == c1) | (r.row["c1"] == c2) | (
