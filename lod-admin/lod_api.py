@@ -389,7 +389,7 @@ def query_intersect(s, o, l, offset):
     rows = query_property_list(s)
     p = "1"
     for row in rows:
-        p += """ || ?p =<""" + row + """>"""
+        p += """ || ?p =<""" + row["p"]["value"] + """>"""
 
     query = query_prefix + """
         SELECT * 
