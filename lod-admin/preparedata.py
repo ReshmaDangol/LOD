@@ -68,7 +68,7 @@ def prepare():
         is_subclass = conn("subclass").filter(
             lambda class_:
             class_["subclass"].default('foo').eq(c1)
-        ).run()
+        ).filter({"transitive_subclass": "true"}).run()
 
         for s in is_subclass:
             result = {
