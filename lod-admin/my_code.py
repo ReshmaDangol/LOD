@@ -80,7 +80,7 @@ def create_database():
         create_tables()
 
 
-create_database()
+# create_database()
 
 
 def get_graph():
@@ -118,10 +118,10 @@ def execute_query(query):
     try:
         results = endpoint.query().convert()
         return results["results"]["bindings"]
+  
     except:
         conn(tableprefix + "error_log").insert({"query":query}).run()
         return -1
-
 # Fetch classes with max instances
 
 
@@ -352,6 +352,20 @@ def fetch_sub_equivalent_class():
     conn(tableprefix + "equivalentclass").insert(global_equivalent_class).run()
     return render_template("sparql.html")
 
+
+@app.route('/subclass_transitivity')
+def subclass_check_transitivity():
+    rows = conn(tableprefix + "subclass").run()
+    for row in rows:
+        c = row['class']
+        sc =  row['subclass']
+        result_1 = conn(tableprefix + "subclass").filter((r.row["class"] == c) & (r.row["subclass"] != sc)).run()
+        for d in result_1:
+            result_2 = conn(tableprefix + "subclass").update({"transitive_subclass": "true"}).filter((r.row["class"] == d["subclass"]) & (r.row["subclass"] == sc)).count().run()
+            if(result_2>0):
+                print(get_class_name(c),get_class_name(sc),get_class_name(d["subclass"]) )
+
+    return render_template("sparql.html")           
 
 def poperty_between_class(*args):
     count = 20
