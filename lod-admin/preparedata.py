@@ -68,7 +68,7 @@ def prepare():
         is_subclass = conn("subclass").filter(
             lambda class_:
             class_["subclass"].default('foo').eq(c1)
-        ).filter({"transitive_subclass": "true"}).run()
+        ).filter({"transitive_subclass": "false"}).run()
 
         for s in is_subclass:
             result = {
@@ -130,7 +130,7 @@ def prepare():
         c = document["class"]
         id = document["id"]
         is_subclass = conn("subclass").filter(
-            lambda class_: class_["subclass"] == c).filter({"transitive_subclass": "true"}).count().run()
+            lambda class_: class_["subclass"] == c).filter({"transitive_subclass": "false"}).count().run()
         subclass = 1 if is_subclass > 0 else 0
 
         does_intersect = conn("intersection").filter(
