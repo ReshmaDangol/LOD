@@ -361,8 +361,9 @@ def subclass_check_transitivity():
         sc =  row['subclass']
         result_1 = conn(tableprefix + "subclass").filter((r.row["class"] == c) & (r.row["subclass"] != sc)).run()
         for d in result_1:
-            result_2 = conn(tableprefix + "subclass").filter((r.row["class"] == d["subclass"]) & (r.row["subclass"] == sc)).update({"transitive_subclass": "true"}).count().run()
+            result_2 = conn(tableprefix + "subclass").filter((r.row["class"] == d["subclass"]) & (r.row["subclass"] == sc)).count().run()
             if(result_2>0):
+                conn(tableprefix + "subclass").filter((r.row["class"] == c) & (r.row["subclass"] == sc)).update({"transitive_subclass": "true"}).run()
                 print(get_class_name(c),get_class_name(sc),get_class_name(d["subclass"]) )
 
     return render_template("sparql.html")           
