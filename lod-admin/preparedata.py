@@ -126,9 +126,12 @@ def prepare():
                 }
                 conn("graph_data").insert(result).run()
 
-    for i, document in enumerate(cursor):
-        c = document["class"]
-        id = document["id"]
+    cursor = conn("graph_data").run()
+
+    for row in cursor:            
+    # for i, document in enumerate(cursor):
+        c = row["class"]
+        id = row["id"]
         is_subclass = conn("subclass_graph").filter(
             lambda class_: class_["subclass"] == c).count().run()
         subclass = 1 if is_subclass > 0 else 0
