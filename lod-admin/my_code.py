@@ -363,7 +363,14 @@ def subclass_check_transitivity():
         for d in result_1:
             result_2 = conn(tableprefix + "subclass").filter((r.row["class"] == d["subclass"]) & (r.row["subclass"] == sc)).count().run()
             if(result_2>0):
-                conn(tableprefix + "subclass").filter((r.row["class"] == c) & (r.row["subclass"] == sc)).update({"transitive_subclass": "true"}).run()
+                # conn(tableprefix + "subclass").filter((r.row["class"] == c) & (r.row["subclass"] == sc)).update({"transitive_subclass": "true"}).run()
+                print(get_class_name(c),get_class_name(sc),get_class_name(d["subclass"]) )
+
+                conn(tableprefix + "subclass_graph").insert({
+                    "class": c,
+                    "subclass":sc
+                    }).count().run()
+                
                 print(get_class_name(c),get_class_name(sc),get_class_name(d["subclass"]) )
 
     return render_template("sparql.html")           
@@ -577,10 +584,10 @@ def check_sub_equivalent_class(*args):
     c1c2Count = common_instance_count(c1, c2)
     if (c1Count < c2Count):
         if(c1c2Count == c1Count) and c1Count!=0:            
-            global_proper_subset.append({"subclass": c1, "class": c2 ,"transitive_subclass": "false"})
+            global_proper_subset.append({"subclass": c1, "class": c2})
     elif c2Count < c1Count:
         if(c1c2Count == c2Count) and c2Count!=0:
-            global_proper_subset.append({"subclass": c2, "class": c1, "transitive_subclass": "false"})
+            global_proper_subset.append({"subclass": c2, "class": c1})
     elif c1c2Count == c1Count and c1c2Count == c2Count and c1Count!=0:
         global_equivalent_class.append({"c1": c1, "c2": c2})
 
