@@ -367,7 +367,7 @@ def subclass_check_transitivity():
                 print(get_class_name(c),get_class_name(sc),get_class_name(d["subclass"]) )
 
 
-    rows =  conn(tableprefix + "subclass").filter({"transitive_subclass": "true"}).not_().run()
+    rows =  conn(tableprefix + "subclass").filter({"transitive_subclass": "false"}).run()
     for row in rows:    
         conn(tableprefix + "subclass_graph").insert({
                     "class": c,
