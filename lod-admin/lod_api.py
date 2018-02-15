@@ -76,7 +76,7 @@ def get_class():
 
 def subclass_check_transitivity(userInputArr):
     
-    conn("subclass").update({"transitive_subclass": "false"}).run()
+    conn("subclass").update({"transitive_subclass": "nill"}).run()
     conn("subclass_graph").delete()
     rows = conn("subclass").filter(     lambda doc:
                 get_r().expr(userInputArr)
@@ -90,13 +90,15 @@ def subclass_check_transitivity(userInputArr):
         c = row['class']
         sc =  row['subclass']
         result_1 = conn("subclass").filter((r.row["class"] == c) & (r.row["subclass"] != sc)).run()
-        
+        if conn("subclass").filter((r.row["class"] == c) & (r.row["subclass"] != sc))count().run() == 0
+            conn("subclass").filter((r.row["class"] == c) & (r.row["subclass"] == sc)).update({"transitive_subclass": "false"}).run()
         for d in result_1:
             result_2 = conn("subclass").filter((r.row["class"] == d["subclass"]) & (r.row["subclass"] == sc)).count().run()
             if(result_2>0):
                 conn("subclass").filter((r.row["class"] == c) & (r.row["subclass"] == sc)).update({"transitive_subclass": "true"}).run()
                 print(get_class_name(c),get_class_name(sc),get_class_name(d["subclass"]) )
-
+            else:
+                conn("subclass").filter((r.row["class"] == c) & (r.row["subclass"] == sc)).update({"transitive_subclass": "false"}).run()
 
     rows =  conn("subclass").filter({"transitive_subclass": "false"}).run()
     for row in rows:    
