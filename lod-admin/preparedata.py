@@ -20,56 +20,57 @@ def prepare():
     class_arr = list(cursor)
     len_ = len(class_arr)
     print(len_)
-    for i in range(0, len_ - 1):
+    for i in range(0, len_):
         c1 = class_arr[i]["class"]
         for j in range(i + 1, len_):
-            
-            c2 = class_arr[j]["class"]
-            # graph_id1 = class_arr[i]["graph_id"]
-            # graph_id2 = class_arr[j]["graph_id"]
+            if i < len_:
+                
+                c2 = class_arr[j]["class"]
+                # graph_id1 = class_arr[i]["graph_id"]
+                # graph_id2 = class_arr[j]["graph_id"]
 
-            has_property12 = conn("property").filter(
-                lambda class_:
-                    class_["c1"].default('foo').eq(c1).and_(
-                        class_["c2"].default('foo').eq(c2)
-                    )
-            ).count().run()
-            has_property21 = conn("property").filter(
-                lambda class_:
-                    class_["c1"].default('foo').eq(c2).and_(
-                        class_["c2"].default('foo').eq(c1)
-                    )
-            ).count().run()
+                has_property12 = conn("property").filter(
+                    lambda class_:
+                        class_["c1"].default('foo').eq(c1).and_(
+                            class_["c2"].default('foo').eq(c2)
+                        )
+                ).count().run()
+                has_property21 = conn("property").filter(
+                    lambda class_:
+                        class_["c1"].default('foo').eq(c2).and_(
+                            class_["c2"].default('foo').eq(c1)
+                        )
+                ).count().run()
 
-            if(has_property12 > 0 or has_property21 > 0):
-                if(has_property12 > 0 and has_property21 > 0):
-                    s = c1
-                    t = c2
-                    bd = 1
-                elif(has_property12 > 0):
-                    s = c1
-                    t = c2
-                    bd = 0
-                else:
-                    s = c2
-                    t = c1
-                    bd = 0
+                if(has_property12 > 0 or has_property21 > 0):
+                    if(has_property12 > 0 and has_property21 > 0):
+                        s = c1
+                        t = c2
+                        bd = 1
+                    elif(has_property12 > 0):
+                        s = c1
+                        t = c2
+                        bd = 0
+                    else:
+                        s = c2
+                        t = c1
+                        bd = 0
 
-                result = {
-                    "source": s,
-                    "target": t,
-                    "bidirection": bd,
-                    "intersect": 0,
-                    "subclass": 0,
-                    "linkid": str(i) + str(j) + "_property"
-                }
-                # print(result)
-                conn("graph_data").insert(result).run()
+                    result = {
+                        "source": s,
+                        "target": t,
+                        "bidirection": bd,
+                        "intersect": 0,
+                        "subclass": 0,
+                        "linkid": str(i) + str(j) + "_property"
+                    }
+                    # print(result)
+                    conn("graph_data").insert(result).run()
 
         is_subclass = conn("subclass_graph").filter(
-            lambda class_:
-            class_["subclass"].default('foo').eq(c1)
-        ).run()
+                lambda class_:
+                class_["subclass"].default('foo').eq(c1)
+            ).run()
 
         for s in is_subclass:
             result = {
