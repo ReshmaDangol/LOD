@@ -65,7 +65,7 @@ def prepare():
                 # print(result)
                 conn("graph_data").insert(result).run()
 
-        is_subclass = conn("subclass").filter(
+        is_subclass = conn("subclass_graph").filter(
             lambda class_:
             class_["subclass"].default('foo').eq(c1)
         ).run()
@@ -129,7 +129,7 @@ def prepare():
     for i, document in enumerate(cursor):
         c = document["class"]
         id = document["id"]
-        is_subclass = conn("subclass").filter(
+        is_subclass = conn("subclass_graph").filter(
             lambda class_: class_["subclass"] == c).count().run()
         subclass = 1 if is_subclass > 0 else 0
 
