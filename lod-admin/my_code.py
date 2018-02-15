@@ -587,10 +587,10 @@ def check_sub_equivalent_class(*args):
     c1c2Count = common_instance_count(c1, c2)
     if (c1Count < c2Count):
         if(c1c2Count == c1Count) and c1Count!=0:            
-            global_proper_subset.append({"subclass": c1, "class": c2})
+            global_proper_subset.append({"subclass": c1, "class": c2, "transitive_subclass": "false"})
     elif c2Count < c1Count:
         if(c1c2Count == c2Count) and c2Count!=0:
-            global_proper_subset.append({"subclass": c2, "class": c1})
+            global_proper_subset.append({"subclass": c2, "class": c1, "transitive_subclass": "false"})
     elif c1c2Count == c1Count and c1c2Count == c2Count and c1Count!=0:
         global_equivalent_class.append({"c1": c1, "c2": c2})
 
