@@ -12,12 +12,12 @@ def assign_graph_id():
 
 @app.route('/subclass_transitivity')
 def subclass_check_transitivity():
+    conn("subclass").update({"transitive_subclass": "false"}).run()
     rows = conn("subclass").run()
     for row in rows:
         c = row['class']
         sc =  row['subclass']
         result_1 = conn("subclass").filter((r.row["class"] == c) & (r.row["subclass"] != sc)).run()
-        conn("subclass").update({"transitive_subclass": "false"}).run()
         for d in result_1:
             result_2 = conn("subclass").filter((r.row["class"] == d["subclass"]) & (r.row["subclass"] == sc)).count().run()
             if(result_2>0):
@@ -34,7 +34,7 @@ def subclass_check_transitivity():
                 
                 # print(get_class_name(c),get_class_name(sc),get_class_name(d["subclass"]) )
 
-    return render_template("sparql.html")   
+    return render_template("sparql.html")    
 
 @app.route('/part1')
 def prepare():
