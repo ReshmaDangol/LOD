@@ -21,8 +21,9 @@ def prepare():
     len_ = len(class_arr)
     print(len_)
     for i in range(0, len_ - 1):
+        c1 = class_arr[i]["class"]
         for j in range(i + 1, len_):
-            c1 = class_arr[i]["class"]
+            
             c2 = class_arr[j]["class"]
             # graph_id1 = class_arr[i]["graph_id"]
             # graph_id2 = class_arr[j]["graph_id"]
@@ -126,30 +127,30 @@ def prepare():
                 }
                 conn("graph_data").insert(result).run()
 
-    cursor = conn("graph_data").run()
+    # cursor = conn("graph_data").run()
 
-    for row in cursor:
+    # for row in cursor:
             
-    # for i, document in enumerate(cursor):
-        # c = document["class"]
-        c = row["source"]
-        id = row["id"]
-        # id = document["id"]
-        is_subclass = conn("subclass_graph").filter(
-            lambda class_: class_["subclass"] == c).count().run()
-        subclass = 1 if is_subclass > 0 else 0
+    # # for i, document in enumerate(cursor):
+    #     # c = document["class"]
+    #     c = row["source"]
+    #     id = row["id"]
+    #     # id = document["id"]
+    #     is_subclass = conn("subclass_graph").filter(
+    #         lambda class_: class_["subclass"] == c).count().run()
+    #     subclass = 1 if is_subclass > 0 else 0
 
-        does_intersect = conn("intersection").filter(
-            lambda class_:
-                class_["c1"].default('foo').eq(c).or_(
-                    class_["c2"].default('foo').eq(c)
-                )
-        ).count().run()
-        intersect = 1 if does_intersect > 0 else 0
+    #     does_intersect = conn("intersection").filter(
+    #         lambda class_:
+    #             class_["c1"].default('foo').eq(c).or_(
+    #                 class_["c2"].default('foo').eq(c)
+    #             )
+    #     ).count().run()
+    #     intersect = 1 if does_intersect > 0 else 0
 
-        conn("graph_data").filter({'id': id}).update(
-            {'intersect': intersect, 'subclass': subclass, 'linkid': i}).run()
-    return render_template("sparql.html")
+    #     conn("graph_data").filter({'id': id}).update(
+    #         {'intersect': intersect, 'subclass': subclass, 'linkid': i}).run()
+    # return render_template("sparql.html")
 
 
 
