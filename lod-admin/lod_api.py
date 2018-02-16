@@ -341,6 +341,21 @@ def query_subject(s, p_filter, l, offset):
         }
         LIMIT """ + l +"""
         OFFSET """ + offset 
+
+    query = query_prefix + """
+      SELECT distinct ?s ?s_label ?s_name
+        WHERE {
+            ?s a <""" + s + """> .
+            OPTIONAL{?s rdfs:label ?s_label .
+            FILTER (langMatches(lang(?s_label),"en") || (lang(?s_label)=""))
+            }   
+            OPTIONAL{?s foaf:name ?s_name .
+            FILTER (langMatches(lang(?s_name),"en") || (lang(?s_name)=""))
+            }
+        }
+        LIMIT """ + l +"""
+        OFFSET """ + offset 
+
     print(query)
     result = execute_query(query)
     return result
