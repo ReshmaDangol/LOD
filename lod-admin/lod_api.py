@@ -196,8 +196,8 @@ def get_class_group(args):
                 return [{}]
             elif(link_intersection == 'false'):
                 filter_ = {'subclass': 1}
-            elif(link_subclass == 'false') 
-                filter_ = {'intersect': 1}:
+            elif(link_subclass == 'false') :
+                filter_ = {'intersect': 1}
                 print("--")
 
 
