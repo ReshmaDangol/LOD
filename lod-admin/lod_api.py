@@ -182,13 +182,24 @@ def get_class_group(args):
         count__ = len(filter_arr)
         print(count__)
         filter_ = {}
-        if(link_intersection == 'false') and (link_subclass == 'false'):
-            filter_ = {'subclass': 0, 'intersect': 0}
-        elif(link_intersection == 'false'):
-            filter_ = {'intersect': 0}
-        elif(link_subclass == 'false'):
-            filter_ = {'subclass': 0}
-            print("--")
+        if (link_property == 'true'):
+            if(link_intersection == 'false') and (link_subclass == 'false'):
+                filter_ = {'subclass': 0, 'intersect': 0}
+            elif(link_intersection == 'false'):
+                filter_ = {'intersect': 0}
+            elif(link_subclass == 'false'):
+                filter_ = {'subclass': 0}
+                print("--")
+
+        if (link_property == 'false'):
+            if(link_intersection == 'false') and (link_subclass == 'false'):
+                return [{}]
+            elif(link_intersection == 'false'):
+                filter_ = {'subclass': 1}
+            elif(link_subclass == 'false') 
+                filter_ = {'intersect': 1}
+                print("--")
+
 
         print(filter_)
 
