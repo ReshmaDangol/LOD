@@ -16,6 +16,13 @@ C = cookies.SimpleCookie()
 
 
 db_url = os.environ['DB_URL']
+query_prefix = """
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+"""
 
 print(db_url)
 def set_db(db):
@@ -23,11 +30,12 @@ def set_db(db):
     C["database_name"] = db
     global database_name
     database_name = db
-    print(database_name)
+    # print(database_name)
 
-# set_db("archiveshub")
+set_db("education")
 def get_db():
     database_name = C["database_name"].value
+    # print(database_name)
 
 def sparql_endpoint():
     get_db()

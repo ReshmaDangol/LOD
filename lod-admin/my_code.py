@@ -39,9 +39,9 @@ def sparql_endpoint():
     url11 = "http://localhost:5820/aat/query"
     url12 = "http://localhost:5820/archiveshub/query"  # archives hub
     url13 = "http://localhost:5820/jamendo/query"
-    url14 = "http://localhost:5820/linkedmdb/query"    
+    url14 = "http://localhost:5820/linkedmdb/query"
 
-    url = "http://localhost:5820/" + database_name + "/query" #?reasoning=true&"
+    url = "http://localhost:5820/" + database_name + "/query"  # ?reasoning=true&"
 
     endpoint = SPARQLWrapper(url)  # this should be user's input
 
@@ -62,13 +62,12 @@ def create_tables():
     r.db(database_name).table_create(tableprefix + "intersection").run()
     r.db(database_name).table_create(tableprefix + "graph_data").run()
     r.db(database_name).table_create(tableprefix + "graph_data_property").run()
-    r.db(database_name).table_create(tableprefix + "property_datatype").run()    
-    r.db(database_name).table_create(tableprefix + "property_type").run()    
-    r.db(database_name).table_create(tableprefix + "error_log").run()    
+    r.db(database_name).table_create(tableprefix + "property_datatype").run()
+    r.db(database_name).table_create(tableprefix + "property_type").run()
+    r.db(database_name).table_create(tableprefix + "error_log").run()
+    r.db(database_name).table_create(tableprefix + "subclass_graph").run()
 
-    
     conn(tableprefix + "property").index_create('count').run()
-    
 
 
 def create_database():
@@ -80,7 +79,7 @@ def create_database():
         create_tables()
 
 
-# create_database()
+create_database()
 
 
 def get_graph():
@@ -112,15 +111,15 @@ def aboutpage():
 def execute_query(query):
     endpoint.setQuery(query)
     endpoint.setReturnFormat(JSON)
-   
+
     # print results
     # print len(results["results"]["bindings"])
     try:
         results = endpoint.query().convert()
         return results["results"]["bindings"]
-  
+
     except:
-        conn(tableprefix + "error_log").insert({"query":query}).run()
+        conn(tableprefix + "error_log").insert({"query": query}).run()
         return -1
 # Fetch classes with max instances
 
@@ -191,14 +190,13 @@ def set_operation():
     return render_template("sparql.html")
 
 
-
 @app.route('/property_type')
 def inverse_functional_property():
     rows = conn(tableprefix + "property")["p"].distinct().run()
     property_type = []
     for row in rows:
         p = row
-        #may be perform count to confirm?
+        # may be perform count to confirm?
         # SymmetricProperty
         query = """
             SELECT (COUNT(*) as ?instanceCount)
@@ -210,10 +208,10 @@ def inverse_functional_property():
         print(query)
         result = execute_query(query)
         if result != -1:
-            if(int(result[0]["instanceCount"]["value"])>0):
+            if(int(result[0]["instanceCount"]["value"]) > 0):
                 property_type.append({
-                    "p" : p,
-                    "type" : "symmetric"
+                    "p": p,
+                    "type": "symmetric"
                 })
 
         # Transitive Property exists in aat daraset
@@ -228,12 +226,12 @@ def inverse_functional_property():
         print(query)
         result = execute_query(query)
         if result != -1:
-            if(int(result[0]["instanceCount"]["value"])>0):
+            if(int(result[0]["instanceCount"]["value"]) > 0):
                 property_type.append({
-                    "p" : p,
-                    "type" : "transitive"
+                    "p": p,
+                    "type": "transitive"
                 })
-        
+
         # inverse functional
         query = """
             SELECT (COUNT(*) as ?instanceCount)
@@ -247,8 +245,8 @@ def inverse_functional_property():
         if result != -1:
             if(int(result[0]["instanceCount"]["value"]) == 0):
                 property_type.append({
-                    "p" : p,
-                    "type" : "inverse_functional"
+                    "p": p,
+                    "type": "inverse_functional"
                 })
 
         # functional property
@@ -265,18 +263,16 @@ def inverse_functional_property():
         if result != -1:
             if(int(result[0]["instanceCount"]["value"]) == 0):
                 property_type.append({
-                    "p" : p,
-                    "type" : "functional"
+                    "p": p,
+                    "type": "functional"
                 })
 
-
-
     conn(tableprefix + "property_type").insert(property_type).run()
-        # if(int(rows[0]["instanceCount"]["value"]) > 0):
-        #     # pass
-        #     print rows[0]["instanceCount"]["value"]
-        # else:
-        #     print p
+    # if(int(rows[0]["instanceCount"]["value"]) > 0):
+    #     # pass
+    #     print rows[0]["instanceCount"]["value"]
+    # else:
+    #     print p
 
     return render_template("sparql.html")
 
@@ -284,13 +280,18 @@ def inverse_functional_property():
 @app.route('/class')
 def popular_class():
     count = 20
-    query = """ 
-      SELECT DISTINCT ?class (count(?sub) AS ?instance_count)
-      WHERE {
-        ?sub a ?class. 
-      } 
-      GROUP BY ?class 
-      ORDER BY DESC(?instance_count) 
+    query = query_prefix + """ 
+        SELECT  DISTINCT ?class (count(?s) AS ?instance_count) ?s_label ?s_name
+        WHERE {
+        ?s a ?class. 
+        OPTIONAL{?class rdfs:label ?s_label.
+            FILTER (langMatches(lang(?s_label),"en") || (lang(?s_label)=""))
+                 }.
+        OPTIONAL{ ?class  foaf:name ?s_name .}
+        
+        } 
+      GROUP BY ?class ?s_label ?s_name
+      ORDER BY DESC(?instance_count)       
       limit """ + str(count)
 
     results = execute_query(query)
@@ -301,12 +302,21 @@ def popular_class():
 
     for result in results:
         class_uri = result["class"]["value"]
-        if("http://" not in result["class"]["value"]) and ("https://" not in result["class"]["value"]) :
-            class_uri = "_:" + result["class"]["value"] #if blank node
+        if("http://" not in result["class"]["value"]) and ("https://" not in result["class"]["value"]):
+            class_uri = "_:" + result["class"]["value"]  # if blank node
+        try:
+            class_name = result["s_label"]["value"]
+        except:
+            try:
+                class_name = result["s_name"]["value"]
+            except:
+                class_name = get_class_name(result["class"]["value"])
+
         classes.append({
             "class": class_uri,
             "count": int(result["instance_count"]["value"]),
-            "name": get_class_name(result["class"]["value"])
+            "name": class_name# get_class_name(result["class"]["value"])
+            
         })
     print(conn(tableprefix + "class").insert(classes).run())
     conn(tableprefix + "class").index_create('count').run()
@@ -358,25 +368,30 @@ def subclass_check_transitivity():
     rows = conn(tableprefix + "subclass").run()
     for row in rows:
         c = row['class']
-        sc =  row['subclass']
-        result_1 = conn(tableprefix + "subclass").filter((r.row["class"] == c) & (r.row["subclass"] != sc)).run()
+        sc = row['subclass']
+        result_1 = conn(tableprefix + "subclass").filter(
+            (r.row["class"] == c) & (r.row["subclass"] != sc)).run()
         for d in result_1:
-            result_2 = conn(tableprefix + "subclass").filter((r.row["class"] == d["subclass"]) & (r.row["subclass"] == sc)).count().run()
-            if(result_2>0):
-                conn(tableprefix + "subclass").filter((r.row["class"] == c) & (r.row["subclass"] == sc)).update({"transitive_subclass": "true"}).run()
-                print(get_class_name(c),get_class_name(sc),get_class_name(d["subclass"]) )
+            result_2 = conn(tableprefix + "subclass").filter(
+                (r.row["class"] == d["subclass"]) & (r.row["subclass"] == sc)).count().run()
+            if(result_2 > 0):
+                conn(tableprefix + "subclass").filter((r.row["class"] == c) & (
+                    r.row["subclass"] == sc)).update({"transitive_subclass": "true"}).run()
+                print(get_class_name(c), get_class_name(
+                    sc), get_class_name(d["subclass"]))
 
-
-    rows =  conn(tableprefix + "subclass").filter({"transitive_subclass": "false"}).run()
-    for row in rows:    
+    rows = conn(
+        tableprefix + "subclass").filter({"transitive_subclass": "false"}).run()
+    for row in rows:
         conn(tableprefix + "subclass_graph").insert({
-                    "class": row["class"],
-                    "subclass":row["subclass"]
-                    }).count().run()
-                
-                # print(get_class_name(c),get_class_name(sc),get_class_name(d["subclass"]) )
+            "class": row["class"],
+            "subclass": row["subclass"]
+        }).count().run()
 
-    return render_template("sparql.html")           
+        # print(get_class_name(c),get_class_name(sc),get_class_name(d["subclass"]) )
+
+    return render_template("sparql.html")
+
 
 def poperty_between_class(*args):
     count = 20
@@ -440,7 +455,7 @@ def poperty_between_class(*args):
 
         # i + 1
     conn(tableprefix + "property").insert(data).run()
-   
+
     pass
 
 
@@ -586,21 +601,24 @@ def check_sub_equivalent_class(*args):
     c2Count = instance_count(c2)
     c1c2Count = common_instance_count(c1, c2)
     if (c1Count < c2Count):
-        if(c1c2Count == c1Count) and c1Count!=0:            
-            global_proper_subset.append({"subclass": c1, "class": c2, "transitive_subclass": "false"})
+        if(c1c2Count == c1Count) and c1Count != 0:
+            global_proper_subset.append(
+                {"subclass": c1, "class": c2, "transitive_subclass": "false"})
     elif c2Count < c1Count:
-        if(c1c2Count == c2Count) and c2Count!=0:
-            global_proper_subset.append({"subclass": c2, "class": c1, "transitive_subclass": "false"})
-    elif c1c2Count == c1Count and c1c2Count == c2Count and c1Count!=0:
+        if(c1c2Count == c2Count) and c2Count != 0:
+            global_proper_subset.append(
+                {"subclass": c2, "class": c1, "transitive_subclass": "false"})
+    elif c1c2Count == c1Count and c1c2Count == c2Count and c1Count != 0:
         global_equivalent_class.append({"c1": c1, "c2": c2})
 
 
 def get_uri(uri):
     temp = uri.rsplit('#', 1)
-    if(len(temp)>1):
+    if(len(temp) > 1):
         return temp[0]
     else:
         return uri.rsplit('/', 1)[0]
+
 
 @app.route("/inverse")
 def inverse_property():
@@ -628,10 +646,10 @@ def inverse_property():
             # ?o ?p ?s
             # }
             # group by ?p
-            # order by desc(?count)  
+            # order by desc(?count)
             # """
 
-            #FILTER regex(str(?p), '"""+ get_uri(p) +"""') #filter by vocab
+            # FILTER regex(str(?p), '"""+ get_uri(p) +"""') #filter by vocab
 
             q = """
             SELECT  (count(?p) as ?count) ?p
@@ -643,21 +661,22 @@ def inverse_property():
             group by ?p
             order by desc(?count)  
             """
-            # 
+            #
             # print(q)
             print("--")
             q_results = execute_query(q)
             print(q_results)
             i_properties = []
             for r in q_results:
-                if(int(r["count"]["value"])>0):
+                if(int(r["count"]["value"]) > 0):
                     inverse = r["p"]["value"]
                     # i_properties.append(inverse)
-                    i_properties.append({"p":inverse,"count": r["count"]["value"]})
-            
+                    i_properties.append(
+                        {"p": inverse, "count": r["count"]["value"]})
+
             if i_properties:
                 inverse_property.append({"p": p, "inverse": i_properties})
-                
+
             # if(len(q_results) > 0):
             #     print(q_results[0]["count"]["value"])
             #     if(int(q_results[0]["count"]["value"]) > 0):
@@ -685,9 +704,6 @@ def sparqlTest():
     return render_template("sparql.html", results=results)
 
 
-
-
-
 @app.route('/datatype')
 @app.route('/datatype')
 def get_datatye():
@@ -710,7 +726,7 @@ def get_datatye():
         json = []
         p_prev = ''
         json_datatype = []
-        for index,result in enumerate(results):        
+        for index, result in enumerate(results):
             p = result["p"]["value"]
             type_value = get_class_name(result["datatype"]["value"])
             count_query = """
@@ -718,40 +734,39 @@ def get_datatye():
                 WHERE
                 {
                     ?s a <""" + class_arr[i] + """>.
-                    ?s <"""+ p +"""> ?o.
+                    ?s <""" + p + """> ?o.
                 }
             """
             res = execute_query(count_query)
             instance_count = res[0]["count"]["value"]
-            
+
             if(p == p_prev or p_prev == ''):
                 p_prev = result["p"]["value"]
                 json_datatype.append(type_value)
-            else:            
+            else:
                 json.append({
-                    "p" : p_prev,
-                    "count" : instance_count,
-                    "datatype" : json_datatype
+                    "p": p_prev,
+                    "count": instance_count,
+                    "datatype": json_datatype
                 })
                 p_prev = result["p"]["value"]
                 json_datatype = []
                 json_datatype.append(type_value)
-            
-            if(index == len(results)-1):
+
+            if(index == len(results) - 1):
                 json.append({
-                    "p" : p_prev,
-                    "count" : instance_count,
-                    "datatype" : json_datatype
+                    "p": p_prev,
+                    "count": instance_count,
+                    "datatype": json_datatype
                 })
-        
+
         json_result.append({
-            "class" : class_arr[i],
-            "property_datatype":json
+            "class": class_arr[i],
+            "property_datatype": json
         })
-        
+
     conn(tableprefix + "property_datatype").insert(json_result).run()
     return render_template("sparql.html")
-
 
 
 if __name__ == "__main__":
