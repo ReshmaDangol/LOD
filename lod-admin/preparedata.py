@@ -47,7 +47,7 @@ def prepare():
     print(len_)
     for i in range(0, len_):
         c1 = class_arr[i]["class"]
-        for j in range(i + 1, len_):
+        for j in range(i, len_):
             if i < len_:
                 
                 c2 = class_arr[j]["class"]
