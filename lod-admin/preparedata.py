@@ -60,37 +60,50 @@ def prepare():
                             class_["c2"].default('foo').eq(c2)
                         )
                 ).count().run()
-                has_property21 = conn("property").filter(
-                    lambda class_:
-                        class_["c1"].default('foo').eq(c2).and_(
-                            class_["c2"].default('foo').eq(c1)
-                        )
-                ).count().run()
 
-                if(has_property12 > 0 or has_property21 > 0):
-                    if(has_property12 > 0 and has_property21 > 0):
-                        s = c1
-                        t = c2
-                        bd = 1
-                    elif(has_property12 > 0):
-                        s = c1
-                        t = c2
-                        bd = 0
-                    else:
-                        s = c2
-                        t = c1
-                        bd = 0
-
+                if(c1 == c2):
                     result = {
-                        "source": s,
-                        "target": t,
-                        "bidirection": bd,
+                        "source": c1,
+                        "target": c2,
+                        "bidirection": 0,
                         "intersect": 0,
                         "subclass": 0,
                         "linkid": str(i) + str(j) + "_property"
                     }
                     # print(result)
                     conn("graph_data").insert(result).run()
+                else:
+                    has_property21 = conn("property").filter(
+                        lambda class_:
+                            class_["c1"].default('foo').eq(c2).and_(
+                                class_["c2"].default('foo').eq(c1)
+                            )
+                    ).count().run()
+
+                    if(has_property12 > 0 or has_property21 > 0):
+                        if(has_property12 > 0 and has_property21 > 0):
+                            s = c1
+                            t = c2
+                            bd = 1
+                        elif(has_property12 > 0):
+                            s = c1
+                            t = c2
+                            bd = 0
+                        else:
+                            s = c2
+                            t = c1
+                            bd = 0
+
+                        result = {
+                            "source": s,
+                            "target": t,
+                            "bidirection": bd,
+                            "intersect": 0,
+                            "subclass": 0,
+                            "linkid": str(i) + str(j) + "_property"
+                        }
+                        # print(result)
+                        conn("graph_data").insert(result).run()
 
         is_subclass = conn("subclass_graph").filter(
                 lambda class_:

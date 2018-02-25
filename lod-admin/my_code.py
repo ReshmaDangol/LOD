@@ -706,7 +706,6 @@ def sparqlTest():
 
 
 @app.route('/datatype')
-@app.route('/datatype')
 def get_datatye():
     classes = conn(tableprefix + "class")["class"].distinct().run()
     class_arr = list(classes)
