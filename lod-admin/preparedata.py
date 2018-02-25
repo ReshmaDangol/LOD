@@ -61,7 +61,7 @@ def prepare():
                         )
                 ).count().run()
 
-                if(c1 == c2):
+                if(c1 == c2 and has_property12>0):
                     result = {
                         "source": c1,
                         "target": c2,
