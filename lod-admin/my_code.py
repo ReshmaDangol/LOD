@@ -336,8 +336,8 @@ def fetch_property():
             print(class_arr[i])
             print(class_arr[j])
             poperty_between_class(class_arr[i], class_arr[j])
-            if(i!=j)
-            poperty_between_class(class_arr[j], class_arr[i])
+            if(i!=j):
+                poperty_between_class(class_arr[j], class_arr[i])
     return render_template("sparql.html")
 
 
