@@ -143,14 +143,13 @@ def get_class_group(args):
                             "class": r["c1"] + "~~~" + r["c2"],
                             "count":	0,
                             "equivalent":	0,
-                            "group":	"nogroup_" + str(i) + "_intersect",
+                            "group":	"nogroup_" + str(index) + "_intersect",
                             "id":	str(index) + "_intersect",
                             "name":	"",
                             "subclass":	0,
                             "intersect": 1
                         }
                     )
-
         try:
             x = document['group']
         except:
