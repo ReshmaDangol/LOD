@@ -138,12 +138,15 @@ def get_class_group(args):
                     intersection_arr.append(r["c2"] + "~~~" + r["c1"])
                     # intersection_arr.append(r["c2"])
                     # print(r)
+                    group_classlist = sorted(list(set([r["c1"],r["c2"]])), key=str.lower)
+                    groupname = "_".join(str(x) for x in group_classlist)
+
                     result.append(
                         {
                             "class": r["c1"] + "~~~" + r["c2"],
                             "count":	0,
                             "equivalent":	0,
-                            "group":	"nogroup_" + str(index) + "_intersect",
+                            "group":	"intersect_" + groupname, #"nogroup_" + r["c1"] + "~~~" + r["c2"], # +str(index) + "_intersect",
                             "id":	str(index) + "_intersect",
                             "name":	"",
                             "subclass":	0,
