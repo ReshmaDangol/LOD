@@ -468,6 +468,7 @@ def query_datatype(s, p, l, offset):
         }
         LIMIT """ + l + """
         OFFSET """ + offset
+    print(query)
     result = execute_query(query)
     return result
 
