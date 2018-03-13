@@ -39,19 +39,19 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 """
 
 ignore_properties = []
-                    # "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-                    #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
-                    #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
-                    #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
-                    #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject",
-                    #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate",
-                    #  "http://www.w3.org/1999/02/22-rdf-syntax-ns#object",
+# "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+#  "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+#  "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+#  "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+#  "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject",
+#  "http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate",
+#  "http://www.w3.org/1999/02/22-rdf-syntax-ns#object",
 
-                    #  "http://www.w3.org/2000/01/rdf-schema#domain",
-                    #  "http://www.w3.org/2000/01/rdf-schema#range",
-                    #  "http://www.w3.org/2000/01/rdf-schema#label",
-                    #  "http://www.w3.org/2000/01/rdf-schema#member",
-                     
+#  "http://www.w3.org/2000/01/rdf-schema#domain",
+#  "http://www.w3.org/2000/01/rdf-schema#range",
+#  "http://www.w3.org/2000/01/rdf-schema#label",
+#  "http://www.w3.org/2000/01/rdf-schema#member",
+
 
 #"http://www.w3.org/2000/01/rdf-schema#seeAlso",
 #"http://www.w3.org/2000/01/rdf-schema#comment",
@@ -138,7 +138,8 @@ def get_class_group(args):
                     intersection_arr.append(r["c2"] + "~~~" + r["c1"])
                     # intersection_arr.append(r["c2"])
                     # print(r)
-                    group_classlist = sorted(list(set([r["c1"],r["c2"]])), key=str.lower)
+                    group_classlist = sorted(
+                        list(set([r["c1"], r["c2"]])), key=str.lower)
                     groupname = "_".join(str(x) for x in group_classlist)
 
                     result.append(
@@ -146,7 +147,8 @@ def get_class_group(args):
                             "class": r["c1"] + "~~~" + r["c2"],
                             "count":	0,
                             "equivalent":	0,
-                            "group":	"intersect_" + groupname, #"nogroup_" + r["c1"] + "~~~" + r["c2"], # +str(index) + "_intersect",
+                            # "nogroup_" + r["c1"] + "~~~" + r["c2"], # +str(index) + "_intersect",
+                            "group":	"intersect_" + groupname,
                             "id":	str(index) + "_intersect",
                             "name":	"",
                             "subclass":	0,
@@ -198,11 +200,12 @@ def get_class_group(args):
                 return [{}]
             elif(link_intersection == 'false'):
                 filter_ = {'subclass': 1}
-            elif(link_subclass == 'false') :
+            elif(link_subclass == 'false'):
                 filter_ = {'intersect': 1}
                 print("--")
             else:
-                filter_ = (get_r().row["subclass"] == 1) | (get_r().row["intersect"]==1)
+                filter_ = (get_r().row["subclass"] == 1) | (
+                    get_r().row["intersect"] == 1)
 
         print(filter_)
 
@@ -353,8 +356,8 @@ def query_subject(s, p_filter, l, offset):
             FILTER (""" + p + """) .
             FILTER (?o != <""" + s + """>)
         }
-        LIMIT """ + l +"""
-        OFFSET """ + offset 
+        LIMIT """ + l + """
+        OFFSET """ + offset
 
     query = query_prefix + """
       SELECT distinct ?s ?s_label ?s_name
@@ -367,8 +370,8 @@ def query_subject(s, p_filter, l, offset):
             FILTER (langMatches(lang(?s_name),"en") || (lang(?s_name)=""))
             }
         }
-        LIMIT """ + l +"""
-        OFFSET """ + offset 
+        LIMIT """ + l + """
+        OFFSET """ + offset
 
     print(query)
     result = execute_query(query)
@@ -394,8 +397,8 @@ def query_property(s, p, o, l, offset):
             }
             
         }
-       LIMIT """ + l +"""
-    OFFSET """ + offset 
+       LIMIT """ + l + """
+    OFFSET """ + offset
     print(query)
     result = execute_query(query)
     return result
@@ -431,8 +434,8 @@ def query_intersect(s, o, l, offset):
             OPTIONAL{?s foaf:name ?s_name .
             }
         }
-        LIMIT """ + l +"""
-    OFFSET """ + offset 
+        LIMIT """ + l + """
+    OFFSET """ + offset
     print(query)
     result = execute_query(query)
     return result
@@ -440,7 +443,7 @@ def query_intersect(s, o, l, offset):
 
 def sparql_query(s, p, o, p_filter, l, offset):
     sparql_endpoint()
-    if(p == '') and (o == ''): 
+    if(p == '') and (o == ''):
         result = query_subject(s, p_filter,  l, offset)
     elif p == '':
         result = query_intersect(s, o,  l, offset)
@@ -451,7 +454,7 @@ def sparql_query(s, p, o, p_filter, l, offset):
     return result
 
 
-def query_datatype(s,p):
+def query_datatype(s, p, l, offset):
     query = query_prefix + """
         SELECT * 
         WHERE {
@@ -463,19 +466,21 @@ def query_datatype(s,p):
             OPTIONAL{?o foaf:name ?o_name .
             }  
         }
-        LIMIT """ + l +"""
-        OFFSET """ + offset 
+        LIMIT """ + l + """
+        OFFSET """ + offset
     result = execute_query(query)
     return result
-    
+
+
 def query_class_detail(c):
-    cursor = conn("property_datatype").filter({"class":c}).run()  # need to create index for count to use this
+    # need to create index for count to use this
+    cursor = conn("property_datatype").filter({"class": c}).run()
     nodes = list(cursor)
     try:
         return nodes[0]["property_datatype"]
     except:
         return ""
-    
+
 
 # def query_class_detail(s):
 #     sparql_endpoint()
@@ -484,8 +489,8 @@ def query_class_detail(c):
 #         WHERE {
 #             ?s a <""" + s + """>.
 #             ?s ?p ?o.
-#         BIND (datatype(?o) AS ?datatype) . 
-#             Filter (?datatype !='') . 
+#         BIND (datatype(?o) AS ?datatype) .
+#             Filter (?datatype !='') .
 #         }
 #         ORDER BY ?p
 #     """
@@ -493,13 +498,13 @@ def query_class_detail(c):
 #     json = []
 #     p_prev = ''
 #     json_datatype = []
-#     for index,result in enumerate(results):        
+#     for index,result in enumerate(results):
 #         p = result["p"]["value"]
 #         type_value = get_class_name(result["datatype"]["value"])
 #         if(p == p_prev or p_prev == ''):
 #             p_prev = result["p"]["value"]
 #             json_datatype.append(type_value)
-#         else:            
+#         else:
 #             json.append({
 #                 "p" : p_prev,
 #                 "datatype" : json_datatype
@@ -507,13 +512,13 @@ def query_class_detail(c):
 #             p_prev = result["p"]["value"]
 #             json_datatype = []
 #             json_datatype.append(type_value)
-        
+
 #         if(index == len(results)-1):
 #             json.append({
 #                 "p" : p_prev,
 #                 "datatype" : json_datatype
 #             })
-    
+
 #     return json
 
     # SELECT distinct ?datatype
@@ -543,7 +548,7 @@ def query_instance_property_object(s, p):
     return result
 
 
-def query_instance_property(i):#, l, offset):
+def query_instance_property(i):  # , l, offset):
     sparql_endpoint()
     # p = ''
     # for row in ignore_properties:
@@ -577,7 +582,7 @@ def query_instance_property(i):#, l, offset):
         ORDER BY DESC(?count)  
          
     """
-    # FILTER(""" + p + """)    
+    # FILTER(""" + p + """)
     print(query)
     results = execute_query(query)
 
@@ -674,7 +679,8 @@ class InstancePropertyList(Resource):
     def post(self):
         args = parser.parse_args()
         set_db(args['database_name'])
-        return query_instance_property(args['i'])#, args['limit'], args['offset'] )
+        # , args['limit'], args['offset'] )
+        return query_instance_property(args['i'])
 
 
 class InstancePropertyObject(Resource):
