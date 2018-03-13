@@ -440,15 +440,32 @@ def query_intersect(s, o, l, offset):
 
 def sparql_query(s, p, o, p_filter, l, offset):
     sparql_endpoint()
-    if(p == '') and (o == ''):
+    if(p == '') and (o == ''): 
         result = query_subject(s, p_filter,  l, offset)
     elif p == '':
         result = query_intersect(s, o,  l, offset)
+    elif o == '':
+        result = query_datatype(s, p,  l, offset)
     else:
         result = query_property(s, p, o,  l, offset)
     return result
 
 
+def query_datatype(s,p):
+    query = query_prefix + """
+        SELECT * 
+        WHERE {
+            ?s a <""" + s + """> .
+            ?s ?p ?o .           
+            OPTIONAL{?o rdfs:label ?o_label .
+            FILTER (langMatches(lang(?o_label),"en") || (lang(?o_label)=""))
+            }
+            OPTIONAL{?o foaf:name ?o_name .
+            }  
+        }
+        LIMIT """ + l +"""
+        OFFSET """ + offset 
+    
 def query_class_detail(c):
     cursor = conn("property_datatype").filter({"class":c}).run()  # need to create index for count to use this
     nodes = list(cursor)
