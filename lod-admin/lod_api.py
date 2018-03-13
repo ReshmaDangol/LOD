@@ -459,7 +459,7 @@ def query_datatype(s, p, l, offset):
         SELECT * 
         WHERE {
             ?s a <""" + s + """> .
-            ?s ?p ?o .           
+            ?s <""" + p + """>  ?o .           
             OPTIONAL{?o rdfs:label ?o_label .
             FILTER (langMatches(lang(?o_label),"en") || (lang(?o_label)=""))
             }
