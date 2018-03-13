@@ -459,15 +459,15 @@ def query_datatype(s, p, l, offset):
         SELECT * 
         WHERE {
             ?s a <""" + s + """> .
-            ?s <""" + p + """>  ?o .           
-            OPTIONAL{?o rdfs:label ?o_label .
-            FILTER (langMatches(lang(?o_label),"en") || (lang(?o_label)=""))
-            }
-            OPTIONAL{?o foaf:name ?o_name .
-            }  
+            ?s <""" + p + """>  ?o .                   
         }
         LIMIT """ + l + """
         OFFSET """ + offset
+        #    OPTIONAL{?o rdfs:label ?o_label .
+        #     FILTER (langMatches(lang(?o_label),"en") || (lang(?o_label)=""))
+        #     }
+        #     OPTIONAL{?o foaf:name ?o_name .
+        #     }  
     print(query)
     result = execute_query(query)
     return result
