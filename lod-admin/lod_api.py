@@ -465,6 +465,8 @@ def query_datatype(s,p):
         }
         LIMIT """ + l +"""
         OFFSET """ + offset 
+    result = execute_query(query)
+    return result
     
 def query_class_detail(c):
     cursor = conn("property_datatype").filter({"class":c}).run()  # need to create index for count to use this
