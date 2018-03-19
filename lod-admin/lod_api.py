@@ -548,6 +548,9 @@ def query_instance_property_object(s, p):
     result = execute_query(query)
     return result
 
+def get_stats():
+    cursor_stats = conn("stats").run()  # need to create index for count to use this
+    return list(cursor_stats)
 
 def query_instance_property(i):  # , l, offset):
     sparql_endpoint()
@@ -697,7 +700,13 @@ class ClassAllDetail(Resource):
         set_db(args['database_name'])
         return query_class_detail(args['s'])
 
+class Stats(Resource):
+    def get(self):
+        args = parser.parse_args()
+        set_db(args['database_name'])
+        return get_stats()    
 
+api.add_resource(Stats, '/stats')
 api.add_resource(ClassList, '/classlist')
 api.add_resource(ClassWithDetail, '/class')
 api.add_resource(AddNode, '/addnode')
