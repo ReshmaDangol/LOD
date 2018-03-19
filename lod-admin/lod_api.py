@@ -701,7 +701,7 @@ class ClassAllDetail(Resource):
         return query_class_detail(args['s'])
 
 class Stats(Resource):
-    def get(self):
+    def post(self):
         args = parser.parse_args()
         set_db(args['database_name'])
         return get_stats()    
