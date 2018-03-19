@@ -315,8 +315,8 @@ def popular_class():
         classes.append({
             "class": class_uri,
             "count": int(result["instance_count"]["value"]),
-            "name": class_name# get_class_name(result["class"]["value"])
-            
+            "name": class_name  # get_class_name(result["class"]["value"])
+
         })
     print(conn(tableprefix + "class").insert(classes).run())
     conn(tableprefix + "class").index_create('count').run()
@@ -336,7 +336,7 @@ def fetch_property():
             print(class_arr[i])
             print(class_arr[j])
             poperty_between_class(class_arr[i], class_arr[j])
-            if(i!=j):
+            if(i != j):
                 poperty_between_class(class_arr[j], class_arr[i])
     return render_template("sparql.html")
 
@@ -766,6 +766,51 @@ def get_datatye():
         })
 
     conn(tableprefix + "property_datatype").insert(json_result).run()
+    return render_template("sparql.html")
+
+
+@app.route('/stats')
+def sparqlGetStats():
+    r.db(database_name).table_create(tableprefix + "stats").run()
+    query = """
+        select (count(*) as ?instanceCount)
+        where {?s ?p ?o}
+    """
+    result = execute_query(query)
+    size = result[0]["instanceCount"]["value"]
+
+    query = """
+        select (count(distinct ?o) as ?instanceCount)
+        where {?s a ?o}
+    """
+    result = execute_query(query)
+    c_size = result[0]["instanceCount"]["value"]
+
+    query = """
+        select (count(distinct ?p) as ?instanceCount)
+        where { 
+            ?s a ?s1.
+            ?o a ?s2.
+            ?s ?p ?o
+            }
+    """
+    result = execute_query(query)
+    op_size = result[0]["instanceCount"]["value"]
+
+    query = """
+        SELECT (count(DISTINCT ?p) as ?instanceCount)
+            WHERE {               
+                ?s ?p ?o.
+            BIND (datatype(?o) AS ?datatype) . 
+                Filter (?datatype !='') . 
+            }           
+    """
+    result = execute_query(query)
+    dp_size = result[0]["instanceCount"]["value"]
+
+    stats = {"size": size, "c_size": c_size,
+             "op_size": op_size, "dp_size": dp_size}
+    conn(tableprefix + "stats").insert(stats).run()
     return render_template("sparql.html")
 
 
