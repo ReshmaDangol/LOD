@@ -66,6 +66,7 @@ def create_tables():
     r.db(database_name).table_create(tableprefix + "property_type").run()
     r.db(database_name).table_create(tableprefix + "error_log").run()
     r.db(database_name).table_create(tableprefix + "subclass_graph").run()
+    r.db(database_name).table_create(tableprefix + "stats").run()
 
     conn(tableprefix + "property").index_create('count').run()
 
@@ -771,7 +772,7 @@ def get_datatye():
 
 @app.route('/stats')
 def sparqlGetStats():
-    r.db(database_name).table_create(tableprefix + "stats").run()
+   
     query = """
         select (count(*) as ?instanceCount)
         where {?s ?p ?o}
