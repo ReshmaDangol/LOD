@@ -282,18 +282,27 @@ def inverse_functional_property():
 def popular_class():
     count = 20
     query = query_prefix + """ 
-        SELECT  DISTINCT ?class (count(?s) AS ?instance_count) ?s_label ?s_name
+       SELECT  DISTINCT ?class (count(?s) AS ?instance_count)
         WHERE {
-        ?s a ?class. 
-        OPTIONAL{?class rdfs:label ?s_label.
-            FILTER (langMatches(lang(?s_label),"en") || (lang(?s_label)=""))
-                 }.
-        OPTIONAL{ ?class  foaf:name ?s_name .}
+        ?s a ?class.      
         
         } 
-      GROUP BY ?class ?s_label ?s_name
-      ORDER BY DESC(?instance_count)       
-      limit """ + str(count)
+      GROUP BY ?class 
+      ORDER BY DESC(?instance_count)  
+            limit """ + str(count)
+
+
+    #     SELECT  DISTINCT ?class (count(?s) AS ?instance_count) ?s_label ?s_name
+    #     WHERE {
+    #     ?s a ?class. 
+    #     OPTIONAL{?class rdfs:label ?s_label.
+    #         FILTER (langMatches(lang(?s_label),"en") || (lang(?s_label)=""))
+    #              }.
+    #     OPTIONAL{ ?class  foaf:name ?s_name .}
+        
+    #     } 
+    #   GROUP BY ?class ?s_label ?s_name
+    #   ORDER BY DESC(?instance_count)       
 
     results = execute_query(query)
     i = 0
@@ -365,34 +374,34 @@ def fetch_sub_equivalent_class():
     return render_template("sparql.html")
 
 
-@app.route('/subclass_transitivity')
-def subclass_check_transitivity():
-    rows = conn(tableprefix + "subclass").run()
-    for row in rows:
-        c = row['class']
-        sc = row['subclass']
-        result_1 = conn(tableprefix + "subclass").filter(
-            (r.row["class"] == c) & (r.row["subclass"] != sc)).run()
-        for d in result_1:
-            result_2 = conn(tableprefix + "subclass").filter(
-                (r.row["class"] == d["subclass"]) & (r.row["subclass"] == sc)).count().run()
-            if(result_2 > 0):
-                conn(tableprefix + "subclass").filter((r.row["class"] == c) & (
-                    r.row["subclass"] == sc)).update({"transitive_subclass": "true"}).run()
-                print(get_class_name(c), get_class_name(
-                    sc), get_class_name(d["subclass"]))
+# @app.route('/subclass_transitivity')
+# def subclass_check_transitivity():
+#     rows = conn(tableprefix + "subclass").run()
+#     for row in rows:
+#         c = row['class']
+#         sc = row['subclass']
+#         result_1 = conn(tableprefix + "subclass").filter(
+#             (r.row["class"] == c) & (r.row["subclass"] != sc)).run()
+#         for d in result_1:
+#             result_2 = conn(tableprefix + "subclass").filter(
+#                 (r.row["class"] == d["subclass"]) & (r.row["subclass"] == sc)).count().run()
+#             if(result_2 > 0):
+#                 conn(tableprefix + "subclass").filter((r.row["class"] == c) & (
+#                     r.row["subclass"] == sc)).update({"transitive_subclass": "true"}).run()
+#                 print(get_class_name(c), get_class_name(
+#                     sc), get_class_name(d["subclass"]))
 
-    rows = conn(
-        tableprefix + "subclass").filter({"transitive_subclass": "false"}).run()
-    for row in rows:
-        conn(tableprefix + "subclass_graph").insert({
-            "class": row["class"],
-            "subclass": row["subclass"]
-        }).count().run()
+#     rows = conn(
+#         tableprefix + "subclass").filter({"transitive_subclass": "false"}).run()
+#     for row in rows:
+#         conn(tableprefix + "subclass_graph").insert({
+#             "class": row["class"],
+#             "subclass": row["subclass"]
+#         }).count().run()
 
-        # print(get_class_name(c),get_class_name(sc),get_class_name(d["subclass"]) )
+#         # print(get_class_name(c),get_class_name(sc),get_class_name(d["subclass"]) )
 
-    return render_template("sparql.html")
+#     return render_template("sparql.html")
 
 
 def poperty_between_class(*args):
